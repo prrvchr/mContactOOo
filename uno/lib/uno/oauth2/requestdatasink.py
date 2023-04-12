@@ -27,46 +27,35 @@
 ╚════════════════════════════════════════════════════════════════════════════════════╝
 """
 
+import uno
 import unohelper
 
-from com.sun.star.frame import XTerminateListener
 
-from com.sun.star.lang import XEventListener
-
+from com.sun.star.rest import XRequestDataSink
 
 import traceback
 
 
-class TerminateListener(unohelper.Base,
-                        XTerminateListener):
-    def __init__(self, replicator):
-        self._replicator = replicator
+class RequestDataSink(unohelper.Base,
+                      XRequestDataSink):
+    def __init__(self, ctx):
+        self._ctx = ctx
+        self._input = None
 
-# XTerminateListener
-    def queryTermination(self, event):
-        try:
-            self._replicator.dispose()
-        except Exception as e:
-            msg = "TerminateListener Error: %s" % traceback.print_exc()
-            print(msg)
+    #XActiveDataSink
+    def setInputStream(self, input):
+        self._input = input
+    def getInputStream(self):
+        return self._input
 
-    def notifyTermination(self, event):
-        pass
+    #Python File Like Object
+    def read(self, length):
+        length, sequence = self._input.readBytes(None, length)
+        return sequence.value
+    def close(self):
+        self._input.closeInput()
+    def seek(self, location):
+        self._input.seek(location)
+    def tell(self):
+        return self._input.getPosition()
 
-    def disposing(self, source):
-        pass
-
-
-class EventListener(unohelper.Base,
-                    XEventListener):
-    def __init__(self, datasource):
-        self._datasource = datasource
-
-# XEventListener
-    def disposing(self, event):
-        try:
-            print("EventListener.disposing() ******************")
-            self._datasource.closeConnection(event.Source)
-        except Exception as e:
-            msg = "EventListener Error: %s" % traceback.print_exc()
-            print(msg)
