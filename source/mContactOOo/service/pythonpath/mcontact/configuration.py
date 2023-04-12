@@ -1,4 +1,7 @@
-/*
+#!
+# -*- coding: utf-8 -*-
+
+"""
 ╔════════════════════════════════════════════════════════════════════════════════════╗
 ║                                                                                    ║
 ║   Copyright (c) 2020 https://prrvchr.github.io                                     ║
@@ -22,27 +25,34 @@
 ║   OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                    ║
 ║                                                                                    ║
 ╚════════════════════════════════════════════════════════════════════════════════════╝
- */
+"""
 
-#ifndef __com_sun_star_auth_XRestDataParser_idl__
-#define __com_sun_star_auth_XRestDataParser_idl__
+# General configuration
+g_extension = 'mContactOOo'
+g_identifier = 'io.github.prrvchr.%s' % g_extension
 
-#include <com/sun/star/uno/XInterface.idl>
+# Resource strings files folder
+g_resource = 'resource'
+g_basename = 'Driver'
 
-module com { module sun { module star { module auth {
+g_defaultlog = 'mContactLog'
+g_synclog = 'mContactSync'
+g_errorlog = 'mContactError'
 
-interface XRestDataParser: com::sun::star::uno::XInterface
-{
+g_scheme = 'https://'
+g_host = 'graph.microsoft.com'
+#g_path = '/v1.0'
+g_path = '/beta'
 
-    any parseResponse([in] any Response);
+g_page = 100
+g_member = 1000
+g_admin = False
+g_compact = 100
 
-    any filterResponse([in] any Response);
+g_userkeys = ('id','userPrincipalName','displayName')
+g_userfields = ','.join(g_userkeys)
 
-    [attribute, readonly] string DataType;
-
-};
-
-
-}; }; }; };
-
-#endif
+g_group = 'all'
+g_filter = 'USER_CONTACT_GROUP'
+g_timestamp = '%Y-%m-%dT%H:%M:%S.00'
+g_db_timestamp = 'YYYY-MM-DD"T"HH24:MI:SS.FFFFFFFFFFFF"Z"'

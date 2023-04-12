@@ -1,4 +1,5 @@
-/*
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
 ╔════════════════════════════════════════════════════════════════════════════════════╗
 ║                                                                                    ║
 ║   Copyright (c) 2020 https://prrvchr.github.io                                     ║
@@ -22,27 +23,19 @@
 ║   OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                    ║
 ║                                                                                    ║
 ╚════════════════════════════════════════════════════════════════════════════════════╝
- */
-
-#ifndef __com_sun_star_auth_XRestDataParser_idl__
-#define __com_sun_star_auth_XRestDataParser_idl__
-
-#include <com/sun/star/uno/XInterface.idl>
-
-module com { module sun { module star { module auth {
-
-interface XRestDataParser: com::sun::star::uno::XInterface
-{
-
-    any parseResponse([in] any Response);
-
-    any filterResponse([in] any Response);
-
-    [attribute, readonly] string DataType;
-
-};
-
-
-}; }; }; };
-
-#endif
+-->
+<oor:component-data
+  xml:lang="en-US"
+  xmlns:oor="http://openoffice.org/2001/registry"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  oor:package="io.github.prrvchr"
+  oor:name="mContactOOo">
+    <prop oor:name="AddressBookName">
+        <value xml:lang="en">All my contacts</value>
+        <value xml:lang="fr">Tous mes contacts</value>
+    </prop>
+    <prop oor:name="ReplicateTimeout">
+        <value>600</value>
+    </prop>
+</oor:component-data>
