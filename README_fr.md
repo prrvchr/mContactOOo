@@ -52,26 +52,26 @@ Redémarrez LibreOffice / OpenOffice après l'installation.
 
 ## Utilisation:
 
-Dans LibreOffice / OpenOffice aller à: Fichier -> Assistants -> Source de données des adresses...:
+Dans LibreOffice / OpenOffice aller à: **Fichier -> Assistants -> Source de données des adresses**:
 
-![mContactOOo screenshot 1](img/mContactOOo-1_fr.png)
+![mContactOOo screenshot 1][22]
 
 À l'étape: 1. Type de carnet d'adresses:
 - sélectionner: Autre source de données externes
 - cliquez sur: Suivant (bouton)
 
-![mContactOOo screenshot 2](img/mContactOOo-2_fr.png)
+![mContactOOo screenshot 2][23]
 
 À l'étape: 2. Paramètres de Connexion:
 - cliquez sur: Paramètres (bouton)
 
-![mContactOOo screenshot 3](img/mContactOOo-3_fr.png)
+![mContactOOo screenshot 3][24]
 
 Dans Type de base de données:
 - sélectionner: Contacts Microsoft
 - cliquez sur: Suivant (bouton)
 
-![mContactOOo screenshot 4](img/mContactOOo-4_fr.png)
+![mContactOOo screenshot 4][25]
 
 Dans Général: URL de la source de données:
 - mettre: votre compte Microsoft (c'est-à-dire: votre_compte@votre_adresse.com)
@@ -79,11 +79,11 @@ Dans Général: URL de la source de données:
 Puis:
 - cliquez sur: Tester la connexion (bouton)
 
-![mContactOOo screenshot 5](img/mContactOOo-5_fr.png)
+![mContactOOo screenshot 5][26]
 
-Après avoir autorisé l'application [OAuth2OOo](https://prrvchr.github.io/OAuth2OOo/README_fr) à accéder à vos contacts, normalement vous devez voir s'afficher: Test de connexion: Connexion établie.
+Après avoir autorisé l'application [OAuth2OOo][27] à accéder à vos contacts, normalement vous devez voir s'afficher: Test de connexion: Connexion établie.
 
-![mContactOOo screenshot 6](img/mContactOOo-6_fr.png)
+![mContactOOo screenshot 6][28]
 
 Maintenant à vous d'en profiter...
 
@@ -102,7 +102,7 @@ Maintenant à vous d'en profiter...
 * LibreOffice 6.4.4.2 (x64) - Windows 7 SP1
 
 Je vous encourage en cas de problème :-(  
-de créer un [dysfonctionnement](https://github.com/prrvchr/mContactOOo/issues/new)  
+de créer un [dysfonctionnement][29]  
 J'essaierai de le résoudre ;-)
 
 ## Historique:
@@ -111,7 +111,7 @@ J'essaierai de le résoudre ;-)
 
 Cette extension a été écrite afin de rendre utilisables dans un logiciel libre (LibreOffice ou OpenOffice) vos données personnelles stockées dans votre carnet d'adresses Microsoft Outlook.
 
-Avec l'extension [smtpMailerOOo](https://github.com/prrvchr/smtpMailerOOo/blob/master/source/smtpMailerOOo/dist/smtpMailerOOo.oxt), elle peut être la source de données pour des [publipostages](https://fr.wikipedia.org/wiki/Publipostage) par courriel (email), à vos correspondants contenus dans votre carnet d'adresses Microsoft Outlook.
+Avec l'extension [smtpMailerOOo][30], elle peut être la source de données pour des [publipostages][31] par courriel (email), à vos correspondants contenus dans votre carnet d'adresses Microsoft Outlook.
 
 Elle vous donnera accès à un système d'information que seules les grandes entreprises sont capables, aujourd'hui, de mettre en œuvre.
 
@@ -136,3 +136,13 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [19]: <https://github.com/prrvchr/jdbcDriverOOo/raw/master/source/jdbcDriverOOo/dist/jdbcDriverOOo.oxt>
 [20]: <img/mContactOOo.png>
 [21]: <https://github.com/prrvchr/mContactOOo/raw/master/source/mContactOOo/dist/mContactOOo.oxt>
+[22]: <img/mContactOOo-1_fr.png>
+[23]: <img/mContactOOo-2_fr.png>
+[24]: <img/mContactOOo-3_fr.png>
+[25]: <img/mContactOOo-4_fr.png>
+[26]: <img/mContactOOo-5_fr.png>
+[27]: <https://prrvchr.github.io/OAuth2OOo/README_fr>
+[28]: <img/mContactOOo-6_fr.png>
+[29]: <https://github.com/prrvchr/mContactOOo/issues/new>
+[30]: <https://github.com/prrvchr/smtpMailerOOo/blob/master/source/smtpMailerOOo/dist/smtpMailerOOo.oxt>
+[31]: <https://fr.wikipedia.org/wiki/Publipostage>

@@ -52,38 +52,38 @@ Restart LibreOffice / OpenOffice after installation.
 
 ## Use:
 
-In LibreOffice / OpenOffice go to File -> Wizards -> Address Data Source...:
+In LibreOffice / OpenOffice go to **File -> Wizards -> Address Data Source**:
 
-![mContactOOo screenshot 1](img/mContactOOo-1.png)
+![mContactOOo screenshot 1][22]
 
 In step: 1. Address Book Type:
 - select: Other external data source
 - click on: Next(Button)
 
-![mContactOOo screenshot 2](img/mContactOOo-2.png)
+![mContactOOo screenshot 2][23]
 
 In step: 2. Connection Settings:
 - click on: Settings(Button)
 
-![mContactOOo screenshot 3](img/mContactOOo-3.png)
+![mContactOOo screenshot 3][24]
 
 In Database type list:
-- select: Google Contacts
+- select: Microsoft Contacts
 - click on: Next(Button)
 
-![mContactOOo screenshot 4](img/mContactOOo-4.png)
+![mContactOOo screenshot 4][25]
 
 In General: Datasource Url:
-- put: your Google account (ie: your_account@gmail.com)
+- put: your Google account (ie: your_account@your_provider.com)
 
 Then:
 - click on: Test connection (button)
 
-![mContactOOo screenshot 5](img/mContactOOo-5.png)
+![mContactOOo screenshot 5][26]
 
-After authorizing the [OAuth2OOo](https://prrvchr.github.io/OAuth2OOo) application to access your Contacts, normally you should see: Connection Test: The connection was established successfully.
+After authorizing the [OAuth2OOo][27] application to access your Contacts, normally you should see: Connection Test: The connection was established successfully.
 
-![mContactOOo screenshot 6](img/mContactOOo-6.png)
+![mContactOOo screenshot 6][28]
 
 Have fun...
 
@@ -102,7 +102,7 @@ Have fun...
 * LibreOffice 6.4.4.2 (x64) - Windows 7 SP1
 
 I encourage you in case of problem :-(  
-to create an [issue](https://github.com/prrvchr/mContactOOo/issues/new)  
+to create an [issue][29]  
 I will try to solve it ;-)
 
 ## Historical:
@@ -111,7 +111,7 @@ I will try to solve it ;-)
 
 This extension was written in order to make usable in free software (LibreOffice or OpenOffice) your personal data stored in your Microsoft Outlook address book.
 
-With the [smtpMailerOOo](https://github.com/prrvchr/smtpMailerOOo/blob/master/source/smtpMailerOOo/dist/smtpMailerOOo.oxt) extension, it can be the data source for [mail merge](https://en.wikipedia.org/wiki/Mail_merge) by email, to your correspondents contained in your Microsoft Outlook adressbook.
+With the [smtpMailerOOo][30] extension, it can be the data source for [mail merge][31] by email, to your correspondents contained in your Microsoft Outlook adressbook.
 
 It will give you access to an information system that only larges companies are able, today, to implement.
 
@@ -136,3 +136,13 @@ It will give you access to an information system that only larges companies are 
 [19]: <https://github.com/prrvchr/jdbcDriverOOo/raw/master/source/jdbcDriverOOo/dist/jdbcDriverOOo.oxt>
 [20]: <img/mContactOOo.png>
 [21]: <https://github.com/prrvchr/mContactOOo/raw/master/source/mContactOOo/dist/mContactOOo.oxt>
+[22]: <img/mContactOOo-1.png>
+[23]: <img/mContactOOo-2.png>
+[24]: <img/mContactOOo-3.png>
+[25]: <img/mContactOOo-4.png>
+[26]: <img/mContactOOo-5.png>
+[27]: <https://prrvchr.github.io/OAuth2OOo>
+[28]: <img/mContactOOo-6_fr.png>
+[29]: <https://github.com/prrvchr/mContactOOo/issues/new>
+[30]: <https://github.com/prrvchr/smtpMailerOOo/blob/master/source/smtpMailerOOo/dist/smtpMailerOOo.oxt>
+[31]: <https://en.wikipedia.org/wiki/Mail_merge>
