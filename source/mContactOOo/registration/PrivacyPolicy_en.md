@@ -2,7 +2,7 @@
 
 **Use of this software also subjects you to our [Terms Of Use][2].**
 
-Regarding installation, configuration and use, please consult the [documentation][3].
+Regarding installation, configuration and use, please consult the **[documentation][3]**.
 
 ## Introduction:
 
@@ -14,8 +14,6 @@ For simplicity, in the rest of this document, will be named:
 - `mContactOOo`:  the mContactOOo software in its entirety.
 - `User`: the user of the mContactOOo software.
 - `Supplier`: the Internet service provider delivering Internet services to `mContactOOo`.
-
-Although **mContactOOo does not share or transfer any data to any other application**, `mContactOOo` adhere to [Google API Services User Data Policy][4], including the Limited Use requirements.
 
 ## Contact:
 
@@ -60,4 +58,3 @@ Use of the `Supplier` services via `mContactOOo` may subject you to the Data Pro
 [1]: <https://prrvchr.github.io/mContactOOo/img/mContactOOo.png>
 [2]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/TermsOfUse_en>
 [3]: <https://prrvchr.github.io/mContactOOo/>
-[4]: <https://developers.google.com/terms/api-services-user-data-policy>

@@ -2,7 +2,7 @@
 
 **L'utilisation de ce logiciel vous soumet également à nos [Conditions d'utilisation][2].**
 
-Concernant l'installation, la configuration et l'utilisation, veuillez consulter la [documentation][3].
+Concernant l'installation, la configuration et l'utilisation, veuillez consulter la **[documentation][3]**.
 
 ## Introduction:
 
@@ -14,8 +14,6 @@ Pour plus de simplicité, dans la suite de ce document, on nommera:
 - `mContactOOo`:  le logiciel mContactOOo dans son intégralité.
 - `Utilisateur`: l'utilisateur du logiciel mContactOOo.
 - `Fournisseur`: fournisseur de services Internet fournissant des services Internet à `mContactOOo`.
-
-Bien que **mContactOOo ne partage ni ne transfert aucun données avec toutes autre application**, `mContactOOo` respecte [la politique de données utilisateur des services API Google][4], y compris les exigences d'utilisation limitée.
 
 ## Contact:
 
@@ -60,4 +58,3 @@ Le `Fournisseur` est seul responsable de l'expiration des données qu'il collect
 [1]: <https://prrvchr.github.io/mContactOOo/img/mContactOOo.png>
 [2]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/TermsOfUse_fr>
 [3]: <https://prrvchr.github.io/mContactOOo/README_fr>
-[4]: <https://developers.google.com/terms/api-services-user-data-policy>
