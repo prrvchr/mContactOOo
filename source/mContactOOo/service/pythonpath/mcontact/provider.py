@@ -50,6 +50,8 @@ from .configuration import g_userfields
 from .configuration import g_errorlog
 from .configuration import g_basename
 
+from . import ijson
+
 import traceback
 
 
@@ -58,6 +60,8 @@ class Provider(ProviderBase):
         self._ctx = ctx
         self._scheme = scheme
         self._server = server
+        self._chunk =  64 * 1024
+
 
     def insertUser(self, database, request, scheme, server, name, pwd):
         userid = self._getNewUserId(request, name)
@@ -71,40 +75,74 @@ class Provider(ProviderBase):
         if not response.Ok:
             #TODO: Raise SqlException with correct message!
             raise self.getSqlException(1004, 1108, '_getNewUserId', 'Cant retrieve User: %s' % name)
-        userid = self._getUserId(response.json())
+        userid = self._parseUserId(response)
         response.close()
         if userid is None:
             #TODO: Raise SqlException with correct message!
             raise self.getSqlException(1004, 1108, '_getNewUserId', 'Cant retrieve Id for User: %s' % name)
+        print("Provider._getNewUserId() UserId: %s" % userid)
         return userid
 
-    def _getUserId(self, data):
-        return data.getValue('id') if data.hasValue('id') else None
+    def _parseUserId(self, response):
+        userid = None
+        events = ijson.sendable_list()
+        parser = ijson.parse_coro(events)
+        iterator = response.iterContent(self._chunk, False)
+        while iterator.hasMoreElements():
+            parser.send(iterator.nextElement().value)
+            for prefix, event, value in events:
+                if (prefix, event) == ('id', 'string'):
+                    userid = value
+                    break
+            del events[:]
+            # FIXME: We got what we wanted we can leave
+            if userid is not None:
+                break
+        parser.close()
+        return userid
 
-    def initAddressbooks(self, database, user, request):
-        try:
-            if self.isOnLine():
-                addressbooks = self._getAllAddressbook(request)
-                if not addressbooks:
-                    #TODO: Raise SqlException with correct message!
-                    print("User.initAddressbooks() 1 %s" % (addressbooks, ))
-                    raise self.getSqlException(1004, 1108, 'initAddressbooks', '%s has no support of CardDAV!' % user.Server)
-                if user.Addressbooks.initAddressbooks(database, user.Id, addressbooks):
-                    database.initAddressbooks(user)
-        except Exception as e:
-            msg = "Provider.initAddressbooks() Error: %s" % traceback.format_exc()
-            print(msg)
+    def initAddressbooks(self, database, user):
+        if self.isOnLine():
+            count, modified = self._updateAllAddressbook(database, user)
+            if not count:
+                #TODO: Raise SqlException with correct message!
+                print("User.initAddressbooks() 1 %s" % (user.Name, ))
+                raise self.getSqlException(1004, 1108, 'initAddressbooks', '%s has no support of CardDAV!' % user.Server)
+            if modified:
+                database.initAddressbooks(user)
 
-    def _getAllAddressbook(self, request):
+    def _updateAllAddressbook(self, database, user):
         parameter = self._getRequestParameter('getAddressbooks')
-        response = request.executeRequest(parameter)
+        response = user.Request.executeRequest(parameter)
         if not response.Ok:
+            response.close()
             #TODO: Raise SqlException with correct message!
             raise self.getSqlException(1006, 1107, 'getAllAddressbook()', user)
-        parser = JsonParser('value', id='Url', displayName='Name', wellKnownName='Tag', parentFolderId='Token')
-        addressbooks = response.jsonWithParser(parser)
+        count, modified = user.Addressbooks.initAddressbooks(database, user.Id, self._parseAllAddressbook(response))
         response.close()
-        return addressbooks
+        return count, modified
+
+    def _parseAllAddressbook(self, response):
+        events = ijson.sendable_list()
+        parser = ijson.parse_coro(events)
+        url = name = tag = token = None
+        iterator = response.iterContent(self._chunk, False)
+        while iterator.hasMoreElements():
+            parser.send(iterator.nextElement().value)
+            for prefix, event, value in events:
+                if (prefix, event) == ('value.item.id', 'string'):
+                    url = value
+                elif (prefix, event) == ('value.item.displayName', 'string'):
+                    name = value
+                elif (prefix, event) == ('value.item.wellKnownName', 'string'):
+                    tag = value
+                elif (prefix, event) == ('value.item.parentFolderId', 'string'):
+                    token = value
+                if all((url, name, tag, token)):
+                    yield  url, name, tag, token
+                    url = name = tag = token = None
+            del events[:]
+        parser.close()
 
     def getAddressbookCards(self, request, user, password, url):
         parameter = self._getRequestParameter('getAddressbookCards')
