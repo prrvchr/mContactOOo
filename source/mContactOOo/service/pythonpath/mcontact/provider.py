@@ -48,6 +48,7 @@ from .configuration import g_page
 from .configuration import g_member
 from .configuration import g_userfields
 from .configuration import g_cardfields
+from .configuration import g_groupfields
 from .configuration import g_errorlog
 from .configuration import g_basename
 from .configuration import g_path
@@ -100,20 +101,17 @@ class Provider(ProviderBase):
 
     def initAddressbooks(self, database, user):
         print("Provider.initAddressbooks() 1 %s" % (user.Name, ))
-        if user.isOnLine():
+        count, modified = self._updateAllAddressbook(database, user)
+        if not count:
+            #TODO: Raise SqlException with correct message!
             print("Provider.initAddressbooks() 2 %s" % (user.Name, ))
-            count, modified = self._updateAllAddressbook(database, user)
-            print("Provider.initAddressbooks() 3 %s" % (user.Name, ))
-            if not count:
-                #TODO: Raise SqlException with correct message!
-                print("Provider.initAddressbooks() 4 %s" % (user.Name, ))
-                raise self.getSqlException(1004, 1108, 'initAddressbooks', '%s has no support of CardDAV!' % user.Server)
-            print("Provider.initAddressbooks() 5 %s" % (user.Name, ))
-            if modified:
-                print("Provider.initAddressbooks() 6 %s" % (user.Name, ))
-                database.initAddressbooks(user)
-            self._initAddressbookGroups(database, user)
-            print("Provider.initAddressbooks() 7 %s" % (user.Name, ))
+            raise self.getSqlException(1004, 1108, 'initAddressbooks', '%s has no support of CardDAV!' % user.Server)
+        print("Provider.initAddressbooks() 3 %s" % (user.Name, ))
+        if modified:
+            print("Provider.initAddressbooks() 4 %s" % (user.Name, ))
+            database.initAddressbooks(user)
+        self._initAddressbookGroups(database, user)
+        print("Provider.initAddressbooks() 5 %s" % (user.Name, ))
 
     def _updateAllAddressbook(self, database, user):
         try:
@@ -161,7 +159,7 @@ class Provider(ProviderBase):
                 #TODO: Raise SqlException with correct message!
                 raise self.getSqlException(1006, 1107, '_initAddressbookGroups()', user.Name)
             for group in database.insertGroups(user, self._parseGroups(response)):
-                print("Provider._initAddressbookGroups() GID: %s - Name: %s" % (gid, name))
+                print("Provider._initAddressbookGroups() GID: %s - Name: %s" % group)
                 #database.initUserGroupView(group)
             response.close()
         except Exception as e:
@@ -259,7 +257,8 @@ class Provider(ProviderBase):
             parameter.Query = '{"select": "%s"}' % g_cardfields
         elif method == 'getAddressbookGroups':
             parameter.Method = 'GET'
-            parameter.Url += '/me/outlook/masterCategories'
+            parameter.Url += '/groups'
+            parameter.Query = '{"select": "%s"}' % g_groupfields
         elif method == 'getModifiedCardByToken':
             parameter.Method = 'GET'
             parameter.Url += '/me/contactFolders/%s/contacts/delta' % data

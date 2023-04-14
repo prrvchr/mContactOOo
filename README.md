@@ -1,5 +1,7 @@
 # ![mContactOOo logo][1] mContactOOo
 
+**This extension is under development, thank you for your patience**
+
 **Ce [document][2] en français.**
 
 **The use of this software subjects you to our** [**Terms Of Use**][3] **and** [**Data Protection Policy**][4]

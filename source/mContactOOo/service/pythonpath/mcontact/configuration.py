@@ -55,6 +55,9 @@ g_userfields = ','.join(g_userkeys)
 g_cardkeys = ('id','displayName','emailAddresses')
 g_cardfields = ','.join(g_cardkeys)
 
+g_groupkeys = ('id','displayName')
+g_groupfields = ','.join(g_groupkeys)
+
 
 g_group = 'all'
 g_filter = 'USER_CONTACT_GROUP'
