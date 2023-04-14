@@ -101,11 +101,11 @@ class Driver(unohelper.Base,
             self._logger.logprb(INFO, 'Driver', 'connect()', 111, url)
             protocols = url.strip().split(':')
             if len(protocols) != 4 or not all(protocols):
-                raise self._getSqlException(112, 1101, 'connect()', url)
+                raise getSqlException(self._ctx, self, 112, 1101, 'connect()', url)
             username = protocols[3]
             password = ''
             if not validators.email(username):
-                raise self._getSqlException(113, 1102, 'connect()', username)
+                raise getSqlException(self._ctx, self, 113, 1102, 'connect()', username)
             connection = self.DataSource.getConnection(g_scheme, g_host, username, password)
             version = connection.getMetaData().getDriverVersion()
             name = connection.getMetaData().getUserName()
@@ -130,13 +130,6 @@ class Driver(unohelper.Base,
         return 1
     def getMinorVersion(self):
         return 0
-
-    def _getSqlException(self, state, code, method, *args):
-        state = self._logger.resolveString(state)
-        msg = self._logger.resolveString(code, *args)
-        self._logger.logp(SEVERE, g_basename, method, msg)
-        error = getSqlException(state, code, msg, self)
-        return error
 
 # XDropCatalog
     def dropCatalog(self, name, info):

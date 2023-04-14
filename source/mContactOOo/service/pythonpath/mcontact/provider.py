@@ -47,8 +47,10 @@ from com.sun.star.auth.RestRequestTokenType import TOKEN_SYNC
 from .configuration import g_page
 from .configuration import g_member
 from .configuration import g_userfields
+from .configuration import g_cardfields
 from .configuration import g_errorlog
 from .configuration import g_basename
+from .configuration import g_path
 
 from . import ijson
 
@@ -56,21 +58,19 @@ import traceback
 
 
 class Provider(ProviderBase):
-    def __init__(self, ctx, scheme, server):
+    def __init__(self, ctx):
         self._ctx = ctx
-        self._scheme = scheme
-        self._server = server
-        self._chunk =  64 * 1024
-
+        self._chunk = 64 * 1024
 
     def insertUser(self, database, request, scheme, server, name, pwd):
-        userid = self._getNewUserId(request, name)
+        userid = self._getNewUserId(request, scheme, server, name)
         # FIXME: The Microsoft API only offers one address book, we need to initialize it now...
         #return database.insertUser(scheme, server, userid, name, 'Tous mes contacts')
-        return database.insertUser(scheme, server, userid, name)
+        return database.insertUser(userid, scheme, server, g_path, name)
 
-    def _getNewUserId(self, request, name):
-        parameter = self._getRequestParameter('getUser')
+    def _getNewUserId(self, request, scheme, server, name):
+        url = scheme + server + g_path
+        parameter = self._getRequestParameter('getUser', url)
         response =  request.executeRequest(parameter)
         if not response.Ok:
             #TODO: Raise SqlException with correct message!
@@ -95,32 +95,40 @@ class Provider(ProviderBase):
                     userid = value
                     break
             del events[:]
-            # FIXME: We got what we wanted we can leave
-            if userid is not None:
-                break
         parser.close()
         return userid
 
     def initAddressbooks(self, database, user):
-        if self.isOnLine():
+        print("Provider.initAddressbooks() 1 %s" % (user.Name, ))
+        if user.isOnLine():
+            print("Provider.initAddressbooks() 2 %s" % (user.Name, ))
             count, modified = self._updateAllAddressbook(database, user)
+            print("Provider.initAddressbooks() 3 %s" % (user.Name, ))
             if not count:
                 #TODO: Raise SqlException with correct message!
-                print("User.initAddressbooks() 1 %s" % (user.Name, ))
+                print("Provider.initAddressbooks() 4 %s" % (user.Name, ))
                 raise self.getSqlException(1004, 1108, 'initAddressbooks', '%s has no support of CardDAV!' % user.Server)
+            print("Provider.initAddressbooks() 5 %s" % (user.Name, ))
             if modified:
+                print("Provider.initAddressbooks() 6 %s" % (user.Name, ))
                 database.initAddressbooks(user)
+            self._initAddressbookGroups(database, user)
+            print("Provider.initAddressbooks() 7 %s" % (user.Name, ))
 
     def _updateAllAddressbook(self, database, user):
-        parameter = self._getRequestParameter('getAddressbooks')
-        response = user.Request.executeRequest(parameter)
-        if not response.Ok:
+        try:
+            parameter = self._getRequestParameter('getAddressbooks', user.BaseUrl)
+            response = user.Request.executeRequest(parameter)
+            if not response.Ok:
+                response.close()
+                #TODO: Raise SqlException with correct message!
+                raise self.getSqlException(1006, 1107, 'getAllAddressbook()', user.Name)
+            count, modified = user.Addressbooks.initAddressbooks(database, user.Id, self._parseAllAddressbook(response))
             response.close()
-            #TODO: Raise SqlException with correct message!
-            raise self.getSqlException(1006, 1107, 'getAllAddressbook()', user)
-        count, modified = user.Addressbooks.initAddressbooks(database, user.Id, self._parseAllAddressbook(response))
-        response.close()
-        return count, modified
+            return count, modified
+        except Exception as e:
+            msg = "Error: %s" % traceback.format_exc()
+            print(msg)
 
     def _parseAllAddressbook(self, response):
         events = ijson.sendable_list()
@@ -144,53 +152,100 @@ class Provider(ProviderBase):
             del events[:]
         parser.close()
 
-    def getAddressbookCards(self, request, user, password, url):
-        parameter = self._getRequestParameter('getAddressbookCards')
-        response = request.execute(parameter)
-        if not response.IsPresent:
+    def _initAddressbookGroups(self, database, user):
+        try:
+            parameter = self._getRequestParameter('getAddressbookGroups', user.BaseUrl)
+            response = user.Request.executeRequest(parameter)
+            if not response.Ok:
+                response.close()
+                #TODO: Raise SqlException with correct message!
+                raise self.getSqlException(1006, 1107, '_initAddressbookGroups()', user.Name)
+            for group in database.insertGroups(user, self._parseGroups(response)):
+                print("Provider._initAddressbookGroups() GID: %s - Name: %s" % (gid, name))
+                #database.initUserGroupView(group)
+            response.close()
+        except Exception as e:
+            msg = "Error: %s" % traceback.format_exc()
+            print(msg)
+
+    def firstPullCard(self, database, user, addressbook):
+        parameter = self._getRequestParameter('getAddressbookCards', user.BaseUrl, addressbook.Uri)
+        response = user.Request.executeRequest(parameter)
+        if not response.Ok:
+            response.close()
             #TODO: Raise SqlException with correct message!
-            raise self.getSqlException(1006, 1107, 'getAddressbookCards()', user)
-        print("Provider.getAddressbookCards() Response: %s" % response.Data)
-        return ()
+            print("Provider.firstCardPull() Error: %s" % response.Reason)
+            raise self.getSqlException(1006, 1107, 'getAddressbookCards()', user.Name)
+        count = database.mergeCard(addressbook.Id, self._parseCards(response))
+        response.close()
+        return count
 
-    def transcode(self, name, value):
-        if name == 'People':
-            value = self._getResource('people', value)
-        elif name == 'Group':
-            value = self._getResource('contactGroups', value)
-        return value
-    def transform(self, name, value):
-        #if name == 'Resource' and value.startswith('people'):
-        #    value = value.split('/').pop()
-        return value
+    def _parseCards(self, response):
+        events = ijson.sendable_list()
+        parser = ijson.parse_coro(events)
+        url = tag = data = None
+        iterator = response.iterContent(self._chunk, False)
+        while iterator.hasMoreElements():
+            chunk = iterator.nextElement().value
+            print("Provider._parseCards() Content:\n%s" % chunk)
+            parser.send(chunk)
+            for prefix, event, value in events:
+                print("Provider._parseCards() Prefix: %s - Event: %s - Value: %s" % (prefix, event, value))
+                if (prefix, event) == ('value.item', 'start_map'):
+                    url = name = None
+                    email = []
+                elif (prefix, event) == ('value.item.id', 'string'):
+                    url = value
+                elif (prefix, event) == ('value.item.displayName', 'string'):
+                    name = value
+                elif (prefix, event) == ('value.item.emailAddresses.item.name', 'string'):
+                    email.append(('Name', value))
+                elif (prefix, event) == ('value.item.emailAddresses.item.type', 'string'):
+                    email.append(('Type', value))
+                elif (prefix, event) == ('value.item', 'end_map'):
+                    yield  url, tag, email
+            del events[:]
+        parser.close()
 
-    def _getUser(self, request):
-        parameter = self._getRequestParameter('getUser')
-        return request.executeRequest(parameter)
+    def _parseGroups(self, response):
+        events = ijson.sendable_list()
+        parser = ijson.parse_coro(events)
+        url = tag = data = None
+        iterator = response.iterContent(self._chunk, False)
+        while iterator.hasMoreElements():
+            chunk = iterator.nextElement().value
+            print("Provider._parseGroups() Content:\n%s" % chunk)
+            parser.send(chunk)
+            for prefix, event, value in events:
+                print("Provider._parseGroups() Prefix: %s - Event: %s - Value: %s" % (prefix, event, value))
+                if (prefix, event) == ('value', 'start_map'):
+                    uri = name = None
+                elif (prefix, event) == ('value.id', 'string'):
+                    uri = value
+                elif (prefix, event) == ('value.displayName', 'string'):
+                    name = value
+                elif (prefix, event) == ('value', 'end_map'):
+                    yield  uri, name
+            del events[:]
+        parser.close()
 
-    def getUser(self, request, fields):
-        parameter = self._getRequestParameter('getUser')
-        return request.executeRequest(parameter)
-    def getUserId(self, user):
-        return user.getValue('id')
-    def getUserName(self, user):
-        return user.getValue('userPrincipalName')
-    def getUserDisplayName(self, user):
-        return user.getValue('displayName')
+    def pullCard(self, database, user, addressbook, dltd, mdfd):
+        token, deleted, modified = self._getCardByToken(user, addressbook)
+        if addressbook.Token != token:
+            if deleted:
+                dltd += database.deleteCard(addressbook.Id, deleted)
+            if modified:
+                mdfd += self._mergeCardByToken(database, user, addressbook)
+            database.updateAddressbookToken(addressbook.Id, token)
+        return dltd, mdfd
 
-    def getItemId(self, item):
-        return item.getDefaultValue('resourceName', '').split('/').pop()
+    def parseCard(self, connection):
+        pass
 
-    def _getResource(self, resource, keys):
-        groups = []
-        for k in keys:
-            groups.append('%s/%s' % (resource, k))
-        return tuple(groups)
-
-    def _getRequestParameter(self, method, data=None):
+    def _getRequestParameter(self, method, url, data=None):
         parameter = uno.createUnoStruct('com.sun.star.rest.RequestParameter')
         parameter.Name = method
-        parameter.Url = self.BaseUrl
+        parameter.Url = url
         if method == 'getUser':
             parameter.Method = 'GET'
             parameter.Url += '/me'
@@ -200,29 +255,14 @@ class Provider(ProviderBase):
             parameter.Url += '/me/contactFolders'
         elif method == 'getAddressbookCards':
             parameter.Method = 'GET'
+            parameter.Url += '/me/contactfolders/%s/contacts' % data
+            parameter.Query = '{"select": "%s"}' % g_cardfields
+        elif method == 'getAddressbookGroups':
+            parameter.Method = 'GET'
+            parameter.Url += '/me/outlook/masterCategories'
+        elif method == 'getModifiedCardByToken':
+            parameter.Method = 'GET'
             parameter.Url += '/me/contactFolders/%s/contacts/delta' % data
-        elif method == 'Group':
-            parameter.Method = 'GET'
-            parameter.Url += '/contactGroups'
-            page = '"pageSize": %s' % g_page
-            query = [page]
-            sync = data.GroupSync
-            if sync:
-                query.append('"syncToken": "%s"' % sync)
-            parameter.Query = '{%s}' % ','.join(query)
-            token = uno.createUnoStruct('com.sun.star.auth.RestRequestToken')
-            token.Type = TOKEN_QUERY | TOKEN_SYNC
-            token.Field = 'nextPageToken'
-            token.Value = 'pageToken'
-            token.SyncField = 'nextSyncToken'
-            enumerator = uno.createUnoStruct('com.sun.star.auth.RestRequestEnumerator')
-            enumerator.Field = 'contactGroups'
-            enumerator.Token = token
-            parameter.Enumerator = enumerator
-        elif method == 'Connection':
-            parameter.Method = 'GET'
-            parameter.Url += '/contactGroups:batchGet'
-            resources = '","'.join(data.getKeys())
-            parameter.Query = '{"resourceNames": ["%s"], "maxMembers": %s}' % (resources, g_member)
+            parameter.Query = '{"select": "%s"}' % g_cardfields
         return parameter
 

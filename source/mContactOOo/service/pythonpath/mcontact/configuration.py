@@ -52,6 +52,10 @@ g_compact = 100
 g_userkeys = ('id','userPrincipalName','displayName')
 g_userfields = ','.join(g_userkeys)
 
+g_cardkeys = ('id','displayName','emailAddresses')
+g_cardfields = ','.join(g_cardkeys)
+
+
 g_group = 'all'
 g_filter = 'USER_CONTACT_GROUP'
 g_timestamp = '%Y-%m-%dT%H:%M:%S.00'
