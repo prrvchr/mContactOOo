@@ -29,39 +29,24 @@
 
 import uno
 
-from .jsonparser import JsonParser
+from .card import Provider as ProviderBase
 
-from .unotool import getUrl
+from .dbtool import currentDateTimeInTZ
+from .dbtool import currentUnoDateTime
 
-from .providerbase import ProviderBase
-
-import traceback
-
-from com.sun.star.auth.RestRequestTokenType import TOKEN_NONE
-from com.sun.star.auth.RestRequestTokenType import TOKEN_URL
-from com.sun.star.auth.RestRequestTokenType import TOKEN_REDIRECT
-from com.sun.star.auth.RestRequestTokenType import TOKEN_QUERY
-from com.sun.star.auth.RestRequestTokenType import TOKEN_JSON
-from com.sun.star.auth.RestRequestTokenType import TOKEN_SYNC
-
+from .configuration import g_host
+from .configuration import g_url
 from .configuration import g_page
 from .configuration import g_member
-from .configuration import g_userfields
-from .configuration import g_cardfields
-from .configuration import g_groupfields
-from .configuration import g_errorlog
-from .configuration import g_basename
-from .configuration import g_path
+from .configuration import g_chunk
 
 from . import ijson
-
 import traceback
 
 
 class Provider(ProviderBase):
-    def __init__(self, ctx):
+    def __init__(self, ctx, database):
         self._ctx = ctx
-        self._chunk = 64 * 1024
 
     def insertUser(self, database, request, scheme, server, name, pwd):
         userid = self._getNewUserId(request, scheme, server, name)
@@ -88,7 +73,7 @@ class Provider(ProviderBase):
         userid = None
         events = ijson.sendable_list()
         parser = ijson.parse_coro(events)
-        iterator = response.iterContent(self._chunk, False)
+        iterator = response.iterContent(g_chunk, False)
         while iterator.hasMoreElements():
             parser.send(iterator.nextElement().value)
             for prefix, event, value in events:
@@ -131,8 +116,8 @@ class Provider(ProviderBase):
     def _parseAllAddressbook(self, response):
         events = ijson.sendable_list()
         parser = ijson.parse_coro(events)
-        url = name = tag = token = None
-        iterator = response.iterContent(self._chunk, False)
+        url = name = tag = None
+        iterator = response.iterContent(g_chunk, False)
         while iterator.hasMoreElements():
             parser.send(iterator.nextElement().value)
             for prefix, event, value in events:
@@ -140,13 +125,11 @@ class Provider(ProviderBase):
                     url = value
                 elif (prefix, event) == ('value.item.displayName', 'string'):
                     name = value
-                elif (prefix, event) == ('value.item.wellKnownName', 'string'):
-                    tag = value
                 elif (prefix, event) == ('value.item.parentFolderId', 'string'):
-                    token = value
-                if all((url, name, tag, token)):
-                    yield  url, name, tag, token
-                    url = name = tag = token = None
+                    tag = value
+                if all((url, name, tag)):
+                    yield  url, name, tag, ''
+                    url = name = tag = None
             del events[:]
         parser.close()
 
@@ -182,7 +165,7 @@ class Provider(ProviderBase):
         events = ijson.sendable_list()
         parser = ijson.parse_coro(events)
         url = tag = data = None
-        iterator = response.iterContent(self._chunk, False)
+        iterator = response.iterContent(g_chunk, False)
         while iterator.hasMoreElements():
             chunk = iterator.nextElement().value
             print("Provider._parseCards() Content:\n%s" % chunk)
@@ -209,7 +192,7 @@ class Provider(ProviderBase):
         events = ijson.sendable_list()
         parser = ijson.parse_coro(events)
         url = tag = data = None
-        iterator = response.iterContent(self._chunk, False)
+        iterator = response.iterContent(g_chunk, False)
         while iterator.hasMoreElements():
             chunk = iterator.nextElement().value
             print("Provider._parseGroups() Content:\n%s" % chunk)

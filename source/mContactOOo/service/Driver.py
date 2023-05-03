@@ -42,13 +42,13 @@ from com.sun.star.sdbcx import XCreateCatalog
 from com.sun.star.sdbcx import XDataDefinitionSupplier
 from com.sun.star.sdbcx import XDropCatalog
 
+from mcontact import DataBase
 from mcontact import DataSource
+from mcontact import Provider
 
 from mcontact import getDriverPropertyInfos
-from mcontact import getSqlException
-
 from mcontact import getLogger
-g_basename = 'Driver'
+from mcontact import getSqlException
 
 from mcontact import g_identifier
 from mcontact import g_scheme
@@ -73,7 +73,7 @@ class Driver(unohelper.Base,
     def __init__(self, ctx):
         self._ctx = ctx
         self._supportedProtocol = 'sdbc:address:microsoft'
-        self._logger = getLogger(ctx, g_defaultlog, g_basename)
+        self._logger = getLogger(ctx, g_defaultlog)
         self._logger.logprb(INFO, 'Driver', '__init__()', 101)
 
     _datasource = None
@@ -81,7 +81,8 @@ class Driver(unohelper.Base,
     @property
     def DataSource(self):
         if Driver._datasource is None:
-            Driver._datasource = DataSource(self._ctx)
+            database = DataBase(self._ctx)
+            Driver._datasource = DataSource(self._ctx, database, Provider(self._ctx, database))
         return Driver._datasource
 
 # XCreateCatalog

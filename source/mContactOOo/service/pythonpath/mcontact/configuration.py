@@ -39,27 +39,13 @@ g_defaultlog = 'mContactLog'
 g_synclog = 'mContactSync'
 g_errorlog = 'mContactError'
 
-g_scheme = 'https://'
+g_scheme = 'https'
 g_host = 'graph.microsoft.com'
-#g_path = '/v1.0'
-g_path = '/beta'
+g_version = 'beta'
+g_url = f'{g_scheme}://{g_host}/{g_version}'
 
+g_chunk = 320 * 1024
 g_page = 100
 g_member = 1000
 g_admin = False
-g_compact = 100
 
-g_userkeys = ('id','userPrincipalName','displayName')
-g_userfields = ','.join(g_userkeys)
-
-g_cardkeys = ('id','displayName','emailAddresses')
-g_cardfields = ','.join(g_cardkeys)
-
-g_groupkeys = ('id','displayName')
-g_groupfields = ','.join(g_groupkeys)
-
-
-g_group = 'all'
-g_filter = 'USER_CONTACT_GROUP'
-g_timestamp = '%Y-%m-%dT%H:%M:%S.00'
-g_db_timestamp = 'YYYY-MM-DD"T"HH24:MI:SS.FFFFFFFFFFFF"Z"'
