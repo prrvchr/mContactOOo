@@ -49,3 +49,9 @@ g_page = 100
 g_member = 1000
 g_admin = False
 
+g_userfields = 'id,userPrincipalName,displayName'
+
+g_cardfields = 'displayName,surname,givenName,middleName,title,CompanyName,emailAddresses,phones,postalAddresses'
+
+g_groupfields = 'id,displayName'
+
