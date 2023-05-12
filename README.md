@@ -48,7 +48,7 @@ You must install this extension, if it is not already installed.
 
 You must install this extension, if it is not already installed.
 
-- Install ![mContactOOo logo][20] **[mContactOOo.oxt][21]** extension version 0.0.1.
+- Install ![mContactOOo logo][1] **[mContactOOo.oxt][20]** extension version 0.0.1.
 
 Restart LibreOffice / OpenOffice after installation.
 
@@ -56,24 +56,24 @@ Restart LibreOffice / OpenOffice after installation.
 
 In LibreOffice / OpenOffice go to **File -> Wizards -> Address Data Source**:
 
-![mContactOOo screenshot 1][22]
+![mContactOOo screenshot 1][21]
 
 In step: 1. Address Book Type:
 - select: Other external data source
 - click on: Next(Button)
 
-![mContactOOo screenshot 2][23]
+![mContactOOo screenshot 2][22]
 
 In step: 2. Connection Settings:
 - click on: Settings(Button)
 
-![mContactOOo screenshot 3][24]
+![mContactOOo screenshot 3][23]
 
 In Database type list:
 - select: Microsoft Contacts
 - click on: Next(Button)
 
-![mContactOOo screenshot 4][25]
+![mContactOOo screenshot 4][24]
 
 In General: Datasource Url:
 - put: your Google account (ie: your_account@your_provider.com)
@@ -81,13 +81,19 @@ In General: Datasource Url:
 Then:
 - click on: Test connection (button)
 
-![mContactOOo screenshot 5][26]
+![mContactOOo screenshot 5][25]
 
-After authorizing the [OAuth2OOo][27] application to access your Contacts, normally you should see: Connection Test: The connection was established successfully.
+After authorizing the [OAuth2OOo][26] application to access your Contacts, normally you should see: Connection Test: The connection was established successfully.
 
-![mContactOOo screenshot 6][28]
+![mContactOOo screenshot 6][27]
 
 Have fun...
+
+![mContactOOo screenshot 7][28]
+
+![mContactOOo screenshot 8][29]
+
+![mContactOOo screenshot 9][30]
 
 ## Has been tested with:
 
@@ -104,7 +110,7 @@ Have fun...
 * LibreOffice 6.4.4.2 (x64) - Windows 7 SP1
 
 I encourage you in case of problem :-(  
-to create an [issue][29]  
+to create an [issue][10]  
 I will try to solve it ;-)
 
 ## Historical:
@@ -113,7 +119,7 @@ I will try to solve it ;-)
 
 This extension was written in order to make usable in free software (LibreOffice or OpenOffice) your personal data stored in your Microsoft Outlook address book.
 
-With the [smtpMailerOOo][30] extension, it can be the data source for [mail merge][31] by email, to your correspondents contained in your Microsoft Outlook adressbook.
+With the [smtpMailerOOo][31] extension, it can be the data source for [mail merge][32] by email, to your correspondents contained in your Microsoft Outlook adressbook.
 
 It will give you access to an information system that only larges companies are able, today, to implement.
 
@@ -136,15 +142,16 @@ It will give you access to an information system that only larges companies are 
 [17]: <https://github.com/prrvchr/OAuth2OOo/raw/master/OAuth2OOo.oxt>
 [18]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.png>
 [19]: <https://github.com/prrvchr/jdbcDriverOOo/raw/master/source/jdbcDriverOOo/dist/jdbcDriverOOo.oxt>
-[20]: <img/mContactOOo.png>
-[21]: <https://github.com/prrvchr/mContactOOo/raw/master/source/mContactOOo/dist/mContactOOo.oxt>
-[22]: <img/mContactOOo-1.png>
-[23]: <img/mContactOOo-2.png>
-[24]: <img/mContactOOo-3.png>
-[25]: <img/mContactOOo-4.png>
-[26]: <img/mContactOOo-5.png>
-[27]: <https://prrvchr.github.io/OAuth2OOo>
-[28]: <img/mContactOOo-6_fr.png>
-[29]: <https://github.com/prrvchr/mContactOOo/issues/new>
-[30]: <https://github.com/prrvchr/smtpMailerOOo/blob/master/source/smtpMailerOOo/dist/smtpMailerOOo.oxt>
-[31]: <https://en.wikipedia.org/wiki/Mail_merge>
+[20]: <https://github.com/prrvchr/mContactOOo/raw/main/source/mContactOOo/dist/mContactOOo.oxt>
+[21]: <img/mContactOOo-1.png>
+[22]: <img/mContactOOo-2.png>
+[23]: <img/mContactOOo-3.png>
+[24]: <img/mContactOOo-4.png>
+[25]: <img/mContactOOo-5.png>
+[26]: <https://prrvchr.github.io/OAuth2OOo>
+[27]: <img/mContactOOo-6.png>
+[28]: <img/mContactOOo-7.png>
+[29]: <img/mContactOOo-8.png>
+[30]: <img/mContactOOo-9.png>
+[31]: <https://github.com/prrvchr/smtpMailerOOo/blob/master/source/smtpMailerOOo/dist/smtpMailerOOo.oxt>
+[32]: <https://en.wikipedia.org/wiki/Mail_merge>
