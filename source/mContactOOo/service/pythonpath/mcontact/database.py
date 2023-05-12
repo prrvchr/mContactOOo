@@ -54,8 +54,8 @@ class DataBase(DataBaseSuper):
         result = call.executeQuery()
         while result.next():
             key = result.getString(1)
-            key += sep + result.getString(2)
-            value = result.getString(3)
+            key += sep + result.getString(3)
+            value = result.getString(4)
             print("DataBase._getPaths() key: '%s' - Value: %s" % (key, value))
             yield key, value
         result.close()
