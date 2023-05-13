@@ -1,7 +1,5 @@
 # ![mContactOOo logo][1] mContactOOo
 
-**Cette extension est en cours de développement, merci de votre patience**
-
 **This [document][2] in English.**
 
 **L'utilisation de ce logiciel vous soumet à nos** [**Conditions d'utilisation**][3] **et à notre** [**Politique de protection des données**][4]
@@ -70,7 +68,7 @@ Dans LibreOffice / OpenOffice aller à: **Fichier -> Assistants -> Source de don
 ![mContactOOo screenshot 3][23]
 
 Dans Type de base de données:
-- sélectionner: Contacts Microsoft
+- sélectionner: **Contacts Microsoft**
 - cliquez sur: Suivant (bouton)
 
 ![mContactOOo screenshot 4][24]

@@ -1,7 +1,5 @@
 # ![mContactOOo logo][1] mContactOOo
 
-**This extension is under development, thank you for your patience**
-
 **Ce [document][2] en français.**
 
 **The use of this software subjects you to our** [**Terms Of Use**][3] **and** [**Data Protection Policy**][4]
@@ -70,7 +68,7 @@ In step: 2. Connection Settings:
 ![mContactOOo screenshot 3][23]
 
 In Database type list:
-- select: Microsoft Contacts
+- select: **Microsoft Contacts**
 - click on: Next(Button)
 
 ![mContactOOo screenshot 4][24]
@@ -119,7 +117,7 @@ I will try to solve it ;-)
 
 This extension was written in order to make usable in free software (LibreOffice or OpenOffice) your personal data stored in your Microsoft Outlook address book.
 
-With the [smtpMailerOOo][31] extension, it can be the data source for [mail merge][32] by email, to your correspondents contained in your Microsoft Outlook adressbook.
+With the [smtpMailerOOo][31] extension, it can be the data source for [mail merge][32] by email, to your correspondents contained in your Microsoft Outlook address book.
 
 It will give you access to an information system that only larges companies are able, today, to implement.
 
