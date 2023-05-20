@@ -42,7 +42,7 @@ g_errorlog = 'mContactError'
 g_scheme = 'https'
 g_host = 'graph.microsoft.com'
 g_version = 'beta'
-g_url = f'{g_scheme}://{g_host}/{g_version}'
+g_url = '%s://%s/%s' % (g_scheme, g_host, g_version)
 
 g_chunk = 320 * 1024
 g_page = 100

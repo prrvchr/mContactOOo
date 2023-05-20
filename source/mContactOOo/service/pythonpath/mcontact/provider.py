@@ -267,13 +267,13 @@ class Provider(ProviderBase):
         elif method == 'getBooks':
             parameter.Url += '/me/contactFolders'
         elif method == 'getCards':
-            parameter.Url += f'/me/contactFolders/{data}/contacts'
+            parameter.Url += '/me/contactFolders/%s/contacts' % data
             parameter.setQuery('select', self._fields)
         elif method == 'getGroups':
             parameter.Url += '/me/outlook/masterCategories'
             parameter.setQuery('select', g_groupfields)
         elif method == 'getModifiedCardByToken':
-            parameter.Url += f'/me/contactFolders/{data}/contacts/delta'
+            parameter.Url += '/me/contactFolders/%s/contacts/delta' % data
             parameter.setQuery('select', self._fields)
         return parameter
 
