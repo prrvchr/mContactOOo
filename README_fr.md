@@ -21,37 +21,39 @@ Car c'est ensemble que nous pouvons rendre le Logiciel Libre plus intelligent.
 
 ## Prérequis:
 
-mContactOOo utilise une base de données locale [HsqlDB][11] version 2.7.1.  
-HsqlDB étant une base de données écrite en Java, son utilisation nécessite [l'installation et la configuration][12] dans LibreOffice / OpenOffice d'un **JRE version 11 ou ultérieure**.  
-Je vous recommande [Adoptium][13] comme source d'installation de Java.
+Si vous utilisez **OpenOffice sur Windows** quelle que soit la version, vous êtes sujet au [dysfonctionnement 128569][11]. Je n'ai pas trouvé de solution de contournement, pour l'instant je ne peux que vous conseiller d'installer **LibreOffice**...
+
+mContactOOo utilise une base de données locale [HsqlDB][12] version 2.7.1.  
+HsqlDB étant une base de données écrite en Java, son utilisation nécessite [l'installation et la configuration][13] dans LibreOffice / OpenOffice d'un **JRE version 11 ou ultérieure**.  
+Je vous recommande [Adoptium][14] comme source d'installation de Java.
 
 Si vous utilisez **LibreOffice sous Linux**, vous devez vous assurez de deux choses:
-  - Vous êtes sujet au [dysfonctionnement 139538][14]. Pour contourner le problème, veuillez **désinstaller les paquets** avec les commandes:
-    - `sudo apt remove libreoffice-sdbc-hsqldb`
-    - `sudo apt remove libhsqldb1.8.0-java`
+  - Vous êtes sujet au [dysfonctionnement 139538][15]. Pour contourner le problème, veuillez **désinstaller les paquets** avec les commandes:
+    - `sudo apt remove libreoffice-sdbc-hsqldb` (pour désinstaller le paquet libreoffice-sdbc-hsqldb)
+    - `sudo apt remove libhsqldb1.8.0-java` (pour désinstaller le paquet libhsqldb1.8.0-java)
 
-  Si vous souhaitez quand même utiliser la fonctionnalité HsqlDB intégré fournie par LibreOffice, alors installez l'extension [HsqlDBembeddedOOo][15].  
+Si vous souhaitez quand même utiliser la fonctionnalité HsqlDB intégré fournie par LibreOffice, alors installez l'extension [HsqlDBembeddedOOo][16].  
 
-  - Si le paquet python3-cffi-backend est installé alors vous devez **installer le paquet python3-cffi** avec la commande:
-    - `dpkg -s python3-cffi-backend` (pour savoir si le paquet est installé)
-    - `sudo apt install python3-cffi`
+  - Si le paquet python3-cffi-backend est installé alors vous devez **installer le paquet python3-cffi** avec les commandes:
+    - `dpkg -s python3-cffi-backend` (pour savoir si le paquet python3-cffi-backend est installé)
+    - `sudo apt install python3-cffi` (pour installer le paquet python3-cffi si nécessaire)
 
-OpenOffice et LibreOffice sous Windows ne sont pas soumis à ces dysfonctionnements.
+OpenOffice sous Linux et LibreOffice sous Windows ne sont pas soumis à ces dysfonctionnements.
 
 ## Installation:
 
 Il semble important que le fichier n'ait pas été renommé lors de son téléchargement.  
 Si nécessaire, renommez-le avant de l'installer.
 
-- Installer l'extension ![OAuth2OOo logo][16] **[OAuth2OOo.oxt][17]** version 0.0.6.
+- Installer l'extension ![OAuth2OOo logo][17] **[OAuth2OOo.oxt][18]** version 0.0.6.
 
 Vous devez installer cette extension, si elle n'est pas déjà installée.
 
-- Installer l'extension ![jdbcDriverOOo logo][18] **[jdbcDriverOOo.oxt][19]** version 0.0.4.
+- Installer l'extension ![jdbcDriverOOo logo][19] **[jdbcDriverOOo.oxt][20]** version 0.0.4.
 
 Vous devez installer cette extension, si elle n'est pas déjà installée.
 
-- Installer l'extension ![mContactOOo logo][1] **[mContactOOo.oxt][20]** version 0.0.1.
+- Installer l'extension ![mContactOOo logo][1] **[mContactOOo.oxt][21]** version 0.0.1.
 
 Redémarrez LibreOffice / OpenOffice après l'installation.
 
@@ -59,24 +61,24 @@ Redémarrez LibreOffice / OpenOffice après l'installation.
 
 Dans LibreOffice / OpenOffice aller à: **Fichier -> Assistants -> Source de données des adresses**:
 
-![mContactOOo screenshot 1][21]
+![mContactOOo screenshot 1][22]
 
 À l'étape: 1. Type de carnet d'adresses:
 - sélectionner: Autre source de données externes
 - cliquez sur: Suivant (bouton)
 
-![mContactOOo screenshot 2][22]
+![mContactOOo screenshot 2][23]
 
 À l'étape: 2. Paramètres de Connexion:
 - cliquez sur: Paramètres (bouton)
 
-![mContactOOo screenshot 3][23]
+![mContactOOo screenshot 3][24]
 
 Dans Type de base de données:
 - sélectionner: **Contacts Microsoft**
 - cliquez sur: Suivant (bouton)
 
-![mContactOOo screenshot 4][24]
+![mContactOOo screenshot 4][25]
 
 Dans Général: URL de la source de données:
 - mettre: votre compte Microsoft (c'est-à-dire: votre_compte@votre_adresse.com)
@@ -84,33 +86,29 @@ Dans Général: URL de la source de données:
 Puis:
 - cliquez sur: Tester la connexion (bouton)
 
-![mContactOOo screenshot 5][25]
+![mContactOOo screenshot 5][26]
 
-Après avoir autorisé l'application [OAuth2OOo][26] à accéder à vos contacts, normalement vous devez voir s'afficher: Test de connexion: Connexion établie.
+Après avoir autorisé l'application [OAuth2OOo][27] à accéder à vos contacts, normalement vous devez voir s'afficher: Test de connexion: Connexion établie.
 
-![mContactOOo screenshot 6][27]
+![mContactOOo screenshot 6][28]
 
 Maintenant à vous d'en profiter...
 
-![mContactOOo screenshot 7][28]
+![mContactOOo screenshot 7][29]
 
-![mContactOOo screenshot 8][29]
+![mContactOOo screenshot 8][30]
 
-![mContactOOo screenshot 9][30]
+![mContactOOo screenshot 9][31]
 
 ## A été testé avec:
 
-* LibreOffice 6.4.4.2 - Ubuntu 20.04 -  LxQt 0.14.1
+* LibreOffice 7.3.7.2 - Lubuntu 22.04 - OpenJDK-11-JRE (amd64)
 
-* LibreOffice 7.0.0.0.alpha1 - Ubuntu 20.04 -  LxQt 0.14.1
+* LibreOffice 7.4.3.2(x64) - Windows 10(x64) - Adoptium JDK Hotspot 11.0.17 (x64) (sous Lubuntu 22.04 / VirtualBox 6.1.38)
 
-* OpenOffice 4.1.8 x86_64 - Ubuntu 20.04 - LxQt 0.14.1
+* OpenOffice 4.1.13 - Lubuntu 22.04 - OpenJDK-11-JRE (amd64) (sous Lubuntu 22.04 / VirtualBox 6.1.38)
 
-* OpenOffice 4.2.0.Build:9820 x86_64 - Ubuntu 20.04 - LxQt 0.14.1
-
-* LibreOffice 6.1.5.2 - Raspbian 10 buster - Raspberry Pi 4 Model B
-
-* LibreOffice 6.4.4.2 (x64) - Windows 7 SP1
+* **Ne fonctionne pas avec OpenOffice sous Windows** voir [dysfonctionnement 128569][11]. N'ayant aucune solution, je vous encourrage d'installer **LibreOffice**.
 
 Je vous encourage en cas de problème :-(  
 de créer un [dysfonctionnement][10]  
@@ -122,7 +120,7 @@ J'essaierai de le résoudre ;-)
 
 Cette extension a été écrite afin de rendre utilisables dans un logiciel libre (LibreOffice ou OpenOffice) vos données personnelles stockées dans votre carnet d'adresses Microsoft Outlook.
 
-Avec l'extension [smtpMailerOOo][31], elle peut être la source de données pour des [publipostages][32] par courriel (email), à vos correspondants contenus dans votre carnet d'adresses Microsoft Outlook.
+Avec l'extension [smtpMailerOOo][32], elle peut être la source de données pour des [publipostages][33] par courriel (email), à vos correspondants contenus dans votre carnet d'adresses Microsoft Outlook.
 
 Elle vous donnera accès à un système d'information que seules les grandes entreprises sont capables, aujourd'hui, de mettre en œuvre.
 
@@ -136,25 +134,26 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [8]: <https://www.openoffice.org/fr/Telecharger/>
 [9]: <https://github.com/prrvchr/mContactOOo>
 [10]: <https://github.com/prrvchr/mContactOOo/issues/new>
-[11]: <http://hsqldb.org/>
-[12]: <https://wiki.documentfoundation.org/Documentation/HowTo/Install_the_correct_JRE_-_LibreOffice_on_Windows_10/fr>
-[13]: <https://adoptium.net/releases.html?variant=openjdk11>
-[14]: <https://bugs.documentfoundation.org/show_bug.cgi?id=139538>
-[15]: <https://prrvchr.github.io/HsqlDBembeddedOOo/README_fr>
-[16]: <https://prrvchr.github.io/OAuth2OOo/img/OAuth2OOo.png>
-[17]: <https://github.com/prrvchr/OAuth2OOo/raw/master/OAuth2OOo.oxt>
-[18]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.png>
-[19]: <https://github.com/prrvchr/jdbcDriverOOo/raw/master/source/jdbcDriverOOo/dist/jdbcDriverOOo.oxt>
-[20]: <https://github.com/prrvchr/mContactOOo/raw/main/source/mContactOOo/dist/mContactOOo.oxt>
-[21]: <img/mContactOOo-1_fr.png>
-[22]: <img/mContactOOo-2_fr.png>
-[23]: <img/mContactOOo-3_fr.png>
-[24]: <img/mContactOOo-4_fr.png>
-[25]: <img/mContactOOo-5_fr.png>
-[26]: <https://prrvchr.github.io/OAuth2OOo/README_fr>
-[27]: <img/mContactOOo-6_fr.png>
-[28]: <img/mContactOOo-7_fr.png>
-[29]: <img/mContactOOo-8_fr.png>
-[30]: <img/mContactOOo-9_fr.png>
-[31]: <https://github.com/prrvchr/smtpMailerOOo/blob/master/source/smtpMailerOOo/dist/smtpMailerOOo.oxt>
-[32]: <https://fr.wikipedia.org/wiki/Publipostage>
+[11]: <https://bz.apache.org/ooo/show_bug.cgi?id=128569>
+[12]: <http://hsqldb.org/>
+[13]: <https://wiki.documentfoundation.org/Documentation/HowTo/Install_the_correct_JRE_-_LibreOffice_on_Windows_10/fr>
+[14]: <https://adoptium.net/releases.html?variant=openjdk11>
+[15]: <https://bugs.documentfoundation.org/show_bug.cgi?id=139538>
+[16]: <https://prrvchr.github.io/HsqlDBembeddedOOo/README_fr>
+[17]: <https://prrvchr.github.io/OAuth2OOo/img/OAuth2OOo.png>
+[18]: <https://github.com/prrvchr/OAuth2OOo/raw/master/OAuth2OOo.oxt>
+[19]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.png>
+[20]: <https://github.com/prrvchr/jdbcDriverOOo/raw/master/source/jdbcDriverOOo/dist/jdbcDriverOOo.oxt>
+[21]: <https://github.com/prrvchr/mContactOOo/raw/main/source/mContactOOo/dist/mContactOOo.oxt>
+[22]: <img/mContactOOo-1_fr.png>
+[23]: <img/mContactOOo-2_fr.png>
+[24]: <img/mContactOOo-3_fr.png>
+[25]: <img/mContactOOo-4_fr.png>
+[26]: <img/mContactOOo-5_fr.png>
+[27]: <https://prrvchr.github.io/OAuth2OOo/README_fr>
+[28]: <img/mContactOOo-6_fr.png>
+[29]: <img/mContactOOo-7_fr.png>
+[30]: <img/mContactOOo-8_fr.png>
+[31]: <img/mContactOOo-9_fr.png>
+[32]: <https://github.com/prrvchr/smtpMailerOOo/blob/master/source/smtpMailerOOo/dist/smtpMailerOOo.oxt>
+[33]: <https://fr.wikipedia.org/wiki/Publipostage>
