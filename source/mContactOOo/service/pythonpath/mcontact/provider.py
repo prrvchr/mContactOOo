@@ -77,23 +77,25 @@ class Provider(ProviderBase):
     # Method called from User._getNewUser()
     def insertUser(self, database, request, scheme, server, name, pwd):
         parameter = self._getRequestParameter(request, 'getUser')
-        response = request.execute(parameter)
-        userid = self._parseUser(response)
-        return database.insertUser(userid, scheme, server, '', name)
+        userid = self._parseUser(request.execute(parameter))
+        if userid is not None:
+            return database.insertUser(userid, scheme, server, '', name)
+        return None
 
     def _parseUser(self, response):
         userid = None
-        events = ijson.sendable_list()
-        parser = ijson.parse_coro(events)
-        iterator = response.iterContent(g_chunk, False)
-        while iterator.hasMoreElements():
-            parser.send(iterator.nextElement().value)
-            for prefix, event, value in events:
-                if (prefix, event) == ('id', 'string'):
-                    userid = value
-                    break
-            del events[:]
-        parser.close()
+        if response.Ok:
+            events = ijson.sendable_list()
+            parser = ijson.parse_coro(events)
+            iterator = response.iterContent(g_chunk, False)
+            while iterator.hasMoreElements():
+                parser.send(iterator.nextElement().value)
+                for prefix, event, value in events:
+                    if (prefix, event) == ('id', 'string'):
+                        userid = value
+                del events[:]
+            parser.close()
+        response.close()
         return userid
 
     def initAddressbooks(self, database, user):
