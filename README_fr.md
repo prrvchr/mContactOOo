@@ -105,9 +105,9 @@ Maintenant à vous d'en profiter...
 
 * **Ne fonctionne pas avec OpenOffice sous Windows** voir [dysfonctionnement 128569][11]. N'ayant aucune solution, je vous encourrage d'installer **LibreOffice**.
 
-Je vous encourage en cas de problème :-(  
+Je vous encourage en cas de problème :confused:  
 de créer un [dysfonctionnement][10]  
-J'essaierai de le résoudre ;-)
+J'essaierai de le résoudre :smile:
 
 ## Historique:
 
