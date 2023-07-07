@@ -1,8 +1,8 @@
-# ![mContactOOo logo][1] mContactOOo
+# Documentation
 
 **Ce [document][2] en français.**
 
-**The use of this software subjects you to our** [**Terms Of Use**][3] **and** [**Data Protection Policy**][4]
+**The use of this software subjects you to our [Terms Of Use][3] and [Data Protection Policy][4].**
 
 # version [1.0.0][5]
 
