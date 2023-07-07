@@ -9,7 +9,7 @@
 ## Introduction:
 
 **mContactOOo** is part of a [Suite][6] of [LibreOffice][7] ~~and/or [OpenOffice][8]~~ extensions allowing to offer you innovative services in these office suites.  
-This extension gives you access to your Microsoft Outlook contacts in LibreOffice / OpenOffice.
+This extension gives you access, in LibreOffice, to your Microsoft Outlook contacts.
 
 Being free software I encourage you:
 - To duplicate its [source code][9].
