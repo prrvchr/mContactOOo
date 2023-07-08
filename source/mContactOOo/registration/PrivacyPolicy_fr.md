@@ -17,12 +17,14 @@ Pour plus de simplicité, dans la suite de ce document, on nommera:
 - `Utilisateur`: l'utilisateur du logiciel mContactOOo.
 - `Fournisseur`: fournisseur de services Internet fournissant des services Internet à `mContactOOo`.
 
+___
 ## Contact:
 
 Dans tous les cas, il est possible de contacter le responsable du traitement des données à l'adresse suivante:
 
 prrvchr@gmail.com
 
+___
 ## Utilisation de vos données personnelles:
 
 Pour fonctionner, `mContactOOo` doit conserver des données localement.
@@ -37,6 +39,7 @@ L'utilisation des services du `Fournisseur` au travers de `mContactOOo` peut vou
 
 Le `Fournisseur` est seul responsable de l'utilisation des données qu'il collecte, comme décrit dans sa Politique de Protection des Données.
 
+___
 ## Sécurité de vos informations personnelles:
 
 Étant donné que les données collectées par `mContactOOo` sont situées sur l'ordinateur de l'utilisateur, seul l'`Utilisateur` est responsable de la sécurité des données collectées.
@@ -45,6 +48,7 @@ L'utilisation des services du `Fournisseur` via `mContactOOo` peut vous soumettr
 
 Le `Fournisseur` est seul responsable de la sécurité des données qu'il collecte, comme décrit dans sa Politique de Protection des Données.
 
+___
 ## Expiration des données collectées:
 
 La mise à jour des données collectées localement est effectuée chaque fois que `mContactOOo` est utilisé.

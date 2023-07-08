@@ -17,12 +17,14 @@ For simplicity, in the rest of this document, will be named:
 - `User`: the user of the mContactOOo software.
 - `Supplier`: the Internet service provider delivering Internet services to `mContactOOo`.
 
+___
 ## Contact:
 
 In any case, it is possible to contact the person responsible for data processing at:
 
 prrvchr@gmail.com
 
+___
 ## Use of your personal data:
 
 To work `mContactOOo` need to keep data locally.
@@ -37,6 +39,7 @@ Use of the `Supplier` services through `mContactOOo`, may submit you to the Data
 
 `Supplier` is solely responsible for the use of the data it collects as described in its Policy.
 
+___
 ## Security of your personal information:
 
 Since the data collected by `mContactOOo` is located on the user's computer, only the `User` is responsible for the security of the data collected.
@@ -45,6 +48,7 @@ Use of the `Supplier` services via `mContactOOo` may subject you to the Data Pro
 
 `Supplier` is solely responsible for the security of the data it collects as described in its Policy.
 
+___
 ## Expiration of collected data:
 
 Updating the data collected locally is done each time `mContactOOo` is used.
