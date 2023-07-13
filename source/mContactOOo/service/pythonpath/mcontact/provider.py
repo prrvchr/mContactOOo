@@ -45,7 +45,7 @@ from .configuration import g_userfields
 from .configuration import g_groupfields
 
 import json
-from . import ijson
+import ijson
 import traceback
 
 

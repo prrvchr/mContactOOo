@@ -55,8 +55,8 @@
         <name lang="en-US">mContactOOo</name>
     </display-name>
     <icon>
-        <default xlink:href="mContactOOo/mContactOOo.png"/>
-        <high-contrast xlink:href="mContactOOo/mContactOOo.png"/>
+        <default xlink:href="mContactOOo/mContactOOo.svg"/>
+        <high-contrast xlink:href="mContactOOo/mContactOOo.svg"/>
     </icon>
     <extension-description>
         <src xlink:href="description/desc_en.txt" lang="en-US"/>
