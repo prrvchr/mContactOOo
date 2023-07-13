@@ -124,7 +124,7 @@ Avec l'extension [smtpMailerOOo][32], elle peut être la source de données pour
 
 Elle vous donnera accès à un système d'information que seules les grandes entreprises sont capables, aujourd'hui, de mettre en œuvre.
 
-[1]: <img/mContactOOo.png>
+[1]: <img/mContactOOo.svg>
 [2]: <https://prrvchr.github.io/mContactOOo>
 [3]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/TermsOfUse_fr>
 [4]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/PrivacyPolicy_fr>

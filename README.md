@@ -124,7 +124,7 @@ With the [smtpMailerOOo][32] extension, it can be the data source for [mail merg
 
 It will give you access to an information system that only larges companies are able, today, to implement.
 
-[1]: <img/mContactOOo.png>
+[1]: <img/mContactOOo.svg>
 [2]: <https://prrvchr.github.io/mContactOOo/README_fr>
 [3]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/TermsOfUse_en>
 [4]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/PrivacyPolicy_en>
