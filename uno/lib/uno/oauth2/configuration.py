@@ -28,5 +28,10 @@
 """
 
 # OAuth2 configuration
-g_identifier = 'io.github.prrvchr.OAuth2OOo'
-g_oauth2 = '%s.OAuth2Service' % g_identifier
+g_extension = 'OAuth2OOo'
+g_identifier = 'io.github.prrvchr.%s' % g_extension
+g_service = '%s.OAuth2Service' % g_identifier
+g_version = '1.1.1'
+
+g_oauth2 = g_service
+
