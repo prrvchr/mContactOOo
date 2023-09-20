@@ -30,7 +30,7 @@ mContactOOo uses a local [HsqlDB][12] database version 2.7.2.
 HsqlDB being a database written in Java, its use requires the [installation and configuration][13] in LibreOffice / OpenOffice of a **JRE version 11 or later**.  
 I recommend [Adoptium][14] as your Java installation source.
 
-If you are using **LibreOffice on Linux**, you are subject to [bug 139538][15]. To work around the problem, please **uninstall the packages** with commands:
+If you are using **LibreOffice Community on Linux**, you are subject to [bug 139538][15]. To work around the problem, please **uninstall the packages** with commands:
 - `sudo apt remove libreoffice-sdbc-hsqldb` (to uninstall the libreoffice-sdbc-hsqldb package)
 - `sudo apt remove libhsqldb1.8.0-java` (to uninstall the libhsqldb1.8.0-java package)
 
@@ -120,9 +120,21 @@ ___
 
 This extension was written in order to make usable in free software (LibreOffice or OpenOffice) your personal data stored in your Microsoft Outlook address book.
 
-With the [smtpMailerOOo][32] extension, it can be the data source for [mail merge][33] by email, to your correspondents contained in your Microsoft Outlook address book.
+With the [eMailerOOo][32] extension, it can be the data source for [mail merge][33] by email, to your correspondents contained in your Microsoft Outlook address book.
 
 It will give you access to an information system that only larges companies are able, today, to implement.
+
+### What has been done for version 1.0.1:
+
+- The absence or obsolescence of the **OAuth2OOo** and/or **jdbcDriverOOo** extensions necessary for the proper functioning of **mContactOOo** now displays an error message.
+
+- Many other things...
+
+### What remains to be done for version 1.0.1:
+
+- Add new languages for internationalization...
+
+- Anything welcome...
 
 [1]: <img/mContactOOo.svg>
 [2]: <https://prrvchr.github.io/mContactOOo/README_fr>
@@ -155,5 +167,5 @@ It will give you access to an information system that only larges companies are 
 [29]: <img/mContactOOo-7.png>
 [30]: <img/mContactOOo-8.png>
 [31]: <img/mContactOOo-9.png>
-[32]: <https://github.com/prrvchr/smtpMailerOOo/blob/master/source/smtpMailerOOo/dist/smtpMailerOOo.oxt>
+[32]: <https://prrvchr.github.io/eMailerOOo>
 [33]: <https://en.wikipedia.org/wiki/Mail_merge>

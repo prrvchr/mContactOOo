@@ -30,7 +30,7 @@ mContactOOo utilise une base de données locale [HsqlDB][12] version 2.7.2.
 HsqlDB étant une base de données écrite en Java, son utilisation nécessite [l'installation et la configuration][13] dans LibreOffice / OpenOffice d'un **JRE version 11 ou ultérieure**.  
 Je vous recommande [Adoptium][14] comme source d'installation de Java.
 
-Si vous utilisez **LibreOffice sous Linux**, vous êtes sujet au [dysfonctionnement 139538][15]. Pour contourner le problème, veuillez **désinstaller les paquets** avec les commandes:
+Si vous utilisez **LibreOffice Community sous Linux**, vous êtes sujet au [dysfonctionnement 139538][15]. Pour contourner le problème, veuillez **désinstaller les paquets** avec les commandes:
 - `sudo apt remove libreoffice-sdbc-hsqldb` (pour désinstaller le paquet libreoffice-sdbc-hsqldb)
 - `sudo apt remove libhsqldb1.8.0-java` (pour désinstaller le paquet libhsqldb1.8.0-java)
 
@@ -120,9 +120,21 @@ ___
 
 Cette extension a été écrite afin de rendre utilisables dans un logiciel libre (LibreOffice ou OpenOffice) vos données personnelles stockées dans votre carnet d'adresses Microsoft Outlook.
 
-Avec l'extension [smtpMailerOOo][32], elle peut être la source de données pour des [publipostages][33] par courriel (email), à vos correspondants contenus dans votre carnet d'adresses Microsoft Outlook.
+Avec l'extension [eMailerOOo][32], elle peut être la source de données pour des [publipostages][33] par courriel (email), à vos correspondants contenus dans votre carnet d'adresses Microsoft Outlook.
 
 Elle vous donnera accès à un système d'information que seules les grandes entreprises sont capables, aujourd'hui, de mettre en œuvre.
+
+### Ce qui a été fait pour la version 1.0.1:
+
+- L'absence ou l'obsolescence des extensions **OAuth2OOo** et/ou **jdbcDriverOOo** nécessaires au bon fonctionnement de **mContactOOo** affiche désormais un message d'erreur.
+
+- Encore plein d'autres choses...
+
+### Que reste-t-il à faire pour la version 1.0.1:
+
+- Ajouter de nouvelles langues pour l’internationalisation...
+
+- Tout ce qui est bienvenu...
 
 [1]: <img/mContactOOo.svg>
 [2]: <https://prrvchr.github.io/mContactOOo>
@@ -155,5 +167,5 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [29]: <img/mContactOOo-7_fr.png>
 [30]: <img/mContactOOo-8_fr.png>
 [31]: <img/mContactOOo-9_fr.png>
-[32]: <https://github.com/prrvchr/smtpMailerOOo/blob/master/source/smtpMailerOOo/dist/smtpMailerOOo.oxt>
+[32]: <https://prrvchr.github.io/eMailerOOo/README_fr>
 [33]: <https://fr.wikipedia.org/wiki/Publipostage>
