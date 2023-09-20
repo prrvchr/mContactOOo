@@ -30,6 +30,7 @@
 # General configuration
 g_extension = 'mContactOOo'
 g_identifier = 'io.github.prrvchr.%s' % g_extension
+g_protocol = 'sdbc:address:microsoft'
 
 # Resource strings files folder
 g_resource = 'resource'

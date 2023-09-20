@@ -43,17 +43,30 @@ from com.sun.star.sdbcx import XDataDefinitionSupplier
 from com.sun.star.sdbcx import XDropCatalog
 
 from mcontact import DataBase
-from mcontact import DataSource
-from mcontact import Provider
 
+from mcontact import DataSource
+
+from mcontact import checkVersion
 from mcontact import getDriverPropertyInfos
+from mcontact import getExtensionVersion
 from mcontact import getLogger
+from mcontact import getOAuth2Version
 from mcontact import getSqlException
 
+from mcontact import g_oauth2ext
+from mcontact import g_oauth2ver
+
+from mcontact import g_jdbcext
+from mcontact import g_jdbcid
+from mcontact import g_jdbcver
+
+from mcontact import g_extension
 from mcontact import g_identifier
+from mcontact import g_protocol
 from mcontact import g_scheme
 from mcontact import g_host
 from mcontact import g_defaultlog
+from mcontact import g_version
 
 import validators
 import traceback
@@ -72,18 +85,17 @@ class Driver(unohelper.Base,
              XServiceInfo):
     def __init__(self, ctx):
         self._ctx = ctx
-        self._supportedProtocol = 'sdbc:address:microsoft'
+        self._supportedProtocol = g_protocol
         self._logger = getLogger(ctx, g_defaultlog)
         self._logger.logprb(INFO, 'Driver', '__init__()', 101)
 
-    _datasource = None
+    __datasource = None
 
     @property
     def DataSource(self):
-        if Driver._datasource is None:
-            database = DataBase(self._ctx)
-            Driver._datasource = DataSource(self._ctx, database, Provider(self._ctx, database))
-        return Driver._datasource
+        if Driver.__datasource is None:
+            Driver.__datasource = self._getDataSource()
+        return Driver.__datasource
 
 # XCreateCatalog
     def createCatalog(self, info):
@@ -102,13 +114,15 @@ class Driver(unohelper.Base,
             self._logger.logprb(INFO, 'Driver', 'connect()', 111, url)
             protocols = url.strip().split(':')
             if len(protocols) != 4 or not all(protocols):
-                raise getSqlException(self._ctx, self, 112, 1101, 'connect()', url)
+                self._logSqlException(1101, url)
+                raise self._getSqlException(112, 1101, url)
             username = protocols[3]
             password = ''
             if not validators.email(username):
-                raise getSqlException(self._ctx, self, 113, 1102, 'connect()', username)
+                self._logSqlException(1102, username)
+                raise self._getSqlException(113, 1102, username)
             connection = self.DataSource.getConnection(g_scheme, g_host, username, password)
-            version = connection.getMetaData().getDriverVersion()
+            version = self.DataSource.DataBase.Version
             name = connection.getMetaData().getUserName()
             self._logger.logprb(INFO, 'Driver', 'connect()', 114, version, name)
             return connection
@@ -143,6 +157,44 @@ class Driver(unohelper.Base,
         return g_ImplementationName
     def getSupportedServiceNames(self):
         return g_ImplementationHelper.getSupportedServiceNames(g_ImplementationName)
+
+# Private getter methods
+    def _getDataSource(self):
+        oauth2 = getOAuth2Version(self._ctx)
+        driver = getExtensionVersion(self._ctx, g_jdbcid)
+        if oauth2 is None:
+            self._logSqlException(501, g_oauth2ext, ' ', g_extension)
+            raise self._getSqlException(1003, 501, g_oauth2ext, '\n', g_extension)
+        elif not checkVersion(oauth2, g_oauth2ver):
+            self._logSqlException(502, oauth2, g_oauth2ext, ' ', g_oauth2ver)
+            raise self._getSqlException(1003, 502, oauth2, g_oauth2ext, '\n', g_oauth2ver)
+        elif driver is None:
+            self._logSqlException(501, g_jdbcext, ' ', g_extension)
+            raise self._getSqlException(1003, 501, g_jdbcext, '\n', g_extension)
+        elif not checkVersion(driver, g_jdbcver):
+            self._logSqlException(502, driver, g_jdbcext, ' ', g_jdbcver)
+            raise self._getSqlException(1003, 502, driver, g_jdbcext, '\n', g_jdbcver)
+        else:
+            try:
+                database = DataBase(self._ctx)
+            except SQLException as e:
+                self._logSqlException(503, database.Url, ' ', e.Message)
+                raise self._getSqlException(1005, 503, database.Url, '\n', e.Message)
+            else:
+                if not database.isUptoDate():
+                    self._logSqlException(504, database.Version, ' ', g_version)
+                    raise self._getSqlException(1005, 504, database.Version, '\n', g_version)
+                else:
+                    return DataSource(self._ctx, database)
+        return None
+
+    def _logSqlException(self, code, *args):
+        self._logger.logprb(SEVERE, 'Driver', 'connect()', code, *args)
+
+    def _getSqlException(self, state, code, *args):
+        state = self._logger.resolveString(state)
+        msg = self._logger.resolveString(code, *args)
+        return getSqlException(state, code, msg, self)
 
 
 g_ImplementationHelper.addImplementation(Driver,
