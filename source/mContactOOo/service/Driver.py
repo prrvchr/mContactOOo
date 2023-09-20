@@ -47,6 +47,7 @@ from mcontact import DataBase
 from mcontact import DataSource
 
 from mcontact import checkVersion
+from mcontact import getConnectionUrl
 from mcontact import getDriverPropertyInfos
 from mcontact import getExtensionVersion
 from mcontact import getLogger
@@ -65,6 +66,7 @@ from mcontact import g_identifier
 from mcontact import g_protocol
 from mcontact import g_scheme
 from mcontact import g_host
+from mcontact import g_folder
 from mcontact import g_defaultlog
 from mcontact import g_version
 
@@ -175,11 +177,13 @@ class Driver(unohelper.Base,
             self._logSqlException(502, driver, g_jdbcext, ' ', g_jdbcver)
             raise self._getSqlException(1003, 502, driver, g_jdbcext, '\n', g_jdbcver)
         else:
+            path = g_folder + '/' + g_host
+            url = getConnectionUrl(self._ctx, path)
             try:
-                database = DataBase(self._ctx)
+                database = DataBase(self._ctx, url)
             except SQLException as e:
-                self._logSqlException(503, database.Url, ' ', e.Message)
-                raise self._getSqlException(1005, 503, database.Url, '\n', e.Message)
+                self._logSqlException(503, url, ' ', e.Message)
+                raise self._getSqlException(1005, 503, url, '\n', e.Message)
             else:
                 if not database.isUptoDate():
                     self._logSqlException(504, database.Version, ' ', g_version)
