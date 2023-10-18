@@ -44,18 +44,18 @@ L'utilisation des services du `Fournisseur` au travers de `OAuth2OOo` et/ou `mCo
 Le `Fournisseur` est seul responsable de l'utilisation des données qu'il collecte, comme décrit dans sa Politique de Protection des Données.
 
 ___
-## Sécurité de vos informations personnelles:
+## Nature et étendue des droits sur vos données:
+
+`mContactOOo` vous permet d'obtenir une copie de vos Contacts Microsoft sur votre `Ordinateur`. En conséquence, `mContactOOo` revendique au travers de `OAuth2OOo` le droit de **consulter, modifier et supprimer vos Contacts Microsoft**.
+
+___
+## Sécurité des données collectées:
 
 Étant donné que les données collectées par `OAuth2OOo` et/ou `mContactOOo` sont situées sur l'`Ordinateur`, **seul l'**`Utilisateur` **est responsable de la sécurité des données collectées**.
 
 L'utilisation des services du `Fournisseur` au travers de `OAuth2OOo` et/ou `mContactOOo` peut vous soumettre à la politique de protection des données du `Fournisseur`. Il incombe à l'`Utilisateur` de consulter ces règles sur le site Web du `Fournisseur`.
 
 Le `Fournisseur` est seul responsable de la sécurité des données qu'il collecte, comme décrit dans sa Politique de Protection des Données.
-
-___
-## Nature et étendue des droits sur les données collectées:
-
-`mContactOOo` vous permet d'obtenir une copie de vos Contacts Microsoft sur votre `Ordinateur`. En conséquence, `mContactOOo` revendique au travers de `OAuth2OOo` le droit de **consulter, modifier et supprimer vos Contacts Microsoft**.
 
 ___
 ## Expiration des données collectées:
