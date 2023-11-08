@@ -98,11 +98,11 @@ class Provider(ProviderBase):
         response.close()
         return userid
 
-    def initAddressbooks(self, database, user):
+    def initAddressbooks(self, source, database, user):
         print("Provider.initAddressbooks() 1 %s" % (user.Name, ))
         parameter = self._getRequestParameter(user.Request, 'getBooks')
         iterator = self._parseAllBooks(user.Request.execute(parameter))
-        self.initUserBooks(database, user, iterator)
+        self.initUserBooks(source, database, user, iterator)
 
     def _parseAllBooks(self, response):
         if response.Ok:
