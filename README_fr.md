@@ -44,15 +44,15 @@ ___
 Il semble important que le fichier n'ait pas été renommé lors de son téléchargement.  
 Si nécessaire, renommez-le avant de l'installer.
 
-- Installer l'extension ![OAuth2OOo logo][15] **[OAuth2OOo.oxt][16]** [![Version][17]][16]
+- [![OAuth2OOo logo][15]][16] Installer l'extension **[OAuth2OOo.oxt][17]** [![Version][18]][17]
 
     Vous devez installer cette extension, si elle n'est pas déjà installée.
 
-- Installer l'extension ![jdbcDriverOOo logo][18] **[jdbcDriverOOo.oxt][19]** [![Version][20]][19]
+- [![jdbcDriverOOo logo][19]][20] Installer l'extension **[jdbcDriverOOo.oxt][21]** [![Version][22]][21]
 
     Vous devez installer cette extension, si elle n'est pas déjà installée.
 
-- Installer l'extension ![mContactOOo logo][21] **[mContactOOo.oxt][22]** [![Version][23]][22]
+- ![mContactOOo logo][23] Installer l'extension **[mContactOOo.oxt][24]** [![Version][25]][24]
 
 Redémarrez LibreOffice / OpenOffice après l'installation.
 
@@ -62,24 +62,24 @@ ___
 
 Dans LibreOffice / OpenOffice aller à: **Fichier -> Assistants -> Source de données des adresses**:
 
-![mContactOOo screenshot 1][24]
+![mContactOOo screenshot 1][26]
 
 À l'étape: 1. Type de carnet d'adresses:
 - sélectionner: Autre source de données externes
 - cliquez sur: Suivant (bouton)
 
-![mContactOOo screenshot 2][25]
+![mContactOOo screenshot 2][27]
 
 À l'étape: 2. Paramètres de Connexion:
 - cliquez sur: Paramètres (bouton)
 
-![mContactOOo screenshot 3][26]
+![mContactOOo screenshot 3][28]
 
 Dans Type de base de données:
 - sélectionner: **Contacts Microsoft**
 - cliquez sur: Suivant (bouton)
 
-![mContactOOo screenshot 4][27]
+![mContactOOo screenshot 4][29]
 
 Dans Général: URL de la source de données:
 - mettre: votre compte Microsoft (c'est-à-dire: votre_compte@votre_adresse.com)
@@ -87,19 +87,19 @@ Dans Général: URL de la source de données:
 Puis:
 - cliquez sur: Tester la connexion (bouton)
 
-![mContactOOo screenshot 5][28]
+![mContactOOo screenshot 5][30]
 
-Après avoir autorisé l'application [OAuth2OOo][29] à accéder à vos contacts, normalement vous devez voir s'afficher: Test de connexion: Connexion établie.
+Après avoir autorisé l'application [OAuth2OOo][16] à accéder à vos contacts, normalement vous devez voir s'afficher: Test de connexion: Connexion établie.
 
-![mContactOOo screenshot 6][30]
+![mContactOOo screenshot 6][31]
 
 Maintenant à vous d'en profiter...
 
-![mContactOOo screenshot 7][31]
+![mContactOOo screenshot 7][32]
 
-![mContactOOo screenshot 8][32]
+![mContactOOo screenshot 8][33]
 
-![mContactOOo screenshot 9][33]
+![mContactOOo screenshot 9][34]
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 * LibreOffice 7.4.3.2(x64) - Windows 10(x64) - Python version 3.8.15  - Adoptium JDK Hotspot 11.0.17 (x64) (under Lubuntu 22.04 / VirtualBox 6.1.38)
 
-* **Ne fonctionne pas avec OpenOffice sous Windows** voir [dysfonctionnement 128569][34]. N'ayant aucune solution, je vous encourrage d'installer **LibreOffice**.
+* **Ne fonctionne pas avec OpenOffice sous Windows** voir [dysfonctionnement 128569][35]. N'ayant aucune solution, je vous encourrage d'installer **LibreOffice**.
 
 Je vous encourage en cas de problème :confused:  
 de créer un [dysfonctionnement][9]  
@@ -125,7 +125,7 @@ ___
 
 Cette extension a été écrite afin de rendre utilisables dans un logiciel libre (LibreOffice ou OpenOffice) vos données personnelles stockées dans votre carnet d'adresses Microsoft Outlook.
 
-Avec l'extension [eMailerOOo][35], elle peut être la source de données pour des [publipostages][36] par courriel (email), à vos correspondants contenus dans votre carnet d'adresses Microsoft Outlook.
+Avec l'extension [eMailerOOo][36], elle peut être la source de données pour des [publipostages][37] par courriel (email), à vos correspondants contenus dans votre carnet d'adresses Microsoft Outlook.
 
 Elle vous donnera accès à un système d'information que seules les grandes entreprises sont capables, aujourd'hui, de mettre en œuvre.
 
@@ -164,24 +164,25 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [13]: <https://bugs.documentfoundation.org/show_bug.cgi?id=139538>
 [14]: <https://prrvchr.github.io/HyperSQLOOo/README_fr>
 [15]: <https://prrvchr.github.io/OAuth2OOo/img/OAuth2OOo.svg#middle>
-[16]: <https://github.com/prrvchr/OAuth2OOo/releases/latest/download/OAuth2OOo.oxt>
-[17]: <https://img.shields.io/github/v/tag/prrvchr/OAuth2OOo?label=latest#right>
-[18]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
-[19]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
-[20]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
-[21]: <img/mContactOOo.svg#middle>
-[22]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
-[23]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.0.3#right>
-[24]: <img/mContactOOo-1_fr.png>
-[25]: <img/mContactOOo-2_fr.png>
-[26]: <img/mContactOOo-3_fr.png>
-[27]: <img/mContactOOo-4_fr.png>
-[28]: <img/mContactOOo-5_fr.png>
-[29]: <https://prrvchr.github.io/OAuth2OOo/README_fr>
-[30]: <img/mContactOOo-6_fr.png>
-[31]: <img/mContactOOo-7_fr.png>
-[32]: <img/mContactOOo-8_fr.png>
-[33]: <img/mContactOOo-9_fr.png>
-[34]: <https://bz.apache.org/ooo/show_bug.cgi?id=128569>
-[35]: <https://prrvchr.github.io/eMailerOOo/README_fr>
-[36]: <https://fr.wikipedia.org/wiki/Publipostage>
+[16]: <https://prrvchr.github.io/OAuth2OOo/README_fr>
+[17]: <https://github.com/prrvchr/OAuth2OOo/releases/latest/download/OAuth2OOo.oxt>
+[18]: <https://img.shields.io/github/v/tag/prrvchr/OAuth2OOo?label=latest#right>
+[19]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
+[20]: <https://prrvchr.github.io/jdbcDriverOOo/README_fr>
+[21]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
+[22]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
+[23]: <img/mContactOOo.svg#middle>
+[24]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
+[25]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.0.3#right>
+[26]: <img/mContactOOo-1_fr.png>
+[27]: <img/mContactOOo-2_fr.png>
+[28]: <img/mContactOOo-3_fr.png>
+[29]: <img/mContactOOo-4_fr.png>
+[30]: <img/mContactOOo-5_fr.png>
+[31]: <img/mContactOOo-6_fr.png>
+[32]: <img/mContactOOo-7_fr.png>
+[33]: <img/mContactOOo-8_fr.png>
+[34]: <img/mContactOOo-9_fr.png>
+[35]: <https://bz.apache.org/ooo/show_bug.cgi?id=128569>
+[36]: <https://prrvchr.github.io/eMailerOOo/README_fr>
+[37]: <https://fr.wikipedia.org/wiki/Publipostage>

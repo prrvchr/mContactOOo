@@ -44,15 +44,15 @@ ___
 It seems important that the file was not renamed when it was downloaded.
 If necessary, rename it before installing it.
 
-- Install ![OAuth2OOo logo][15] **[OAuth2OOo.oxt][16]** extension [![Version][17]][16]
+- [![OAuth2OOo logo][15]][16] Install **[OAuth2OOo.oxt][17]** extension [![Version][18]][17]
 
     You must install this extension, if it is not already installed.
 
-- Install ![jdbcDriverOOo logo][18] **[jdbcDriverOOo.oxt][19]** extension [![Version][20]][19]
+- [![jdbcDriverOOo logo][19]][20] Install **[jdbcDriverOOo.oxt][21]** extension [![Version][22]][21]
 
     You must install this extension, if it is not already installed.
 
-- Install ![mContactOOo logo][21] **[mContactOOo.oxt][22]** extension version [![Version][23]][22]
+- ![mContactOOo logo][23] Install **[mContactOOo.oxt][24]** extension version [![Version][25]][24]
 
 Restart LibreOffice / OpenOffice after installation.
 
@@ -62,24 +62,24 @@ ___
 
 In LibreOffice / OpenOffice go to **File -> Wizards -> Address Data Source**:
 
-![mContactOOo screenshot 1][24]
+![mContactOOo screenshot 1][26]
 
 In step: 1. Address Book Type:
 - select: Other external data source
 - click on: Next(Button)
 
-![mContactOOo screenshot 2][25]
+![mContactOOo screenshot 2][27]
 
 In step: 2. Connection Settings:
 - click on: Settings(Button)
 
-![mContactOOo screenshot 3][26]
+![mContactOOo screenshot 3][28]
 
 In Database type list:
 - select: **Microsoft Contacts**
 - click on: Next(Button)
 
-![mContactOOo screenshot 4][27]
+![mContactOOo screenshot 4][29]
 
 In General: Datasource Url:
 - put: your Google account (ie: your_account@your_provider.com)
@@ -87,19 +87,19 @@ In General: Datasource Url:
 Then:
 - click on: Test connection (button)
 
-![mContactOOo screenshot 5][28]
+![mContactOOo screenshot 5][30]
 
-After authorizing the [OAuth2OOo][29] application to access your Contacts, normally you should see: Connection Test: The connection was established successfully.
+After authorizing the [OAuth2OOo][16] application to access your Contacts, normally you should see: Connection Test: The connection was established successfully.
 
-![mContactOOo screenshot 6][30]
+![mContactOOo screenshot 6][31]
 
 Have fun...
 
-![mContactOOo screenshot 7][31]
+![mContactOOo screenshot 7][32]
 
-![mContactOOo screenshot 8][32]
+![mContactOOo screenshot 8][33]
 
-![mContactOOo screenshot 9][33]
+![mContactOOo screenshot 9][34]
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 * LibreOffice 7.4.3.2(x64) - Windows 10(x64) - Python version 3.8.15  - Adoptium JDK Hotspot 11.0.17 (x64) (under Lubuntu 22.04 / VirtualBox 6.1.38)
 
-* **Does not work with OpenOffice on Windows** see [bug 128569][34]. Having no solution, I encourage you to install **LibreOffice**.
+* **Does not work with OpenOffice on Windows** see [bug 128569][35]. Having no solution, I encourage you to install **LibreOffice**.
 
 I encourage you in case of problem :confused:  
 to create an [issue][9]  
@@ -125,7 +125,7 @@ ___
 
 This extension was written in order to make usable in free software (LibreOffice or OpenOffice) your personal data stored in your Microsoft Outlook address book.
 
-With the [eMailerOOo][35] extension, it can be the data source for [mail merge][36] by email, to your correspondents contained in your Microsoft Outlook address book.
+With the [eMailerOOo][36] extension, it can be the data source for [mail merge][37] by email, to your correspondents contained in your Microsoft Outlook address book.
 
 It will give you access to an information system that only larges companies are able, today, to implement.
 
@@ -164,24 +164,25 @@ It will give you access to an information system that only larges companies are 
 [13]: <https://bugs.documentfoundation.org/show_bug.cgi?id=139538>
 [14]: <https://prrvchr.github.io/HyperSQLOOo/>
 [15]: <https://prrvchr.github.io/OAuth2OOo/img/OAuth2OOo.svg#middle>
-[16]: <https://github.com/prrvchr/OAuth2OOo/releases/latest/download/OAuth2OOo.oxt>
-[17]: <https://img.shields.io/github/v/tag/prrvchr/OAuth2OOo?label=latest#right>
-[18]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
-[19]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
-[20]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
-[21]: <img/mContactOOo.svg#middle>
-[22]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
-[23]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.0.3#right>
-[24]: <img/mContactOOo-1.png>
-[25]: <img/mContactOOo-2.png>
-[26]: <img/mContactOOo-3.png>
-[27]: <img/mContactOOo-4.png>
-[28]: <img/mContactOOo-5.png>
-[29]: <https://prrvchr.github.io/OAuth2OOo>
-[30]: <img/mContactOOo-6.png>
-[31]: <img/mContactOOo-7.png>
-[32]: <img/mContactOOo-8.png>
-[33]: <img/mContactOOo-9.png>
-[34]: <https://bz.apache.org/ooo/show_bug.cgi?id=128569>
-[35]: <https://prrvchr.github.io/eMailerOOo>
-[36]: <https://en.wikipedia.org/wiki/Mail_merge>
+[16]: <https://prrvchr.github.io/OAuth2OOo/>
+[17]: <https://github.com/prrvchr/OAuth2OOo/releases/latest/download/OAuth2OOo.oxt>
+[18]: <https://img.shields.io/github/v/tag/prrvchr/OAuth2OOo?label=latest#right>
+[19]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
+[20]: <https://prrvchr.github.io/jdbcDriverOOo/>
+[21]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
+[22]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
+[23]: <img/mContactOOo.svg#middle>
+[24]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
+[25]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.0.3#right>
+[26]: <img/mContactOOo-1.png>
+[27]: <img/mContactOOo-2.png>
+[28]: <img/mContactOOo-3.png>
+[29]: <img/mContactOOo-4.png>
+[30]: <img/mContactOOo-5.png>
+[31]: <img/mContactOOo-6.png>
+[32]: <img/mContactOOo-7.png>
+[33]: <img/mContactOOo-8.png>
+[34]: <img/mContactOOo-9.png>
+[35]: <https://bz.apache.org/ooo/show_bug.cgi?id=128569>
+[36]: <https://prrvchr.github.io/eMailerOOo>
+[37]: <https://en.wikipedia.org/wiki/Mail_merge>
