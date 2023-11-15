@@ -162,11 +162,8 @@ class Provider(ProviderBase):
             url = tag = data = None
             iterator = response.iterContent(g_chunk, False)
             while iterator.hasMoreElements():
-                chunk = iterator.nextElement().value
-                print("Provider._parseCards() Content:\n%s" % chunk)
-                parser.send(chunk)
+                parser.send(iterator.nextElement().value)
                 for prefix, event, value in events:
-                    print("Provider._parseCards() Prefix: %s - Event: %s - Value: %s" % (prefix, event, value))
                     if (prefix, event) == ('@odata.nextLink', 'string'):
                         parameter.setNextPage('', value, REDIRECT)
                     elif (prefix, event) == ('@odata.deltaLink', 'string'):
@@ -222,11 +219,8 @@ class Provider(ProviderBase):
             parser = ijson.parse_coro(events)
             iterator = response.iterContent(g_chunk, False)
             while iterator.hasMoreElements():
-                chunk = iterator.nextElement().value
-                print("Provider._parseGroups() Content:\n%s" % chunk)
-                parser.send(chunk)
+                parser.send(iterator.nextElement().value)
                 for prefix, event, value in events:
-                    print("Provider._parseGroups() Prefix: %s - Event: %s - Value: %s" % (prefix, event, value))
                     if (prefix, event) == ('value.item', 'start_map'):
                         uri = name = None
                     elif (prefix, event) == ('value.item.id', 'string'):

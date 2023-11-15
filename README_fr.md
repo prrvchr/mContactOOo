@@ -85,32 +85,36 @@ ___
 
 ## Utilisation:
 
-Dans LibreOffice / OpenOffice aller à: **Fichier -> Assistants -> Source de données des adresses**:
+Dans LibreOffice / OpenOffice aller à: **Fichier -> Assistants -> Source de données des adresses...**
 
 ![mContactOOo screenshot 1][26]
 
-À l'étape: 1. Type de carnet d'adresses:
-- sélectionner: Autre source de données externes
-- cliquez sur: Suivant (bouton)
+L'**Assistant source de données du carnet d'adresses** s'ouvre.
+
+À l'étape: **1.Type de carnet d'adresses**:
+- Sélectionner: **Autre source de données externes**.
+- Cliquez sur le bouton: **Suivant**.
 
 ![mContactOOo screenshot 2][27]
 
-À l'étape: 2. Paramètres de Connexion:
-- cliquez sur: Paramètres (bouton)
+À l'étape: **2.Paramètres de Connexion**:
+- Cliquez sur le bouton: **Paramètres**.
 
 ![mContactOOo screenshot 3][28]
 
+Un nouvel assistant s'ouvre. **Propriétés de la source de données**.
+
+A l'étape: **1.Propriétés avancées**.  
 Dans Type de base de données:
-- sélectionner: **Contacts Microsoft**
-- cliquez sur: Suivant (bouton)
+- Sélectionner: **Contacts Microsoft**.
+- Cliquez sur le bouton: **Suivant**.
 
 ![mContactOOo screenshot 4][29]
 
-Dans Général: URL de la source de données:
-- mettre: votre compte Microsoft (c'est-à-dire: votre_compte@votre_adresse.com)
-
-Puis:
-- cliquez sur: Tester la connexion (bouton)
+A l'étape: **2.Paramètres de connexion**.  
+Dans Général: Entrer ici la chaîne de connexion spécifique au SGDB / pilote.
+- Mettre votre compte Microsoft (ie: votre_compte@outlook.fr)
+- Cliquez sur le bouton: **Tester la connexion**.
 
 ![mContactOOo screenshot 5][30]
 
@@ -118,13 +122,33 @@ Après avoir autorisé l'application [OAuth2OOo][16] à accéder à vos contacts
 
 ![mContactOOo screenshot 6][31]
 
-Maintenant à vous d'en profiter...
+Si la connexion a été etablie, vous pouvez terminer cet assistant avec le bouton **Terminer**.
 
 ![mContactOOo screenshot 7][32]
 
+A l'étape: **3.Sélection de table**.  
+Si votre source de données comporte plusieurs tables, il vous sera demandé de sélectionner la table principale.  
+Dans ce cas sélectionnez la table: **Tous mes contacts**. Si nécessaire et avant toute connexion il est possible de renommer le nom de la table principale dans: **Outils -> Options -> Internet -> gContactOOo -> Nom de la table principale**.
+
+A l'étape: **4.Assignation de champ**.  
+Si nécessaire il est possible de renommer les noms des colonnes de la source de données à l'aide du bouton: **Assignation de champ**.  
+Veuillez poursuivre cet assistant par le bouton: **Suivant**.
+
 ![mContactOOo screenshot 8][33]
 
+A l'étape: **5.Titre de la source de données**.
+
+Il faut créer un fichier odb. Pour cela vous devez:
+- **Décocher la case**: Intégrer cette définition du carnet d'adresses dans le document actuel.
+- Nommer le fichier odb dans le champ: **Emplacement**.
+
+Il faut également rendre accessible ce fichier odb. Pour cela vous devez:
+- **Cocher la case**: Rendre ce carnet d'adresses accessible à tous les modules de LibreOffice
+- Nommer le carnet d'adresses dans le champ: **Nom du carnet d'adresses**.
+
 ![mContactOOo screenshot 9][34]
+
+Maintenant à vous d'en profiter...
 
 ___
 
@@ -173,6 +197,8 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 - Ajouter de nouvelles langues pour l’internationalisation...
 
 - Tout ce qui est bienvenu...
+
+
 
 [1]: <https://prrvchr.github.io/mContactOOo>
 [2]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/TermsOfUse_fr>

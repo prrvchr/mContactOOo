@@ -85,32 +85,36 @@ ___
 
 ## Use:
 
-In LibreOffice / OpenOffice go to **File -> Wizards -> Address Data Source**:
+In LibreOffice / OpenOffice go to: **File -> Wizards -> Address Data Source...**
 
 ![mContactOOo screenshot 1][26]
 
-In step: 1. Address Book Type:
-- select: Other external data source
-- click on: Next(Button)
+The **Address Book Datasource Wizard** open.
+
+In step: **1.Address Book Type**:
+- Select: **Other external data source**.
+- Click button: **Next**.
 
 ![mContactOOo screenshot 2][27]
 
-In step: 2. Connection Settings:
-- click on: Settings(Button)
+In step: **2.Connection Settings**:
+- Click button: **Settings**.
 
 ![mContactOOo screenshot 3][28]
 
+A new wizard opens. **Data source properties**.
+
+In step: **1.Advanced Properties**.  
 In Database type list:
-- select: **Microsoft Contacts**
-- click on: Next(Button)
+- Select: **Microsoft Contacts**.
+- Click button: **Next**.
 
 ![mContactOOo screenshot 4][29]
 
-In General: Datasource Url:
-- put: your Google account (ie: your_account@your_provider.com)
-
-Then:
-- click on: Test connection (button)
+In step: **2.Connection Settings**.  
+In General: Enter the DBMS/driver-specific connection string here.
+- Put your Microsoft account (ie: your_account@outlook.com)
+- Click button: **Test connection**.
 
 ![mContactOOo screenshot 5][30]
 
@@ -118,13 +122,33 @@ After authorizing the [OAuth2OOo][16] application to access your Contacts, norma
 
 ![mContactOOo screenshot 6][31]
 
-Have fun...
+If the connection has been established, you can complete this wizard with the **Finish** button.
 
 ![mContactOOo screenshot 7][32]
 
+In step: **3.Table Selection**.  
+If your data source has multiple tables, you will be asked to select the primary table.  
+In this case select the table: **All my contacts**. If necessary and before any connection it is possible to rename the main table name in: **Tools -> Options -> Internet -> gContactOOo -> Main table name**.
+
+In step: **4.Field Assignment**.  
+If necessary it is possible to rename the names of the columns of the data source using the button: **Field Assignment**.  
+Please continue this wizard with the button: **Next**.
+
 ![mContactOOo screenshot 8][33]
 
+In step: **5.Data Source Title**.
+
+You must create an odb file. To do this you must:
+- **Uncheck the box**: Embed this address book definition in the current document.
+- Named the odb file in the field: **Location**.
+
+This odb file must also be made accessible. To do this you must:
+- **Check the box**: Make this address book available to all modules in LibreOffice
+- Named the address book in the field: **Address book name**.
+
 ![mContactOOo screenshot 9][34]
+
+Have fun...
 
 ___
 
