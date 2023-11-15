@@ -128,7 +128,7 @@ If the connection has been established, you can complete this wizard with the **
 
 In step: **3.Table Selection**.  
 If your data source has multiple tables, you will be asked to select the primary table.  
-In this case select the table: **All my contacts**. If necessary and before any connection it is possible to rename the main table name in: **Tools -> Options -> Internet -> gContactOOo -> Main table name**.
+In this case select the table: **All my contacts**. If necessary and before any connection it is possible to rename the main table name in: **Tools -> Options -> Internet -> mContactOOo -> Main table name**.
 
 In step: **4.Field Assignment**.  
 If necessary it is possible to rename the names of the columns of the data source using the button: **Field Assignment**.  

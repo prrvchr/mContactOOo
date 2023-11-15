@@ -128,7 +128,7 @@ Si la connexion a été etablie, vous pouvez terminer cet assistant avec le bout
 
 A l'étape: **3.Sélection de table**.  
 Si votre source de données comporte plusieurs tables, il vous sera demandé de sélectionner la table principale.  
-Dans ce cas sélectionnez la table: **Tous mes contacts**. Si nécessaire et avant toute connexion il est possible de renommer le nom de la table principale dans: **Outils -> Options -> Internet -> gContactOOo -> Nom de la table principale**.
+Dans ce cas sélectionnez la table: **Tous mes contacts**. Si nécessaire et avant toute connexion il est possible de renommer le nom de la table principale dans: **Outils -> Options -> Internet -> mContactOOo -> Nom de la table principale**.
 
 A l'étape: **4.Assignation de champ**.  
 Si nécessaire il est possible de renommer les noms des colonnes de la source de données à l'aide du bouton: **Assignation de champ**.  
