@@ -23,23 +23,23 @@
 ║                                                                                    ║
 ╚════════════════════════════════════════════════════════════════════════════════════╝
 -->
-# [![mContactOOo logo][0]][-1] Documentation
+# [![mContactOOo logo][1]][2] Documentation
 
-**Ce [document][1] en français.**
+**Ce [document][3] en français.**
 
-**The use of this software subjects you to our [Terms Of Use][2] and [Data Protection Policy][3].**
+**The use of this software subjects you to our [Terms Of Use][4] and [Data Protection Policy][5].**
 
-# version [1.0.3][4]
+# version [1.0.3][6]
 
 ## Introduction:
 
-**mContactOOo** is part of a [Suite][5] of [LibreOffice][6] ~~and/or [OpenOffice][7]~~ extensions allowing to offer you innovative services in these office suites.  
+**mContactOOo** is part of a [Suite][7] of [LibreOffice][8] ~~and/or [OpenOffice][9]~~ extensions allowing to offer you innovative services in these office suites.  
 This extension gives you access, in LibreOffice, to your Microsoft Outlook contacts.
 
 Being free software I encourage you:
-- To duplicate its [source code][8].
+- To duplicate its [source code][10].
 - To make changes, corrections, improvements.
-- To open [issue][9] if needed.
+- To open [issue][11] if needed.
 
 In short, to participate in the development of this extension.  
 Because it is together that we can make Free Software smarter.
@@ -52,15 +52,15 @@ In order to take advantage of the latest versions of the Python libraries used i
 This means that **mContactOOo no longer supports OpenOffice and LibreOffice 6.x on Windows since version 1.0.0**.
 I can only advise you **to migrate to LibreOffice 7.x**.
 
-mContactOOo uses a local [HsqlDB][10] database version 2.7.2.  
-HsqlDB being a database written in Java, its use requires the [installation and configuration][11] in LibreOffice / OpenOffice of a **JRE version 11 or later**.  
-I recommend [Adoptium][12] as your Java installation source.
+mContactOOo uses a local [HsqlDB][12] database version 2.7.2.  
+HsqlDB being a database written in Java, its use requires the [installation and configuration][13] in LibreOffice / OpenOffice of a **JRE version 11 or later**.  
+I recommend [Adoptium][14] as your Java installation source.
 
-If you are using **LibreOffice Community on Linux**, you are subject to [bug 139538][13]. To work around the problem, please **uninstall the packages** with commands:
+If you are using **LibreOffice Community on Linux**, you are subject to [bug 139538][15]. To work around the problem, please **uninstall the packages** with commands:
 - `sudo apt remove libreoffice-sdbc-hsqldb` (to uninstall the libreoffice-sdbc-hsqldb package)
 - `sudo apt remove libhsqldb1.8.0-java` (to uninstall the libhsqldb1.8.0-java package)
 
-If you still want to use the Embedded HsqlDB functionality provided by LibreOffice, then install the [HyperSQLOOo][14] extension.  
+If you still want to use the Embedded HsqlDB functionality provided by LibreOffice, then install the [HyperSQLOOo][16] extension.  
 
 ___
 
@@ -69,15 +69,15 @@ ___
 It seems important that the file was not renamed when it was downloaded.
 If necessary, rename it before installing it.
 
-- [![OAuth2OOo logo][15]][16] Install **[OAuth2OOo.oxt][17]** extension [![Version][18]][17]
+- [![OAuth2OOo logo][17]][18] Install **[OAuth2OOo.oxt][19]** extension [![Version][20]][19]
 
     You must install this extension, if it is not already installed.
 
-- [![jdbcDriverOOo logo][19]][20] Install **[jdbcDriverOOo.oxt][21]** extension [![Version][22]][21]
+- [![jdbcDriverOOo logo][21]][22] Install **[jdbcDriverOOo.oxt][23]** extension [![Version][24]][23]
 
     You must install this extension, if it is not already installed.
 
-- ![mContactOOo logo][23] Install **[mContactOOo.oxt][24]** extension version [![Version][25]][24]
+- ![mContactOOo logo][25] Install **[mContactOOo.oxt][26]** extension version [![Version][27]][26]
 
 Restart LibreOffice / OpenOffice after installation.
 
@@ -87,7 +87,7 @@ ___
 
 In LibreOffice / OpenOffice go to: **File -> Wizards -> Address Data Source...**
 
-![mContactOOo screenshot 1][26]
+![mContactOOo screenshot 1][28]
 
 The **Address Book Datasource Wizard** open.
 
@@ -95,12 +95,12 @@ In step: **1.Address Book Type**:
 - Select: **Other external data source**.
 - Click button: **Next**.
 
-![mContactOOo screenshot 2][27]
+![mContactOOo screenshot 2][29]
 
 In step: **2.Connection Settings**:
 - Click button: **Settings**.
 
-![mContactOOo screenshot 3][28]
+![mContactOOo screenshot 3][30]
 
 A new wizard opens. **Data source properties**.
 
@@ -109,22 +109,22 @@ In Database type list:
 - Select: **Microsoft Contacts**.
 - Click button: **Next**.
 
-![mContactOOo screenshot 4][29]
+![mContactOOo screenshot 4][31]
 
 In step: **2.Connection Settings**.  
 In General: Enter the DBMS/driver-specific connection string here.
 - Put your Microsoft account (ie: your_account@outlook.com)
 - Click button: **Test connection**.
 
-![mContactOOo screenshot 5][30]
+![mContactOOo screenshot 5][32]
 
-After authorizing the [OAuth2OOo][16] application to access your Contacts, normally you should see: Connection Test: The connection was established successfully.
+After authorizing the [OAuth2OOo][18] application to access your Contacts, normally you should see: Connection Test: The connection was established successfully.
 
-![mContactOOo screenshot 6][31]
+![mContactOOo screenshot 6][33]
 
 If the connection has been established, you can complete this wizard with the **Finish** button.
 
-![mContactOOo screenshot 7][32]
+![mContactOOo screenshot 7][34]
 
 In step: **3.Table Selection**.  
 If your data source has multiple tables, you will be asked to select the primary table.  
@@ -134,7 +134,7 @@ In step: **4.Field Assignment**.
 If necessary it is possible to rename the names of the columns of the data source using the button: **Field Assignment**.  
 Please continue this wizard with the button: **Next**.
 
-![mContactOOo screenshot 8][33]
+![mContactOOo screenshot 8][35]
 
 In step: **5.Data Source Title**.
 
@@ -146,7 +146,7 @@ This odb file must also be made accessible. To do this you must:
 - **Check the box**: Make this address book available to all modules in LibreOffice
 - Named the address book in the field: **Address book name**.
 
-![mContactOOo screenshot 9][34]
+![mContactOOo screenshot 9][36]
 
 Have fun...
 
@@ -160,10 +160,10 @@ ___
 
 * LibreOffice 7.4.3.2(x64) - Windows 10(x64) - Python version 3.8.15  - Adoptium JDK Hotspot 11.0.17 (x64) (under Lubuntu 22.04 / VirtualBox 6.1.38)
 
-* **Does not work with OpenOffice on Windows** see [bug 128569][35]. Having no solution, I encourage you to install **LibreOffice**.
+* **Does not work with OpenOffice on Windows** see [bug 128569][37]. Having no solution, I encourage you to install **LibreOffice**.
 
 I encourage you in case of problem :confused:  
-to create an [issue][9]  
+to create an [issue][11]  
 I will try to solve it :smile:
 
 ___
@@ -174,7 +174,7 @@ ___
 
 This extension was written in order to make usable in free software (LibreOffice or OpenOffice) your personal data stored in your Microsoft Outlook address book.
 
-With the [eMailerOOo][36] extension, it can be the data source for [mail merge][37] by email, to your correspondents contained in your Microsoft Outlook address book.
+With the [eMailerOOo][38] extension, it can be the data source for [mail merge][39] by email, to your correspondents contained in your Microsoft Outlook address book.
 
 It will give you access to an information system that only larges companies are able, today, to implement.
 
@@ -198,42 +198,42 @@ It will give you access to an information system that only larges companies are 
 
 - Anything welcome...
 
-[0]: </img/contact.svg#collapse>
-[-1]: <https://prrvchr.github.io/mContactOOo/>
-[1]: <https://prrvchr.github.io/mContactOOo/README_fr>
-[2]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/TermsOfUse_en>
-[3]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/PrivacyPolicy_en>
-[4]: <https://prrvchr.github.io/mContactOOo#historical>
-[5]: <https://prrvchr.github.io/>
-[6]: <https://www.libreoffice.org/download/download/>
-[7]: <https://www.openoffice.org/download/index.html>
-[8]: <https://github.com/prrvchr/mContactOOo>
-[9]: <https://github.com/prrvchr/mContactOOo/issues/new>
-[10]: <http://hsqldb.org/>
-[11]: <https://wiki.documentfoundation.org/Documentation/HowTo/Install_the_correct_JRE_-_LibreOffice_on_Windows_10>
-[12]: <https://adoptium.net/releases.html?variant=openjdk11>
-[13]: <https://bugs.documentfoundation.org/show_bug.cgi?id=139538>
-[14]: <https://prrvchr.github.io/HyperSQLOOo/>
-[15]: <https://prrvchr.github.io/OAuth2OOo/img/OAuth2OOo.svg#middle>
-[16]: <https://prrvchr.github.io/OAuth2OOo/>
-[17]: <https://github.com/prrvchr/OAuth2OOo/releases/latest/download/OAuth2OOo.oxt>
-[18]: <https://img.shields.io/github/v/tag/prrvchr/OAuth2OOo?label=latest#right>
-[19]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
-[20]: <https://prrvchr.github.io/jdbcDriverOOo/>
-[21]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
-[22]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
-[23]: <img/mContactOOo.svg#middle>
-[24]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
-[25]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.0.3#right>
-[26]: <img/mContactOOo-1.png>
-[27]: <img/mContactOOo-2.png>
-[28]: <img/mContactOOo-3.png>
-[29]: <img/mContactOOo-4.png>
-[30]: <img/mContactOOo-5.png>
-[31]: <img/mContactOOo-6.png>
-[32]: <img/mContactOOo-7.png>
-[33]: <img/mContactOOo-8.png>
-[34]: <img/mContactOOo-9.png>
-[35]: <https://bz.apache.org/ooo/show_bug.cgi?id=128569>
-[36]: <https://prrvchr.github.io/eMailerOOo>
-[37]: <https://en.wikipedia.org/wiki/Mail_merge>
+[1]: </img/contact.svg#collapse>
+[2]: <https://prrvchr.github.io/mContactOOo/>
+[3]: <https://prrvchr.github.io/mContactOOo/README_fr>
+[4]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/TermsOfUse_en>
+[5]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/PrivacyPolicy_en>
+[6]: <https://prrvchr.github.io/mContactOOo#historical>
+[7]: <https://prrvchr.github.io/>
+[8]: <https://www.libreoffice.org/download/download/>
+[9]: <https://www.openoffice.org/download/index.html>
+[10]: <https://github.com/prrvchr/mContactOOo>
+[11]: <https://github.com/prrvchr/mContactOOo/issues/new>
+[12]: <http://hsqldb.org/>
+[13]: <https://wiki.documentfoundation.org/Documentation/HowTo/Install_the_correct_JRE_-_LibreOffice_on_Windows_10>
+[14]: <https://adoptium.net/releases.html?variant=openjdk11>
+[15]: <https://bugs.documentfoundation.org/show_bug.cgi?id=139538>
+[16]: <https://prrvchr.github.io/HyperSQLOOo/>
+[17]: <https://prrvchr.github.io/OAuth2OOo/img/OAuth2OOo.svg#middle>
+[18]: <https://prrvchr.github.io/OAuth2OOo/>
+[19]: <https://github.com/prrvchr/OAuth2OOo/releases/latest/download/OAuth2OOo.oxt>
+[20]: <https://img.shields.io/github/v/tag/prrvchr/OAuth2OOo?label=latest#right>
+[21]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
+[22]: <https://prrvchr.github.io/jdbcDriverOOo/>
+[23]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
+[24]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
+[25]: <img/mContactOOo.svg#middle>
+[26]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
+[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.0.3#right>
+[28]: <img/mContactOOo-1.png>
+[29]: <img/mContactOOo-2.png>
+[30]: <img/mContactOOo-3.png>
+[31]: <img/mContactOOo-4.png>
+[32]: <img/mContactOOo-5.png>
+[33]: <img/mContactOOo-6.png>
+[34]: <img/mContactOOo-7.png>
+[35]: <img/mContactOOo-8.png>
+[36]: <img/mContactOOo-9.png>
+[37]: <https://bz.apache.org/ooo/show_bug.cgi?id=128569>
+[38]: <https://prrvchr.github.io/eMailerOOo>
+[39]: <https://en.wikipedia.org/wiki/Mail_merge>
