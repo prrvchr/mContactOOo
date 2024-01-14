@@ -29,7 +29,7 @@
 
 **L'utilisation de ce logiciel vous soumet à nos [Conditions d'utilisation][4] et à notre [Politique de protection des données][5].**
 
-# version [1.0.3][6]
+# version [1.1.0][6]
 
 ## Introduction:
 
@@ -48,19 +48,19 @@ ___
 
 ## Prérequis:
 
-Afin de profiter des dernières versions des bibliothèques Python utilisées dans mContactOOo, la version 2 de Python a été abandonnée au profit de **Python 3.8 minimum**.  
-Cela signifie que **mContactOOo ne supporte plus OpenOffice et LibreOffice 6.x sous Windows depuis sa version 1.0.0**.
-Je ne peux que vous conseiller **de migrer vers LibreOffice 7.x**.
+L'extension mContactOOo utilise l'extension OAuth2OOo pour fonctionner.  
+Elle doit donc répondre aux [prérequis de l'extension OAuth2OOo][12].
 
-mContactOOo utilise une base de données locale [HsqlDB][12] version 2.7.2.  
-HsqlDB étant une base de données écrite en Java, son utilisation nécessite [l'installation et la configuration][13] dans LibreOffice / OpenOffice d'un **JRE version 11 ou ultérieure**.  
-Je vous recommande [Adoptium][14] comme source d'installation de Java.
+L'extension mContactOOo utilise l'extension jdbcDriverOOo pour fonctionner.  
+Elle doit donc répondre aux [prérequis de l'extension jdbcDriverOOo][13].
 
-Si vous utilisez **LibreOffice Community sous Linux**, vous êtes sujet au [dysfonctionnement 139538][15]. Pour contourner le problème, veuillez **désinstaller les paquets** avec les commandes:
-- `sudo apt remove libreoffice-sdbc-hsqldb` (pour désinstaller le paquet libreoffice-sdbc-hsqldb)
-- `sudo apt remove libhsqldb1.8.0-java` (pour désinstaller le paquet libhsqldb1.8.0-java)
+**Sous Linux et macOS les paquets Python** utilisés par l'extension, peuvent s'il sont déja installé provenir du système et donc, **peuvent ne pas être à jour**.  
+Afin de s'assurer que vos paquets Python sont à jour il est recommandé d'utiliser l'option **Info système** dans les Options de l'extension accessible par:  
+**Outils -> Options -> Internet -> mContactOOo -> Voir journal -> Info système**  
+Si des paquets obsolètes apparaissent, vous pouvez les mettre à jour avec la commande:  
+`pip install --upgrade <package-name>`
 
-Si vous souhaitez quand même utiliser la fonctionnalité HsqlDB intégré fournie par LibreOffice, alors installez l'extension [HyperSQLOOo][16].  
+Pour plus d'information voir: [Ce qui a été fait pour la version 1.1.0][14].
 
 ___
 
@@ -192,7 +192,14 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 
 - Prise en charge de la version 1.2.1 de l'extension **OAuth2OOo**. Les versions précédentes ne fonctionneront pas avec l'extension **OAuth2OOo** 1.2.1 ou ultérieure.
 
-### Que reste-t-il à faire pour la version 1.0.3:
+### Ce qui a été fait pour la version 1.1.0:
+
+- Tous les paquets Python nécessaires à l'extension sont désormais enregistrés dans un fichier [requirements.txt][40] suivant la [PEP 508][41].
+- Désormais si vous n'êtes pas sous Windows alors les paquets Python nécessaires à l'extension peuvent être facilement installés avec la commande:  
+  `pip install requirements.txt`
+- Modification de la section [Prérequis][42].
+
+### Que reste-t-il à faire pour la version 1.1.0:
 
 - Ajouter de nouvelles langues pour l’internationalisation...
 
@@ -209,11 +216,9 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [9]: <https://www.openoffice.org/fr/Telecharger/>
 [10]: <https://github.com/prrvchr/mContactOOo>
 [11]: <https://github.com/prrvchr/mContactOOo/issues/new>
-[12]: <http://hsqldb.org/>
-[13]: <https://wiki.documentfoundation.org/Documentation/HowTo/Install_the_correct_JRE_-_LibreOffice_on_Windows_10/fr>
-[15]: <https://adoptium.net/releases.html?variant=openjdk11>
-[16]: <https://bugs.documentfoundation.org/show_bug.cgi?id=139538>
-[16]: <https://prrvchr.github.io/HyperSQLOOo/README_fr>
+[12]: <https://prrvchr.github.io/OAuth2OOo/README_fr#pr%C3%A9requis>
+[13]: <https://prrvchr.github.io/jdbcDriverOOo/README_fr#pr%C3%A9requis>
+[14]: <https://prrvchr.github.io/mContactOOo/README_fr#ce-qui-a-%C3%A9t%C3%A9-fait-pour-la-version-110>
 [17]: <https://prrvchr.github.io/OAuth2OOo/img/OAuth2OOo.svg#middle>
 [18]: <https://prrvchr.github.io/OAuth2OOo/README_fr>
 [19]: <https://github.com/prrvchr/OAuth2OOo/releases/latest/download/OAuth2OOo.oxt>
@@ -224,7 +229,7 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [24]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
 [25]: <img/mContactOOo.svg#middle>
 [26]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
-[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.0.3#right>
+[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.1.0#right>
 [28]: <img/mContactOOo-1_fr.png>
 [29]: <img/mContactOOo-2_fr.png>
 [30]: <img/mContactOOo-3_fr.png>
@@ -237,3 +242,6 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [37]: <https://bz.apache.org/ooo/show_bug.cgi?id=128569>
 [38]: <https://prrvchr.github.io/eMailerOOo/README_fr>
 [39]: <https://fr.wikipedia.org/wiki/Publipostage>
+[40]: <https://github.com/prrvchr/mContactOOo/tree/main/source/mContactOOo/requirements.txt>
+[41]: <https://peps.python.org/pep-0508/>
+[42]: <https://prrvchr.github.io/mContactOOo/README_fr#pr%C3%A9requis>

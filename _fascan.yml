@@ -5,9 +5,10 @@ output:
 working_dir: .
 sast:
   include:
-    - source/mContactOOo/service/pythonpath/mcontact/
     - glob(source/mContactOOo/service/*.py)
+    - glob(source/mContactOOo/service/pythonpath/mcontact/*)
 sca:
   include:
     - .
 language: EN
+strict: true
