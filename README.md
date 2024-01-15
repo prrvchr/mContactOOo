@@ -79,7 +79,10 @@ If necessary, rename it before installing it.
 
 - ![mContactOOo logo][25] Install **[mContactOOo.oxt][26]** extension version [![Version][27]][26]
 
-Restart LibreOffice / OpenOffice after installation.
+Restart LibreOffice after installation.
+
+**On Windows, restarting LibreOffice may not be enough.**  
+To ensure that LibreOffice restarts correctly, use the Windows Task Manager to verify that no LibreOffice services are visible after LibreOffice is shut down.
 
 ___
 
