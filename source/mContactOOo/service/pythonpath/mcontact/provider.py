@@ -51,7 +51,7 @@ import traceback
 
 class Provider(ProviderBase):
     def __init__(self, ctx, database):
-        self._ctx = ctx
+        ProviderBase.__init__(self, ctx)
         paths, lists, maps, types, tmps, fields = database.getMetaData('item')
         self._paths = paths
         self._lists = lists
@@ -66,96 +66,132 @@ class Provider(ProviderBase):
     @property
     def BaseUrl(self):
         return g_url
-    @property
-    def DateTimeFormat(self):
-        return '%Y-%m-%dT%H:%M:%S.%fZ'
 
-    # Method called from DataSource.getConnection()
+# Method called from DataSource.getConnection()
     def getUserUri(self, server, name):
         return name
 
-    # Method called from User._getNewUser()
-    def insertUser(self, database, request, scheme, server, name, pwd):
+    def initAddressbooks(self, source, database, user):
+        parameter = self._getRequestParameter(user.Request, 'getBooks')
+        response = user.Request.execute(parameter)
+        if not response.Ok:
+            cls, mtd = 'Provider', 'initAddressbooks()'
+            code = response.StatusCode
+            msg = response.Text
+            response.close()
+            raise getSqlException(self._ctx, source, 1006, 1601, cls, mtd, parameter.Name, code, user.Name, msg)
+        iterator = self._parseAllBooks(response)
+        self.initUserBooks(source, database, user, iterator)
+
+    def initUserGroups(self, database, user, book):
+        parameter = self._getRequestParameter(user.Request, 'getGroups')
+        response = user.Request.execute(parameter)
+        if not response.Ok:
+            cls, mtd = 'Provider', 'initUserGroups()'
+            code = response.StatusCode
+            msg = response.Text
+            response.close()
+            raise getSqlException(self._ctx, source, 1006, 1671, cls, mtd, parameter.Name, code, user.Name, msg)
+        iterator = self._parseGroups(response)
+        remove, add = database.initGroups(book, iterator)
+        print("Provider._initAddressbookGroups() Add: %s - Remove: %s" % (add, remove))
+        database.initGroupView(user, remove, add)
+
+    # Method called from User.__init__()
+    def insertUser(self, source, database, request, scheme, server, name, pwd):
+        userid = self._getNewUserId(source, request, scheme, server, name, pwd)
+        return database.insertUser(userid, scheme, server, '', name)
+ 
+    # Private method
+    def _getNewUserId(self, source, request, scheme, server, name, pwd):
         parameter = self._getRequestParameter(request, 'getUser')
-        userid = self._parseUser(request.execute(parameter))
-        if userid is not None:
-            return database.insertUser(userid, scheme, server, '', name)
-        return None
+        response = request.execute(parameter)
+        if not response.Ok:
+            cls, mtd = 'Provider', '_getNewUserId'
+            code = response.StatusCode
+            msg = response.Text
+            response.close()
+            raise getSqlException(self._ctx, source, 1006, 1643, cls, mtd, parameter.Name, code, name, parameter.Url, msg)
+        userid = self._parseUser(response)
+        return userid
 
     def _parseUser(self, response):
         userid = None
-        if response.Ok:
-            events = ijson.sendable_list()
-            parser = ijson.parse_coro(events)
-            iterator = response.iterContent(g_chunk, False)
-            while iterator.hasMoreElements():
-                parser.send(iterator.nextElement().value)
-                for prefix, event, value in events:
-                    if (prefix, event) == ('id', 'string'):
-                        userid = value
-                del events[:]
-            parser.close()
+        events = ijson.sendable_list()
+        parser = ijson.parse_coro(events)
+        iterator = response.iterContent(g_chunk, False)
+        while iterator.hasMoreElements():
+            parser.send(iterator.nextElement().value)
+            for prefix, event, value in events:
+                if (prefix, event) == ('id', 'string'):
+                    userid = value
+            del events[:]
+        parser.close()
         response.close()
         return userid
 
-    def initAddressbooks(self, source, database, user):
-        print("Provider.initAddressbooks() 1 %s" % (user.Name, ))
-        parameter = self._getRequestParameter(user.Request, 'getBooks')
-        iterator = self._parseAllBooks(user.Request.execute(parameter))
-        self.initUserBooks(source, database, user, iterator)
-
     def _parseAllBooks(self, response):
-        if response.Ok:
-            events = ijson.sendable_list()
-            parser = ijson.parse_coro(events)
-            url = name = tag = None
-            iterator = response.iterContent(g_chunk, False)
-            while iterator.hasMoreElements():
-                parser.send(iterator.nextElement().value)
-                for prefix, event, value in events:
-                    if (prefix, event) == ('value.item.id', 'string'):
-                        url = value
-                    elif (prefix, event) == ('value.item.displayName', 'string'):
-                        name = value
-                    elif (prefix, event) == ('value.item.parentFolderId', 'string'):
-                        tag = value
-                    if all((url, name, tag)):
-                        yield  url, name, tag, ''
-                        url = name = tag = None
-                del events[:]
-            parser.close()
+        events = ijson.sendable_list()
+        parser = ijson.parse_coro(events)
+        url = name = tag = None
+        iterator = response.iterContent(g_chunk, False)
+        while iterator.hasMoreElements():
+            parser.send(iterator.nextElement().value)
+            for prefix, event, value in events:
+                if (prefix, event) == ('value.item.id', 'string'):
+                    url = value
+                elif (prefix, event) == ('value.item.displayName', 'string'):
+                    name = value
+                elif (prefix, event) == ('value.item.parentFolderId', 'string'):
+                    tag = value
+                if all((url, name, tag)):
+                    yield  url, name, tag, ''
+                    url = name = tag = None
+            del events[:]
+        parser.close()
         response.close()
 
-    def initUserGroups(self, database, user, book):
-        try:
-            parameter = self._getRequestParameter(user.Request, 'getGroups')
-            remove, add = database.initGroups(book, self._parseGroups(user.Request, parameter))
-            print("Provider._initAddressbookGroups() Add: %s - Remove: %s" % (add, remove))
-            database.initGroupView(user, remove, add)
-        except Exception as e:
-            msg = "Error: %s" % traceback.format_exc()
-            print(msg)
 
+
+# Method called from Replicator.run()
     def firstPullCard(self, database, user, book, page, count):
-        return self._pullCard(database, user, book, page, count)
+        cls, mtd = 'Provider', 'firstPullCard()'
+        return self._pullCard(database, cls, mtd, user, book, page, count)
 
-    def syncGroups(self, database, user, addressbook, pages, count):
-        return pages, count
+    def pullCard(self, database, user, book, page, count):
+        cls, mtd = 'Provider', 'pullCard()'
+        return self._pullCard(database, cls, mtd, user, book, page, count)
 
-    def _pullCard(self, database, user, book, page, count):
+    def parseCard(self, database):
+        start = database.getLastUserSync()
+        stop = currentDateTimeInTZ()
+        iterator = self._parseCardValue(database, start, stop)
+        count = database.mergeCardValue(iterator)
+        print("Provider.parseCard() Count: %s" % count)
+        database.updateUserSync(stop)
+
+    # Private method
+    def _pullCard(self, database, cls, mtd, user, book, page, count):
+        args = None
         parameter = self._getRequestParameter(user.Request, 'getCards', book.Uri)
-        count += database.mergeCard(book.Id, self._parseCards(user.Request, parameter))
-        if parameter.SyncToken:
-            database.updateAddressbookToken(book.Id, parameter.SyncToken)
+        iterator = self._parseCards(user.Request, parameter, cls, mtd, args)
+        count += database.mergeCard(book.Id, iterator)
+        page += parameter.PageCount
+        if args is None:
+            if parameter.SyncToken:
+                database.updateAddressbookToken(book.Id, parameter.SyncToken)
         #self.initGroups(database, user, book)
-        return parameter.PageCount + page, count
+        return page, count, args
 
-    def _parseCards(self, request, parameter):
+    def _parseCards(self, request, parameter, cls, mtd, args):
         map = tmp = False
         while parameter.hasNextPage():
             response = request.execute(parameter)
             if not response.Ok:
+                code = response.StatusCode
+                msg = response.Text
                 response.close()
+                args = cls, mtd, 201, parameter.Name, code, user.Name, parameter.Url, msg
                 break
             events = ijson.sendable_list()
             parser = ijson.parse_coro(events)
@@ -207,43 +243,39 @@ class Provider(ProviderBase):
             parser.close()
             response.close()
 
-    def _pullGroup(self, database, user, addressbook, page, count):
+    def _pullGroup(self, database, cls, mtd, user, addressbook, page, count):
         parameter = self._getRequestParameter(user.Request, 'getGroups', addressbook)
-        count += database.mergeGroup(addressbook.Id, self._parseGroups(user.Request, parameter))
-        return parameter.PageCount + page, count
+        response = user.Request.execute(parameter)
+        if not response.Ok:
+            code = response.StatusCode
+            msg = response.Text
+            response.close()
+            args = cls, mtd, 201, parameter.Name, code, user.Name, parameter.Url, msg
+            return page, count, args
+        iterator = self._parseGroups(response)
+        count += database.mergeGroup(addressbook.Id, iterator)
+        page += parameter.PageCount
+        return page, count, None
 
-    def _parseGroups(self, request, parameter):
-        response = request.execute(parameter)
-        if response.Ok:
-            events = ijson.sendable_list()
-            parser = ijson.parse_coro(events)
-            iterator = response.iterContent(g_chunk, False)
-            while iterator.hasMoreElements():
-                parser.send(iterator.nextElement().value)
-                for prefix, event, value in events:
-                    if (prefix, event) == ('value.item', 'start_map'):
-                        uri = name = None
-                    elif (prefix, event) == ('value.item.id', 'string'):
-                        uri = value
-                    elif (prefix, event) == ('value.item.displayName', 'string'):
-                        name = value
-                    elif (prefix, event) == ('value.item', 'end_map'):
-                        if all((uri, name)):
-                            yield  uri, name
-                del events[:]
-            parser.close()
+    def _parseGroups(self, response):
+        events = ijson.sendable_list()
+        parser = ijson.parse_coro(events)
+        iterator = response.iterContent(g_chunk, False)
+        while iterator.hasMoreElements():
+            parser.send(iterator.nextElement().value)
+            for prefix, event, value in events:
+                if (prefix, event) == ('value.item', 'start_map'):
+                    uri = name = None
+                elif (prefix, event) == ('value.item.id', 'string'):
+                    uri = value
+                elif (prefix, event) == ('value.item.displayName', 'string'):
+                    name = value
+                elif (prefix, event) == ('value.item', 'end_map'):
+                    if all((uri, name)):
+                        yield  uri, name
+            del events[:]
+        parser.close()
         response.close()
-
-    def pullCard(self, database, user, book, page, count):
-        return self._pullCard(database, user, book, page, count)
-
-    def parseCard(self, database):
-        start = database.getLastUserSync()
-        stop = currentDateTimeInTZ()
-        iterator = self._parseCardValue(database, start, stop)
-        count = database.mergeCardValue(iterator)
-        print("Provider.parseCard() Count: %s" % count)
-        database.updateUserSync(stop)
 
     def _parseCardValue(self, database, start, stop):
         indexes = database.getColumnIndexes({'categories': -1})
@@ -254,22 +286,30 @@ class Provider(ProviderBase):
                 for column, value in json.loads(data).items():
                     yield book, card, indexes.get(column), value
 
+
+
     def _getRequestParameter(self, request, method, data=None):
         parameter = request.getRequestParameter(method)
         parameter.Url = self.BaseUrl
+
         if method == 'getUser':
             parameter.Url += '/me'
             parameter.setQuery('select', g_userfields)
+
         elif method == 'getBooks':
             parameter.Url += '/me/contactFolders'
+
         elif method == 'getCards':
             parameter.Url += '/me/contactFolders/%s/contacts' % data
             parameter.setQuery('select', self._fields)
+
         elif method == 'getGroups':
             parameter.Url += '/me/outlook/masterCategories'
             parameter.setQuery('select', g_groupfields)
+
         elif method == 'getModifiedCardByToken':
             parameter.Url += '/me/contactFolders/%s/contacts/delta' % data
             parameter.setQuery('select', self._fields)
+
         return parameter
 
