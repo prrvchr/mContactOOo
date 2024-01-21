@@ -172,26 +172,26 @@ class Provider(ProviderBase):
 
     # Private method
     def _pullCard(self, database, cls, mtd, user, book, page, count):
-        args = None
+        args = []
         parameter = self._getRequestParameter(user.Request, 'getCards', book.Uri)
-        iterator = self._parseCards(user.Request, parameter, cls, mtd, args)
+        iterator = self._parseCards(user, parameter, cls, mtd, args)
         count += database.mergeCard(book.Id, iterator)
         page += parameter.PageCount
-        if args is None:
+        if not args:
             if parameter.SyncToken:
                 database.updateAddressbookToken(book.Id, parameter.SyncToken)
         #self.initGroups(database, user, book)
         return page, count, args
 
-    def _parseCards(self, request, parameter, cls, mtd, args):
+    def _parseCards(self, user, parameter, cls, mtd, args):
         map = tmp = False
         while parameter.hasNextPage():
-            response = request.execute(parameter)
+            response = user.Request.execute(parameter)
             if not response.Ok:
                 code = response.StatusCode
                 msg = response.Text
                 response.close()
-                args = cls, mtd, 201, parameter.Name, code, user.Name, parameter.Url, msg
+                args += [cls, mtd, 201, parameter.Name, code, user.Name, parameter.Url, msg]
                 break
             events = ijson.sendable_list()
             parser = ijson.parse_coro(events)
@@ -250,12 +250,12 @@ class Provider(ProviderBase):
             code = response.StatusCode
             msg = response.Text
             response.close()
-            args = cls, mtd, 201, parameter.Name, code, user.Name, parameter.Url, msg
+            args = [cls, mtd, 201, parameter.Name, code, user.Name, parameter.Url, msg]
             return page, count, args
         iterator = self._parseGroups(response)
         count += database.mergeGroup(addressbook.Id, iterator)
         page += parameter.PageCount
-        return page, count, None
+        return page, count, []
 
     def _parseGroups(self, response):
         events = ijson.sendable_list()

@@ -102,10 +102,9 @@ class Driver(unohelper.Base,
             if len(protocols) != 4 or not all(protocols):
                 raise getLogException(self._logger, self, 1000, 1112, cls, mtd, url)
             username = protocols[3]
-            password = ''
             if not validators.email(username):
-                raise getLogException(self._logger, self, 1001, 1113, cls, mtd)
-            connection = self.DataSource.getConnection(self, g_scheme, g_host, username, password)
+                raise getLogException(self._logger, self, 1001, 1114, cls, mtd, username)
+            connection = self.DataSource.getConnection(self, g_scheme, g_host, username)
             version = self.DataSource.DataBase.Version
             name = connection.getMetaData().getUserName()
             self._logger.logprb(INFO, cls, mtd, 1115, version, name)
