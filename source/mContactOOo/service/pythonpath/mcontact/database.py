@@ -40,7 +40,7 @@ class DataBase(DataBaseSuper):
             paths =  dict(list(self._getPaths(tag, dot)))
             lists =  dict(list(self._getLists(tag, dot)))
             maps = dict(list(self._getMaps(tag, dot)))
-            types = dict(list(self._getTypes(tag, dot)))
+            types = dict(list(self._getTypes(tag, dot, False)))
             tmps = list(self._getTmps(tag, dot))
             fields = next(self._getFields(default, sep))
         except Exception as e:
@@ -90,9 +90,10 @@ class DataBase(DataBaseSuper):
         result.close()
         call.close()
 
-    def _getTypes(self, tag, dot):
+    def _getTypes(self, tag, dot, compose):
         sep = dot + tag + dot
         call = self._getCall('getTypes')
+        call.setBoolean(1, compose)
         result = call.executeQuery()
         while result.next():
             key = result.getString(1)

@@ -29,7 +29,7 @@
 
 **The use of this software subjects you to our [Terms Of Use][4] and [Data Protection Policy][5].**
 
-# version [1.1.0][6]
+# version [1.1.1][6]
 
 ## Introduction:
 
@@ -202,7 +202,12 @@ It will give you access to an information system that only larges companies are 
   `pip install requirements.txt`
 - Modification of the [Requirement][42] section.
 
-### What remains to be done for version 1.1.0:
+### What has been done for version 1.1.1:
+
+- Using Python package `dateutil` to convert timestamp strings to UNO DateTime.
+- Many other fixes...
+
+### What remains to be done for version 1.1.1:
 
 - Add new languages for internationalization...
 
@@ -232,7 +237,7 @@ It will give you access to an information system that only larges companies are 
 [24]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
 [25]: <img/mContactOOo.svg#middle>
 [26]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
-[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.1.0#right>
+[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.1.1#right>
 [28]: <img/mContactOOo-1.png>
 [29]: <img/mContactOOo-2.png>
 [30]: <img/mContactOOo-3.png>

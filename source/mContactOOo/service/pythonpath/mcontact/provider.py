@@ -181,8 +181,11 @@ class Provider(ProviderBase):
             url = tag = data = None
             iterator = response.iterContent(g_chunk, False)
             while iterator.hasMoreElements():
-                parser.send(iterator.nextElement().value)
+                chunk = iterator.nextElement().value
+                print("Provider._parseCards() chunk: \n%s" % chunk.decode('utf-8'))
+                parser.send(chunk)
                 for prefix, event, value in events:
+                    print("Provider._parseCards() prefix, event, value: %s\t%s\t%s" % (prefix, event, value))
                     if (prefix, event) == ('@odata.nextLink', 'string'):
                         parameter.setNextPage('', value, REDIRECT)
                     elif (prefix, event) == ('@odata.deltaLink', 'string'):
@@ -221,6 +224,7 @@ class Provider(ProviderBase):
                         data[map] = tmp
                         map = tmp = False
                     elif (prefix, event) == ('value.item', 'end_map'):
+                        print("Provider._parseCards() data: \n%s" % json.dumps(data))
                         yield cid, etag, deleted, json.dumps(data)
                 del events[:]
             parser.close()
