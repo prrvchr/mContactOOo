@@ -86,7 +86,6 @@ class Provider(ProviderBase):
             self.raiseForStatus(response, source, 'initUserGroups()', 1006, parameter.Name, user.Name, parameter.Url)
         iterator = self._parseGroups(response)
         remove, add = database.initGroups(book, iterator)
-        print("Provider._initAddressbookGroups() Add: %s - Remove: %s" % (add, remove))
         database.initGroupView(user, remove, add)
 
     # Method called from User.__init__()
@@ -153,7 +152,6 @@ class Provider(ProviderBase):
         stop = currentDateTimeInTZ()
         iterator = self._parseCardValue(database, start, stop)
         count = database.mergeCardValue(iterator)
-        print("Provider.parseCard() Count: %s" % count)
         database.updateUserSync(stop)
 
     # Private method
@@ -181,11 +179,8 @@ class Provider(ProviderBase):
             url = tag = data = None
             iterator = response.iterContent(g_chunk, False)
             while iterator.hasMoreElements():
-                chunk = iterator.nextElement().value
-                print("Provider._parseCards() chunk: \n%s" % chunk.decode('utf-8'))
-                parser.send(chunk)
+                parser.send(iterator.nextElement().value)
                 for prefix, event, value in events:
-                    print("Provider._parseCards() prefix, event, value: %s\t%s\t%s" % (prefix, event, value))
                     if (prefix, event) == ('@odata.nextLink', 'string'):
                         parameter.setNextPage('', value, REDIRECT)
                     elif (prefix, event) == ('@odata.deltaLink', 'string'):
@@ -224,7 +219,6 @@ class Provider(ProviderBase):
                         data[map] = tmp
                         map = tmp = False
                     elif (prefix, event) == ('value.item', 'end_map'):
-                        print("Provider._parseCards() data: \n%s" % json.dumps(data))
                         yield cid, etag, deleted, json.dumps(data)
                 del events[:]
             parser.close()
