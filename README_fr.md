@@ -37,7 +37,7 @@
 
 Cette extension vous donne l'accès, dans LibreOffice, à vos contacts Microsoft Outlook.  
 Elle utilise [l'API Microsoft Graph][10] pour synchroniser vos contacts Microsoft Outlook distant dans une base de données locale HsqlDB 2.7.2.  
-Cette extension est vu par LibreOffice comme un [pilote de base de données][11].
+Cette extension est vu par LibreOffice comme un [pilote de base de données][11] répondant à l'URL: `sdbc:address:microsoft:*`.
 
 Etant un logiciel libre je vous encourage:
 - A dupliquer son [code source][12].
@@ -169,7 +169,7 @@ ___
 * **Ne fonctionne pas avec OpenOffice sous Windows** voir [dysfonctionnement 128569][37]. N'ayant aucune solution, je vous encourrage d'installer **LibreOffice**.
 
 Je vous encourage en cas de problème :confused:  
-de créer un [dysfonctionnement][11]  
+de créer un [dysfonctionnement][13]  
 J'essaierai de le résoudre :smile:
 
 ___
