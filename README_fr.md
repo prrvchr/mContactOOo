@@ -255,6 +255,6 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [37]: <https://bz.apache.org/ooo/show_bug.cgi?id=128569>
 [38]: <https://prrvchr.github.io/eMailerOOo/README_fr>
 [39]: <https://fr.wikipedia.org/wiki/Publipostage>
-[40]: <https://github.com/prrvchr/mContactOOo/tree/main/source/mContactOOo/requirements.txt>
+[40]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/requirements.txt>
 [41]: <https://peps.python.org/pep-0508/>
 [42]: <https://prrvchr.github.io/mContactOOo/README_fr#pr%C3%A9requis>

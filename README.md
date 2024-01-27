@@ -255,6 +255,6 @@ It will give you access to an information system that only larges companies are 
 [37]: <https://bz.apache.org/ooo/show_bug.cgi?id=128569>
 [38]: <https://prrvchr.github.io/eMailerOOo>
 [39]: <https://en.wikipedia.org/wiki/Mail_merge>
-[40]: <https://github.com/prrvchr/mContactOOo/tree/main/source/mContactOOo/requirements.txt>
+[40]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/requirements.txt>
 [41]: <https://peps.python.org/pep-0508/>
 [42]: <https://prrvchr.github.io/mContactOOo/#requirement>
