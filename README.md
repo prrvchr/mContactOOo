@@ -29,7 +29,7 @@
 
 **The use of this software subjects you to our [Terms Of Use][4] and [Data Protection Policy][5].**
 
-# version [1.1.1][6]
+# version [1.1.2][6]
 
 ## Introduction:
 
@@ -210,7 +210,11 @@ It will give you access to an information system that only larges companies are 
 - Using Python package `dateutil` to convert timestamp strings to UNO DateTime.
 - Many other fixes...
 
-### What remains to be done for version 1.1.1:
+### What has been done for version 1.1.2:
+
+- Integration of a fix to workaround the [issue #159988][43].
+
+### What remains to be done for version 1.1.2:
 
 - Add new languages for internationalization...
 
@@ -221,7 +225,7 @@ It will give you access to an information system that only larges companies are 
 [3]: <https://prrvchr.github.io/mContactOOo/README_fr>
 [4]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/TermsOfUse_en>
 [5]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/PrivacyPolicy_en>
-[6]: <https://prrvchr.github.io/mContactOOo#historical>
+[6]: <https://prrvchr.github.io/mContactOOo#what-has-been-done-for-version-110>
 [7]: <https://prrvchr.github.io/>
 [8]: <https://www.libreoffice.org/download/download/>
 [9]: <https://www.openoffice.org/download/index.html>
@@ -242,7 +246,7 @@ It will give you access to an information system that only larges companies are 
 [24]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
 [25]: <img/mContactOOo.svg#middle>
 [26]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
-[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.1.1#right>
+[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.1.2#right>
 [28]: <img/mContactOOo-1.png>
 [29]: <img/mContactOOo-2.png>
 [30]: <img/mContactOOo-3.png>
@@ -258,3 +262,4 @@ It will give you access to an information system that only larges companies are 
 [40]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/requirements.txt>
 [41]: <https://peps.python.org/pep-0508/>
 [42]: <https://prrvchr.github.io/mContactOOo/#requirement>
+[43]: <https://bugs.documentfoundation.org/show_bug.cgi?id=159988>
