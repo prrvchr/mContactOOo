@@ -269,4 +269,4 @@ It will give you access to an information system that only larges companies are 
 [41]: <https://peps.python.org/pep-0508/>
 [42]: <https://prrvchr.github.io/mContactOOo/#requirement>
 [43]: <https://bugs.documentfoundation.org/show_bug.cgi?id=159988>
-[44]: <https://github.com/prrvchr/mContactOOo/tree/master/uno/lib/uno/ucb/hsqldb>
+[44]: <https://github.com/prrvchr/mContactOOo/tree/main/source/mContactOOo/hsqldb>
