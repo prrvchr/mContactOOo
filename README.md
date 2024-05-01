@@ -29,7 +29,7 @@
 
 **The use of this software subjects you to our [Terms Of Use][4] and [Data Protection Policy][5].**
 
-# version [1.1.2][6]
+# version [1.1.3][6]
 
 ## Introduction:
 
@@ -214,7 +214,13 @@ It will give you access to an information system that only larges companies are 
 
 - Integration of a fix to workaround the [issue #159988][43].
 
-### What remains to be done for version 1.1.2:
+### What has been done for version 1.1.3:
+
+- The creation of the database, during the first connection, uses the UNO API offered by the jdbcDriverOOo extension since version 1.3.2. This makes it possible to record all the information necessary for creating the database in 9 text tables which are in fact [9 csv files][44].
+- The extension will ask you to install the OAuth2OOo and jdbcDriverOOo extensions in versions 1.3.4 and 1.3.2 respectively minimum.
+- Many fixes.
+
+### What remains to be done for version 1.1.3:
 
 - Add new languages for internationalization...
 
@@ -246,7 +252,7 @@ It will give you access to an information system that only larges companies are 
 [24]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
 [25]: <img/mContactOOo.svg#middle>
 [26]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
-[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.1.2#right>
+[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.1.3#right>
 [28]: <img/mContactOOo-1.png>
 [29]: <img/mContactOOo-2.png>
 [30]: <img/mContactOOo-3.png>
@@ -263,3 +269,4 @@ It will give you access to an information system that only larges companies are 
 [41]: <https://peps.python.org/pep-0508/>
 [42]: <https://prrvchr.github.io/mContactOOo/#requirement>
 [43]: <https://bugs.documentfoundation.org/show_bug.cgi?id=159988>
+[44]: <https://github.com/prrvchr/mContactOOo/tree/master/uno/lib/uno/ucb/hsqldb>
