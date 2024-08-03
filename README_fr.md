@@ -29,7 +29,7 @@
 
 **L'utilisation de ce logiciel vous soumet à nos [Conditions d'utilisation][4] et à notre [Politique de protection des données][5].**
 
-# version [1.1.3][6]
+# version [1.1.4][6]
 
 ## Introduction:
 
@@ -220,7 +220,17 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 - L'extension vous demandera d'installer les extensions OAuth2OOo et jdbcDriverOOo en version respectivement 1.3.4 et 1.3.2 minimum.
 - De nombreuses corrections.
 
-### Que reste-t-il à faire pour la version 1.1.3:
+### Ce qui a été fait pour la version 1.1.4:
+
+- Mise à jour du paquet [Python python-dateutil][45] vers la version 2.9.0.post0.
+- Mise à jour du paquet [Python decorator][46] vers la version 5.1.1.
+- Mise à jour du paquet [Python ijson][47] vers la version 3.3.0.
+- Mise à jour du paquet [Python packaging][48] vers la version 24.1.
+- Mise à jour du paquet [Python setuptools][49] vers la version 72.1.0 afin de répondre à l'[alerte de sécurité Dependabot][50].
+- Mise à jour du paquet [Python validators][51] vers la version 0.33.0.
+- L'extension vous demandera d'installer les extensions OAuth2OOo et jdbcDriverOOo en version respectivement 1.3.6 et 1.4.2 minimum.
+
+### Que reste-t-il à faire pour la version 1.1.4:
 
 - Ajouter de nouvelles langues pour l’internationalisation...
 
@@ -231,7 +241,7 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [3]: <https://prrvchr.github.io/mContactOOo>
 [4]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/TermsOfUse_fr>
 [5]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/PrivacyPolicy_fr>
-[6]: <https://prrvchr.github.io/mContactOOo/README_fr#ce-qui-a-%C3%A9t%C3%A9-fait-pour-la-version-110>
+[6]: <https://prrvchr.github.io/mContactOOo/README_fr#ce-qui-a-%C3%A9t%C3%A9-fait-pour-la-version-114>
 [7]: <https://prrvchr.github.io/README_fr>
 [8]: <https://fr.libreoffice.org/download/telecharger-libreoffice/>
 [9]: <https://www.openoffice.org/fr/Telecharger/>
@@ -252,7 +262,7 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [24]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
 [25]: <img/mContactOOo.svg#middle>
 [26]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
-[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.1.3#right>
+[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.1.4#right>
 [28]: <img/mContactOOo-1_fr.png>
 [29]: <img/mContactOOo-2_fr.png>
 [30]: <img/mContactOOo-3_fr.png>
@@ -270,3 +280,10 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [42]: <https://prrvchr.github.io/mContactOOo/README_fr#pr%C3%A9requis>
 [43]: <https://bugs.documentfoundation.org/show_bug.cgi?id=159988>
 [44]: <https://github.com/prrvchr/mContactOOo/tree/main/source/mContactOOo/hsqldb>
+[45]: <https://pypi.org/project/python-dateutil/>
+[46]: <https://pypi.org/project/decorator/>
+[47]: <https://pypi.org/project/ijson/>
+[48]: <https://pypi.org/project/packaging/>
+[49]: <https://pypi.org/project/setuptools/>
+[50]: <https://github.com/prrvchr/mContactOOo/security/dependabot/1>
+[51]: <https://pypi.org/project/validators/>
