@@ -7,6 +7,7 @@ plugins:
 favicon: true
 logo: /img/contact.svg
 email: prrvchr@gmail.com
+google_analytics: G-3TZ7P4HSN1
 title: mContactOOo
 blank_title: true
 description: Your Microsoft Outlook contacts as an HsqlDB database in LibreOffice

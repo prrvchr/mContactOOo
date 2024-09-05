@@ -29,7 +29,7 @@
 
 **L'utilisation de ce logiciel vous soumet à nos [Conditions d'utilisation][4] et à notre [Politique de protection des données][5].**
 
-# version [1.1.4][6]
+# version [1.1.5][6]
 
 ## Introduction:
 
@@ -166,6 +166,8 @@ ___
 
 * LibreOffice 7.4.3.2(x64) - Windows 10(x64) - Python version 3.8.15  - Adoptium JDK Hotspot 11.0.17 (x64) (under Lubuntu 22.04 / VirtualBox 6.1.38)
 
+* LibreOffice 24.8.0.3 (X86_64) - Windows 10(x64) - Python version 3.9.19 (sous Lubuntu 22.04 / VirtualBox 6.1.38)
+
 * **Ne fonctionne pas avec OpenOffice sous Windows** voir [dysfonctionnement 128569][37]. N'ayant aucune solution, je vous encourrage d'installer **LibreOffice**.
 
 Je vous encourage en cas de problème :confused:  
@@ -230,7 +232,14 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 - Mise à jour du paquet [Python validators][51] vers la version 0.33.0.
 - L'extension vous demandera d'installer les extensions OAuth2OOo et jdbcDriverOOo en version respectivement 1.3.6 et 1.4.2 minimum.
 
-### Que reste-t-il à faire pour la version 1.1.4:
+### Ce qui a été fait pour la version 1.1.5:
+
+- Mise à jour du paquet [Python setuptools][49] vers la version 73.0.1.
+- L'extension vous demandera d'installer les extensions OAuth2OOo et jdbcDriverOOo en version respectivement 1.3.7 et 1.4.4 minimum.
+- Les modifications apportées aux options de l'extension, qui nécessitent un redémarrage de LibreOffice, entraîneront l'affichage d'un message.
+- Support de LibreOffice version 24.8.x.
+
+### Que reste-t-il à faire pour la version 1.1.5:
 
 - Ajouter de nouvelles langues pour l’internationalisation...
 
@@ -241,7 +250,7 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [3]: <https://prrvchr.github.io/mContactOOo>
 [4]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/TermsOfUse_fr>
 [5]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/PrivacyPolicy_fr>
-[6]: <https://prrvchr.github.io/mContactOOo/README_fr#ce-qui-a-%C3%A9t%C3%A9-fait-pour-la-version-114>
+[6]: <https://prrvchr.github.io/mContactOOo/README_fr#ce-qui-a-%C3%A9t%C3%A9-fait-pour-la-version-115>
 [7]: <https://prrvchr.github.io/README_fr>
 [8]: <https://fr.libreoffice.org/download/telecharger-libreoffice/>
 [9]: <https://www.openoffice.org/fr/Telecharger/>
@@ -262,7 +271,7 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [24]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
 [25]: <img/mContactOOo.svg#middle>
 [26]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
-[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.1.4#right>
+[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.1.5#right>
 [28]: <img/mContactOOo-1_fr.png>
 [29]: <img/mContactOOo-2_fr.png>
 [30]: <img/mContactOOo-3_fr.png>
