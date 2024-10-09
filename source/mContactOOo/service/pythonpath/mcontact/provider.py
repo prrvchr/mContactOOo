@@ -75,7 +75,8 @@ class Provider(ProviderBase):
         parameter = self._getRequestParameter(user.Request, 'getBooks')
         response = user.Request.execute(parameter)
         if not response.Ok:
-            self.raiseForStatus(response, source, 'initAddressbooks()', 1006, parameter.Name, user.Name, parameter.Url)
+            cls, mtd = 'Provider', 'initAddressbooks()'
+            self.raiseForStatus(source, cls, mtd, response, user.Name)
         iterator = self._parseAllBooks(response)
         self.initUserBooks(source, database, user, iterator)
 
@@ -83,7 +84,8 @@ class Provider(ProviderBase):
         parameter = self._getRequestParameter(user.Request, 'getGroups')
         response = user.Request.execute(parameter)
         if not response.Ok:
-            self.raiseForStatus(response, source, 'initUserGroups()', 1006, parameter.Name, user.Name, parameter.Url)
+            cls, mtd = 'Provider', 'initUserGroups()'
+            self.raiseForStatus(source, cls, mtd, response, user.Name)
         iterator = self._parseGroups(response)
         remove, add = database.initGroups(book, iterator)
         database.initGroupView(user, remove, add)
@@ -98,7 +100,8 @@ class Provider(ProviderBase):
         parameter = self._getRequestParameter(request, 'getUser')
         response = request.execute(parameter)
         if not response.Ok:
-            self.raiseForStatus(response, source, '_getNewUserId()', 1006, parameter.Name, name, parameter.Url)
+            cls, mtd = 'Provider', '_getNewUserId()'
+            self.raiseForStatus(source, cls, mtd, response, name)
         userid = self._parseUser(response)
         return userid
 
