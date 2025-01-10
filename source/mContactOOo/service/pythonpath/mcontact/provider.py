@@ -68,7 +68,7 @@ class Provider(ProviderBase):
         return g_url
 
 # Method called from DataSource.getConnection()
-    def getUserUri(self, server, name):
+    def getUserUri(self, name):
         return name
 
     def initAddressbooks(self, source, database, user):
@@ -91,12 +91,12 @@ class Provider(ProviderBase):
         database.initGroupView(user, remove, add)
 
     # Method called from User.__init__()
-    def insertUser(self, source, database, request, scheme, server, name, pwd):
-        userid = self._getNewUserId(source, request, scheme, server, name, pwd)
-        return database.insertUser(userid, scheme, server, '', name)
+    def insertUser(self, source, database, request, name, pwd):
+        userid = self._getNewUserId(source, request, name, pwd)
+        return database.insertUser(userid, '', name)
  
     # Private method
-    def _getNewUserId(self, source, request, scheme, server, name, pwd):
+    def _getNewUserId(self, source, request, name, pwd):
         parameter = self._getRequestParameter(request, 'getUser')
         response = request.execute(parameter)
         if not response.Ok:
