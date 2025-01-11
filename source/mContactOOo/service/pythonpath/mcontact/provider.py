@@ -27,45 +27,19 @@
 ╚════════════════════════════════════════════════════════════════════════════════════╝
 """
 
-import uno
-
 from com.sun.star.rest.ParameterType import REDIRECT
 
-from .card import Provider as ProviderBase
-
 from .dbtool import currentDateTimeInTZ
-from .dbtool import currentUnoDateTime
 
-from .configuration import g_host
-from .configuration import g_url
-from .configuration import g_page
-from .configuration import g_member
 from .configuration import g_chunk
 from .configuration import g_userfields
 from .configuration import g_groupfields
 
 import json
 import ijson
-import traceback
 
 
-class Provider(ProviderBase):
-    def __init__(self, ctx, database):
-        ProviderBase.__init__(self, ctx)
-        paths, lists, maps, types, tmps, fields = database.getMetaData('item')
-        self._paths = paths
-        self._lists = lists
-        self._maps = maps
-        self._types = types
-        self._tmps = tmps
-        self._fields = fields
-
-    @property
-    def Host(self):
-        return g_host
-    @property
-    def BaseUrl(self):
-        return g_url
+class Provider():
 
 # Method called from DataSource.getConnection()
     def getUserUri(self, name):
@@ -154,7 +128,7 @@ class Provider(ProviderBase):
         start = database.getLastUserSync()
         stop = currentDateTimeInTZ()
         iterator = self._parseCardValue(database, start, stop)
-        count = database.mergeCardValue(iterator)
+        database.mergeCardValue(iterator)
         database.updateUserSync(stop)
 
     # Private method

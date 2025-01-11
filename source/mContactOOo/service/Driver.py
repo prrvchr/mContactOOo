@@ -27,7 +27,6 @@
 ╚════════════════════════════════════════════════════════════════════════════════════╝
 """
 
-import uno
 import unohelper
 
 from com.sun.star.lang import XServiceInfo
@@ -42,17 +41,19 @@ from com.sun.star.sdbcx import XCreateCatalog
 from com.sun.star.sdbcx import XDataDefinitionSupplier
 from com.sun.star.sdbcx import XDropCatalog
 
-from mcontact import getDataSource
+from mcontact import DataSource
+
 from mcontact import getDriverPropertyInfos
-from mcontact import getLogger
 from mcontact import getLogException
+from mcontact import getLogger
+
+from mcontact import g_defaultlog
+from mcontact import g_protocol
+from mcontact import g_version
 
 from mcontact import g_identifier
-from mcontact import g_protocol
-from mcontact import g_defaultlog
 
 import validators
-import traceback
 
 
 # pythonloader looks for a static g_ImplementationHelper variable
@@ -67,10 +68,12 @@ class Driver(unohelper.Base,
              XDropCatalog,
              XServiceInfo):
     def __init__(self, ctx):
+        self._cls = 'Driver'
+        mtd = '__init__'
         self._ctx = ctx
         self._supportedProtocol = g_protocol
         self._logger = getLogger(ctx, g_defaultlog)
-        self._logger.logprb(INFO, 'Driver', '__init__()', 1101)
+        self._logger.logprb(INFO, self._cls, mtd, 1101)
 
     __datasource = None
 
@@ -93,24 +96,24 @@ class Driver(unohelper.Base,
 
 # XDriver
     def connect(self, url, infos):
-        cls, mtd = 'Driver', 'connect()'
+        mtd = 'connect'
         try:
-            self._logger.logprb(INFO, cls, mtd, 1111, url)
+            self._logger.logprb(INFO, self._cls, mtd, 1111, url)
             protocols = url.strip().split(':')
             if len(protocols) != 4 or not all(protocols):
-                raise getLogException(self._logger, self, 1000, 1112, cls, mtd, url)
+                raise getLogException(self._logger, self, 1000, 1112, self._cls, mtd, url)
             username = protocols[3]
             if not validators.email(username):
-                raise getLogException(self._logger, self, 1001, 1114, cls, mtd, username)
+                raise getLogException(self._logger, self, 1001, 1114, self._cls, mtd, username)
             connection = self.DataSource.getConnection(self, username)
             version = self.DataSource.DataBase.Version
             name = connection.getMetaData().getUserName()
-            self._logger.logprb(INFO, cls, mtd, 1115, version, name)
+            self._logger.logprb(INFO, self._cls, mtd, 1115, version, name)
             return connection
         except SQLException as e:
             raise e
         except Exception as e:
-            self._logger.logprb(SEVERE, cls, mtd, 1116, e, traceback.format_exc())
+            self._logger.logprb(SEVERE, self._cls, mtd, 1116, e, traceback.format_exc())
 
     def acceptsURL(self, url):
         accept = url.startswith(self._supportedProtocol)
@@ -124,6 +127,7 @@ class Driver(unohelper.Base,
 
     def getMajorVersion(self):
         return 1
+
     def getMinorVersion(self):
         return 0
 
@@ -134,15 +138,23 @@ class Driver(unohelper.Base,
 # XServiceInfo
     def supportsService(self, service):
         return g_ImplementationHelper.supportsService(g_ImplementationName, service)
+
     def getImplementationName(self):
         return g_ImplementationName
+
     def getSupportedServiceNames(self):
         return g_ImplementationHelper.getSupportedServiceNames(g_ImplementationName)
 
 # Private getter methods
     def _getDataSource(self):
-        cls, mtd = 'Driver', '_getDataSource()'
-        return getDataSource(self._ctx, self._logger, self, cls, mtd)
+        mtd = '_getDataSource'
+        try:
+            datasource = DataSource(self._ctx, self._logger, self, 1003, 1121, self._cls, mtd)
+        except SQLException as e:
+            raise getLogException(logger, source, 1005, 1123, cls, mtd, url, e.Message)
+        if not datasource.isUptoDate():
+            raise getLogException(self._logger, self, 1005, 1124, self._cls, mtd, datasource.getDataBaseVersion(), g_version)
+        return datasource
 
 
 g_ImplementationHelper.addImplementation(Driver,

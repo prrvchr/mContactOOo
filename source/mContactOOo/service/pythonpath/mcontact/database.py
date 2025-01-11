@@ -27,13 +27,11 @@
 ╚════════════════════════════════════════════════════════════════════════════════════╝
 """
 
-from .card import DataBase as DataBaseSuper
-
 import json
 import traceback
 
 
-class DataBase(DataBaseSuper):
+class DataBase():
 
     def getMetaData(self, tag, default=None, dot='.', sep=','):
         try:
@@ -43,7 +41,7 @@ class DataBase(DataBaseSuper):
             types = dict(list(self._getTypes(tag, dot, False)))
             tmps = list(self._getTmps(tag, dot))
             fields = next(self._getFields(default, sep))
-        except Exception as e:
+        except Exception:
             msg = "Error: %s" % traceback.print_exc()
             print(msg)
         return paths, lists, maps, types, tmps, fields
@@ -102,8 +100,8 @@ class DataBase(DataBaseSuper):
                 key += sep + path
             key += sep + result.getString(3)
             maps = {}
-            for map in result.getArray(4).getArray(None):
-                maps.update(json.loads(map))
+            for m in result.getArray(4).getArray(None):
+                maps.update(json.loads(m))
             print("DataBase._getTypes() key: '%s' - Dict: %s" % (key, maps))
             yield key, maps
         result.close()
