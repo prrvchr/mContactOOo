@@ -43,6 +43,7 @@ from com.sun.star.sdbcx import XDropCatalog
 
 from mcontact import DataSource
 
+from mcontact import getDataSourceUrl
 from mcontact import getDriverPropertyInfos
 from mcontact import getLogException
 from mcontact import getLogger
@@ -97,23 +98,18 @@ class Driver(unohelper.Base,
 # XDriver
     def connect(self, url, infos):
         mtd = 'connect'
-        try:
-            self._logger.logprb(INFO, self._cls, mtd, 1111, url)
-            protocols = url.strip().split(':')
-            if len(protocols) != 4 or not all(protocols):
-                raise getLogException(self._logger, self, 1000, 1112, self._cls, mtd, url)
-            username = protocols[3]
-            if not validators.email(username):
-                raise getLogException(self._logger, self, 1001, 1114, self._cls, mtd, username)
-            connection = self.DataSource.getConnection(self, username)
-            version = self.DataSource.DataBase.Version
-            name = connection.getMetaData().getUserName()
-            self._logger.logprb(INFO, self._cls, mtd, 1115, version, name)
-            return connection
-        except SQLException as e:
-            raise e
-        except Exception as e:
-            self._logger.logprb(SEVERE, self._cls, mtd, 1116, e, traceback.format_exc())
+        self._logger.logprb(INFO, self._cls, mtd, 1111, url)
+        protocols = url.strip().split(':')
+        if len(protocols) != 4 or not all(protocols):
+            raise getLogException(self._logger, self, 1000, 1112, self._cls, mtd, url)
+        username = protocols[3]
+        if not validators.email(username):
+            raise getLogException(self._logger, self, 1001, 1114, self._cls, mtd, username)
+        connection = self.DataSource.getConnection(self, username)
+        version = self.DataSource.DataBase.Version
+        name = connection.getMetaData().getUserName()
+        self._logger.logprb(INFO, self._cls, mtd, 1115, version, name)
+        return connection
 
     def acceptsURL(self, url):
         accept = url.startswith(self._supportedProtocol)
@@ -148,10 +144,13 @@ class Driver(unohelper.Base,
 # Private getter methods
     def _getDataSource(self):
         mtd = '_getDataSource'
+        url = getDataSourceUrl(self._ctx, self._logger, self, 1003, 1121, self._cls, mtd)
         try:
-            datasource = DataSource(self._ctx, self._logger, self, 1003, 1121, self._cls, mtd)
+            datasource = DataSource(self._ctx, self._logger, url)
         except SQLException as e:
-            raise getLogException(logger, source, 1005, 1123, cls, mtd, url, e.Message)
+            raise getLogException(self._logger, self, 1005, 1123, self._cls, mtd, url, e.Message)
+        except Exception as e:
+            raise getLogException(self._logger, self, 1005, 1123, self._cls, mtd, url, str(e))
         if not datasource.isUptoDate():
             raise getLogException(self._logger, self, 1005, 1124, self._cls, mtd, datasource.getDataBaseVersion(), g_version)
         return datasource
