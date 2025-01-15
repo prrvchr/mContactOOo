@@ -42,40 +42,37 @@ import ijson
 class Provider():
 
 # Method called from DataSource.getConnection()
-    def getUserUri(self, name):
+    def getUserUri(self, server, name):
         return name
 
     def initAddressbooks(self, source, database, user):
         parameter = self._getRequestParameter(user.Request, 'getBooks')
         response = user.Request.execute(parameter)
         if not response.Ok:
-            cls, mtd = 'Provider', 'initAddressbooks()'
-            self.raiseForStatus(source, cls, mtd, response, user.Name)
+            self.raiseForStatus(source, 'initAddressbooks', response, user.Name)
         iterator = self._parseAllBooks(response)
         self.initUserBooks(source, database, user, iterator)
 
-    def initUserGroups(self, database, user, book):
+    def initUserGroups(self, source, database, user, book):
         parameter = self._getRequestParameter(user.Request, 'getGroups')
         response = user.Request.execute(parameter)
         if not response.Ok:
-            cls, mtd = 'Provider', 'initUserGroups()'
-            self.raiseForStatus(source, cls, mtd, response, user.Name)
+            self.raiseForStatus(source, 'initUserGroups', response, user.Name)
         iterator = self._parseGroups(response)
         remove, add = database.initGroups(book, iterator)
         database.initGroupView(user, remove, add)
 
     # Method called from User.__init__()
-    def insertUser(self, source, database, request, name, pwd):
-        userid = self._getNewUserId(source, request, name, pwd)
-        return database.insertUser(userid, '', name)
+    def insertUser(self, source, database, request, scheme, server, name, pwd):
+        userid = self._getNewUserId(source, request, scheme, server, name, pwd)
+        return database.insertUser(userid, scheme, server, '', name)
  
     # Private method
-    def _getNewUserId(self, source, request, name, pwd):
+    def _getNewUserId(self, source, request, scheme, server, name, pwd):
         parameter = self._getRequestParameter(request, 'getUser')
         response = request.execute(parameter)
         if not response.Ok:
-            cls, mtd = 'Provider', '_getNewUserId()'
-            self.raiseForStatus(source, cls, mtd, response, name)
+            self.raiseForStatus(source, '_getNewUserId', response, name)
         userid = self._parseUser(response)
         return userid
 
@@ -115,8 +112,6 @@ class Provider():
         parser.close()
         response.close()
 
-
-
 # Method called from Replicator.run()
     def firstPullCard(self, database, user, book, page, count):
         return self._pullCard(database, 'firstPullCard()', user, book, page, count)
@@ -153,7 +148,6 @@ class Provider():
                 break
             events = ijson.sendable_list()
             parser = ijson.parse_coro(events)
-            url = tag = data = None
             iterator = response.iterContent(g_chunk, False)
             while iterator.hasMoreElements():
                 parser.send(iterator.nextElement().value)
@@ -163,7 +157,7 @@ class Provider():
                     elif (prefix, event) == ('@odata.deltaLink', 'string'):
                         parameter.SyncToken = value
                     elif (prefix, event) == ('value.item', 'start_map'):
-                        cid = etag = tmp = label = None
+                        cid = etag = tmp = None
                         data = {}
                         deleted = False
                     elif (prefix, event) == ('value.item.deleted', 'boolean'):
@@ -240,8 +234,6 @@ class Provider():
             else:
                 for column, value in json.loads(data).items():
                     yield book, card, indexes.get(column), value
-
-
 
     def _getRequestParameter(self, request, method, data=None):
         parameter = request.getRequestParameter(method)

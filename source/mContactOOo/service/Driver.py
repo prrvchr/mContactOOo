@@ -53,6 +53,9 @@ from mcontact import g_protocol
 from mcontact import g_version
 
 from mcontact import g_identifier
+from mcontact import g_scheme
+from mcontact import g_scope
+from mcontact import g_host
 
 import validators
 
@@ -105,7 +108,7 @@ class Driver(unohelper.Base,
         username = protocols[3]
         if not validators.email(username):
             raise getLogException(self._logger, self, 1001, 1114, self._cls, mtd, username)
-        connection = self.DataSource.getConnection(self, username)
+        connection = self.DataSource.getConnection(self, g_scope, g_scheme, g_host, username)
         version = self.DataSource.DataBase.Version
         name = connection.getMetaData().getUserName()
         self._logger.logprb(INFO, self._cls, mtd, 1115, version, name)

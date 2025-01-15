@@ -83,6 +83,7 @@
 
         <!-- check if project is Java -->
         <available file="lib" property="project.isjava"/>
+        <echo message="Check if Project is Java"/>
         <echo if:set="project.isjava" message="Project is Java"/>
         <echo unless:set="project.isjava" message="Project is not Java"/>
     </target>
@@ -93,16 +94,24 @@
         <property name="project.jar" value="${ant.project.name}.jar"/>
         <property name="build.jar" value="${build.dir}${file.separator}${project.jar}"/>
 
+        <echo message="Project is Java: ${project.isjava}"/>
+
+        <property name="lib.dir" value="lib"/>
+        <property name="project.jar" value="${ant.project.name}.jar"/>
+        <property name="build.jar" value="${build.dir}${file.separator}${project.jar}"/>
+
         <path id="office.class.path">
             <fileset dir="${office.basis.dir}${file.separator}program${file.separator}classes">
                 <include name="*.jar"/>
             </fileset>
         </path>
+
         <path id="build.class.path">
             <fileset dir="${basedir}">
                 <include name="${lib.dir}${file.separator}*.jar"/>
             </fileset>
         </path>
+
         <pathconvert property="manifest.class.path" pathsep=" ">
             <path refid="build.class.path"/>
             <mapper>
@@ -112,6 +121,8 @@
                 </chainedmapper>
             </mapper>
         </pathconvert>
+
+        <echo message="Manifest Class-Path: ${manifest.class.path}"/>
 
         <!-- create a few empty directories -->
         <mkdir dir="${build.classes.dir}"/>
