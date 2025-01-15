@@ -94,9 +94,9 @@ class Driver(unohelper.Base,
 # XDataDefinitionSupplier
     def getDataDefinitionByConnection(self, connection):
         return connection
+
     def getDataDefinitionByURL(self, url, infos):
-        connection = self.connect(url, infos)
-        return self.getDataDefinitionByConnection(connection)
+        return self.connect(url, infos)
 
 # XDriver
     def connect(self, url, infos):

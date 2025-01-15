@@ -40,6 +40,8 @@ import ijson
 
 
 class Provider():
+    def __init__(self):
+        pass
 
 # Method called from DataSource.getConnection()
     def getUserUri(self, server, name):
