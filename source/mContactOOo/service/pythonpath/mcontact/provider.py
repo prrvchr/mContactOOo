@@ -27,7 +27,7 @@
 ╚════════════════════════════════════════════════════════════════════════════════════╝
 """
 
-from com.sun.star.rest.ParameterType import REDIRECT
+import uno
 
 from .dbtool import currentDateTimeInTZ
 
@@ -40,8 +40,14 @@ import ijson
 
 
 class Provider():
-    def __init__(self):
-        pass
+    def __init__(self, database):
+        paths, lists, maps, types, tmps, fields = database.getMetaData('item')
+        self._paths = paths
+        self._lists = lists
+        self._maps = maps
+        self._types = types
+        self._tmps = tmps
+        self._fields = fields
 
 # Method called from DataSource.getConnection()
     def getUserUri(self, server, name):
@@ -142,7 +148,8 @@ class Provider():
         return page, count, args
 
     def _parseCards(self, user, parameter, mtd, args):
-        map = tmp = False
+        key = tmp = False
+        redirect = uno.getConstantByName('com.sun.star.rest.ParameterType.REDIRECT')
         while parameter.hasNextPage():
             response = user.Request.execute(parameter)
             if not response.Ok:
@@ -155,7 +162,7 @@ class Provider():
                 parser.send(iterator.nextElement().value)
                 for prefix, event, value in events:
                     if (prefix, event) == ('@odata.nextLink', 'string'):
-                        parameter.setNextPage('', value, REDIRECT)
+                        parameter.setNextPage('', value, redirect)
                     elif (prefix, event) == ('@odata.deltaLink', 'string'):
                         parameter.SyncToken = value
                     elif (prefix, event) == ('value.item', 'start_map'):
@@ -180,17 +187,17 @@ class Provider():
                         data[self._lists.get(prefix)].append(value)
                     # FIXME: This is the part for typed property import (use of tables: Resources, Properties and Types)
                     elif event == 'start_map' and prefix in self._maps:
-                        map = tmp = None
+                        key = tmp = None
                         suffix = ''
                     elif event == 'map_key' and prefix in self._maps and value in self._maps.get(prefix):
                         suffix = value
-                    elif event == 'string' and map is None and prefix in self._types:
-                        map = self._types.get(prefix).get(value + suffix)
+                    elif event == 'string' and key is None and prefix in self._types:
+                        key = self._types.get(prefix).get(value + suffix)
                     elif event == 'string' and tmp is None and prefix in self._tmps:
                         tmp = value
-                    elif event == 'end_map' and map and tmp and prefix in self._maps:
-                        data[map] = tmp
-                        map = tmp = False
+                    elif event == 'end_map' and key and tmp and prefix in self._maps:
+                        data[key] = tmp
+                        key = tmp = False
                     elif (prefix, event) == ('value.item', 'end_map'):
                         yield cid, etag, deleted, json.dumps(data)
                 del events[:]
