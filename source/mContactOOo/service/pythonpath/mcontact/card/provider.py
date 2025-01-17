@@ -69,15 +69,18 @@ class Provider(ProviderMain):
     def getUserUri(self, server, name):
         return name
 
-    def initAddressbooks(self, source, database, user):
+    def initAddressbooks(self, source, logger, database, user):
+        mtd = 'initAddressbooks'
+        logger.logprb(INFO, self._cls, mtd, 1321, user.Name)
         parameter = self._getRequestParameter(user.Request, 'getBooks')
         response = user.Request.execute(parameter)
         if not response.Ok:
             self.raiseForStatus(source, 'initAddressbooks', response, user.Name)
         iterator = self._parseAllBooks(response)
-        self.initUserBooks(source, database, user, iterator)
+        self.initUserBooks(source, logger, database, user, iterator)
+        logger.logprb(INFO, self._cls, mtd, 1322, user.Name)
 
-    def initUserGroups(self, source, database, user, uri):
+    def initUserGroups(self, source, logger, database, user, uri):
         parameter = self._getRequestParameter(user.Request, 'getGroups')
         response = user.Request.execute(parameter)
         if not response.Ok:
