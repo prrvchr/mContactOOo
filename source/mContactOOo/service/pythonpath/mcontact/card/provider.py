@@ -81,6 +81,8 @@ class Provider(ProviderMain):
         logger.logprb(INFO, self._cls, mtd, 1322, user.Name)
 
     def initUserGroups(self, source, logger, database, user, uri):
+        mtd = 'initUserGroups'
+        logger.logprb(INFO, self._cls, mtd, 1341, user.Name)
         parameter = self._getRequestParameter(user.Request, 'getGroups')
         response = user.Request.execute(parameter)
         if not response.Ok:
@@ -88,6 +90,7 @@ class Provider(ProviderMain):
         iterator = self._parseGroups(response)
         remove, add = database.initGroups(user, uri, iterator)
         database.initGroupView(user, remove, add)
+        logger.logprb(INFO, self._cls, mtd, 1342, user.Name)
 
     # Method called from User.__init__()
     def insertUser(self, source, logger, database, request, scheme, server, name, pwd):
