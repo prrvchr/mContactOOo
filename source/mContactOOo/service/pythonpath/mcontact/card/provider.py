@@ -230,14 +230,14 @@ class Provider(ProviderMain):
             parser.close()
             response.close()
 
-    def _pullGroup(self, database, mtd, user, addressbook, page, count):
-        parameter = self._getRequestParameter(user.Request, 'getGroups', addressbook)
+    def _pullGroup(self, database, mtd, user, book, page, count):
+        parameter = self._getRequestParameter(user.Request, 'getGroups', book)
         response = user.Request.execute(parameter)
         if not response.Ok:
             args = self.getLoggerArgs(response, mtd, parameter, user.Name)
             return page, count, args
         iterator = self._parseGroups(response)
-        count += database.mergeGroup(addressbook.Id, iterator)
+        count += database.mergeGroup(book.Id, iterator)
         page += parameter.PageCount
         return page, count, []
 
