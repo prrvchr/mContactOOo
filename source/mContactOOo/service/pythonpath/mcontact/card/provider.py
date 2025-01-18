@@ -48,8 +48,8 @@ import traceback
 
 
 class Provider(ProviderMain):
-    def __init__(self, ctx, database):
-        ProviderMain.__init__(self, ctx)
+    def __init__(self, ctx, src, database):
+        ProviderMain.__init__(self, ctx, src)
         paths, lists, maps, types, tmps, fields = database.getMetaData('item')
         self._paths = paths
         self._lists = lists
@@ -69,43 +69,44 @@ class Provider(ProviderMain):
     def getUserUri(self, server, name):
         return name
 
-    def initAddressbooks(self, source, logger, database, user):
+    def initAddressbooks(self, logger, database, user):
         mtd = 'initAddressbooks'
         logger.logprb(INFO, self._cls, mtd, 1321, user.Name)
         parameter = self._getRequestParameter(user.Request, 'getBooks')
         response = user.Request.execute(parameter)
         if not response.Ok:
-            self.raiseForStatus(source, 'initAddressbooks', response, user.Name)
+            self.raiseForStatus('initAddressbooks', response, user.Name)
+        print("Provider.initAddressbooks() Response: %s" % response.Text)
         iterator = self._parseAllBooks(response)
-        self.initUserBooks(source, logger, database, user, iterator)
+        self.initUserBooks(logger, database, user, iterator)
         logger.logprb(INFO, self._cls, mtd, 1322, user.Name)
 
-    def initUserGroups(self, source, logger, database, user, uri):
+    def initUserGroups(self, logger, database, user, book):
         mtd = 'initUserGroups'
-        logger.logprb(INFO, self._cls, mtd, 1341, user.Name)
+        logger.logprb(INFO, self._cls, mtd, 1341, book.Name)
         parameter = self._getRequestParameter(user.Request, 'getGroups')
         response = user.Request.execute(parameter)
         if not response.Ok:
-            self.raiseForStatus(source, 'initUserGroups', response, user.Name)
+            self.raiseForStatus('initUserGroups', response, user.Name)
+        print("Provider.initUserGroups() Response: %s" % response.Text)
         iterator = self._parseGroups(response)
-        remove, add = database.initGroups(user, uri, iterator)
-        database.initGroupView(user, remove, add)
-        logger.logprb(INFO, self._cls, mtd, 1342, user.Name)
+        self.initUserGroup(logger, database, user, book, iterator)
+        logger.logprb(INFO, self._cls, mtd, 1342, book.Name)
 
     # Method called from User.__init__()
-    def insertUser(self, source, logger, database, request, scheme, server, name, pwd):
+    def insertUser(self, logger, database, request, scheme, server, name, pwd):
         mtd = 'insertUser'
         logger.logprb(INFO, self._cls, mtd, 1301, name)
-        userid = self._getNewUserId(source, request, scheme, server, name, pwd)
+        userid = self._getNewUserId(request, scheme, server, name, pwd)
         logger.logprb(INFO, self._cls, mtd, 1302, userid, name)
         return database.insertUser(userid, scheme, server, '', name)
  
     # Private method
-    def _getNewUserId(self, source, request, scheme, server, name, pwd):
+    def _getNewUserId(self, request, scheme, server, name, pwd):
         parameter = self._getRequestParameter(request, 'getUser')
         response = request.execute(parameter)
         if not response.Ok:
-            self.raiseForStatus(source, '_getNewUserId', response, name)
+            self.raiseForStatus('_getNewUserId', response, name)
         userid = self._parseUser(response)
         return userid
 
@@ -169,7 +170,7 @@ class Provider(ProviderMain):
         if not args:
             if parameter.SyncToken:
                 database.updateAddressbookToken(book.Id, parameter.SyncToken)
-        #self.initGroups(database, user, book)
+        self.initUserGroups(database, user, book)
         return page, count, args
 
     def _parseCards(self, user, parameter, mtd, args):
