@@ -29,7 +29,7 @@
 
 **L'utilisation de ce logiciel vous soumet à nos [Conditions d'utilisation][4] et à notre [Politique de protection des données][5].**
 
-# version [1.1.6][6]
+# version [1.2.0][6]
 
 ## Introduction:
 
@@ -244,7 +244,14 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 - L'extension vous demandera d'installer les extensions OAuth2OOo et jdbcDriverOOo en version respectivement 1.3.8 et 1.4.6 minimum.
 - Modification des options de l'extension accessibles via : **Outils -> Options... -> Internet -> mContactOOo** afin de respecter la nouvelle charte graphique.
 
-### Que reste-t-il à faire pour la version 1.1.6:
+### Ce qui a été fait pour la version 1.2.0:
+
+- L'extension vous demandera d'installer les extensions OAuth2OOo et jdbcDriverOOo en version respectivement 1.4.0 et 1.4.6 minimum.
+- Il est possible de construire l'archive de l'extension (ie: le fichier oxt) avec l'utilitaire [Apache Ant][52] et le fichier script [build.xml][53].
+- L'extension refusera de s'installer sous OpenOffice quelle que soit la version ou LibreOffice autre que 7.x ou supérieur.
+- Ajout des fichiers binaires nécessaires aux bibliothèques Python pour fonctionner sous Linux et LibreOffice 24.8 (ie: Python 3.9).
+
+### Que reste-t-il à faire pour la version 1.2.0:
 
 - Ajouter de nouvelles langues pour l’internationalisation...
 
@@ -301,3 +308,5 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [49]: <https://pypi.org/project/setuptools/>
 [50]: <https://github.com/prrvchr/mContactOOo/security/dependabot/1>
 [51]: <https://pypi.org/project/validators/>
+[52]: <https://ant.apache.org/>
+[53]: <https://github.com/prrvchr/mContactOOo/blob/master/source/mContactOOo/build.xml>
