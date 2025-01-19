@@ -262,7 +262,7 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [3]: <https://prrvchr.github.io/mContactOOo>
 [4]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/TermsOfUse_fr>
 [5]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/PrivacyPolicy_fr>
-[6]: <https://prrvchr.github.io/mContactOOo/README_fr#ce-qui-a-%C3%A9t%C3%A9-fait-pour-la-version-116>
+[6]: <https://prrvchr.github.io/mContactOOo/README_fr#ce-qui-a-%C3%A9t%C3%A9-fait-pour-la-version-120>
 [7]: <https://prrvchr.github.io/README_fr>
 [8]: <https://fr.libreoffice.org/download/telecharger-libreoffice/>
 [9]: <https://www.openoffice.org/fr/Telecharger/>
@@ -283,7 +283,7 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [24]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
 [25]: <img/mContactOOo.svg#middle>
 [26]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
-[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.1.6#right>
+[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.2.0#right>
 [28]: <img/mContactOOo-1_fr.png>
 [29]: <img/mContactOOo-2_fr.png>
 [30]: <img/mContactOOo-3_fr.png>
