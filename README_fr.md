@@ -29,7 +29,7 @@
 
 **L'utilisation de ce logiciel vous soumet à nos [Conditions d'utilisation][4] et à notre [Politique de protection des données][5].**
 
-# version [1.2.0][6]
+# version [1.2.1][6]
 
 ## Introduction:
 
@@ -251,7 +251,15 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 - L'extension refusera de s'installer sous OpenOffice quelle que soit la version ou LibreOffice autre que 7.x ou supérieur.
 - Ajout des fichiers binaires nécessaires aux bibliothèques Python pour fonctionner sous Linux et LibreOffice 24.8 (ie: Python 3.9).
 
-### Que reste-t-il à faire pour la version 1.2.0:
+### Ce qui a été fait pour la version 1.2.1:
+
+- Mise à jour du paquet [Python packaging][48] vers la version 24.2.
+- Mise à jour du paquet [Python setuptools][49] vers la version 75.8.0.
+- Mise à jour du paquet [Python six][54] vers la version 1.17.0.
+- Mise à jour du paquet [Python validators][51] vers la version 0.34.0.
+- Support de Python version 3.13.
+
+### Que reste-t-il à faire pour la version 1.2.1:
 
 - Ajouter de nouvelles langues pour l’internationalisation...
 
@@ -262,7 +270,7 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [3]: <https://prrvchr.github.io/mContactOOo>
 [4]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/TermsOfUse_fr>
 [5]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/PrivacyPolicy_fr>
-[6]: <https://prrvchr.github.io/mContactOOo/README_fr#ce-qui-a-%C3%A9t%C3%A9-fait-pour-la-version-120>
+[6]: <https://prrvchr.github.io/mContactOOo/README_fr#ce-qui-a-%C3%A9t%C3%A9-fait-pour-la-version-121>
 [7]: <https://prrvchr.github.io/README_fr>
 [8]: <https://fr.libreoffice.org/download/telecharger-libreoffice/>
 [9]: <https://www.openoffice.org/fr/Telecharger/>
@@ -283,7 +291,7 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [24]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
 [25]: <img/mContactOOo.svg#middle>
 [26]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
-[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.2.0#right>
+[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.2.1#right>
 [28]: <img/mContactOOo-1_fr.png>
 [29]: <img/mContactOOo-2_fr.png>
 [30]: <img/mContactOOo-3_fr.png>
@@ -310,3 +318,4 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 [51]: <https://pypi.org/project/validators/>
 [52]: <https://ant.apache.org/>
 [53]: <https://github.com/prrvchr/mContactOOo/blob/master/source/mContactOOo/build.xml>
+[54]: <https://pypi.org/project/six/>
