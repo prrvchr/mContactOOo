@@ -4,7 +4,7 @@
 """
 ╔════════════════════════════════════════════════════════════════════════════════════╗
 ║                                                                                    ║
-║   Copyright (c) 2020 https://prrvchr.github.io                                     ║
+║   Copyright (c) 2020-25 https://prrvchr.github.io                                  ║
 ║                                                                                    ║
 ║   Permission is hereby granted, free of charge, to any person obtaining            ║
 ║   a copy of this software and associated documentation files (the "Software"),     ║
@@ -31,6 +31,7 @@
 g_extension = 'mContactOOo'
 g_identifier = 'io.github.prrvchr.%s' % g_extension
 g_protocol = 'sdbc:address:microsoft'
+g_implementation = '%s.Driver' % g_identifier
 
 # Resource strings files folder
 g_resource = 'resource'

@@ -2,7 +2,7 @@
 <!--
 ╔════════════════════════════════════════════════════════════════════════════════════╗
 ║                                                                                    ║
-║   Copyright (c) 2020 https://prrvchr.github.io                                     ║
+║   Copyright (c) 2020-25 https://prrvchr.github.io                                  ║
 ║                                                                                    ║
 ║   Permission is hereby granted, free of charge, to any person obtaining            ║
 ║   a copy of this software and associated documentation files (the "Software"),     ║
@@ -32,8 +32,8 @@
   <node oor:name="Nodes">
     <node oor:name="io.github.prrvchr.mContactOOo" oor:op="fuse">
       <prop oor:name="Label">
-        <value xml:lang="en-US">Internet</value>
-        <value xml:lang="fr-FR">Internet</value>
+        <value xml:lang="en-US">LibreOffice Base</value>
+        <value xml:lang="fr-FR">LibreOffice Base</value>
       </prop>
       <prop oor:name="AllModules">
         <value>true</value>
@@ -44,8 +44,8 @@
             <value>io.github.prrvchr.mContactOOo</value>
           </prop>
           <prop oor:name="Label">
-            <value xml:lang="en-US">mContactOOo</value>
-            <value xml:lang="fr-FR">mContactOOo</value>
+            <value xml:lang="en-US">Microsoft Contacts</value>
+            <value xml:lang="fr-FR">Contacts Microsoft</value>
           </prop>
           <prop oor:name="OptionsPage">
             <value>%origin%/dialogs/OptionsDialog.xdl</value>
