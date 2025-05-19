@@ -79,14 +79,14 @@ class Provider(ProviderMain):
         return name
 
 # Method called from Provider.initAddressbooks()
-    def getAddressbooks(self, logger, database, user):
+    def getAddressbooks(self, database, user):
         parameter = self._getRequestParameter(user.Request, 'getBooks')
         response = user.Request.execute(parameter)
         if not response.Ok:
             self.raiseForStatus('initAddressbooks', response, user.Name)
         return self._parseAllBooks(response)
 
-    def getUserGroups(self, logger, database, user, book):
+    def getUserGroups(self, database, user, book):
         parameter = self._getRequestParameter(user.Request, 'getGroups')
         response = user.Request.execute(parameter)
         if not response.Ok:
