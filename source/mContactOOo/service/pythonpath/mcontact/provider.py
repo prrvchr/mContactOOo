@@ -139,11 +139,11 @@ class Provider(ProviderMain):
         return self._pullCard(database, 'pullCard()', user, book, page, count)
 
     def parseCard(self, database):
-        start = database.getLastUserSync()
+        start = database.getLastSync('CardSync')
         stop = currentDateTimeInTZ()
         iterator = self._parseCardValue(database, start, stop)
         database.mergeCardValue(iterator)
-        database.updateUserSync(stop)
+        database.updateCardSync(stop)
 
     # Private method
     def _pullCard(self, database, mtd, user, book, page, count):
