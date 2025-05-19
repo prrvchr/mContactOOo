@@ -55,7 +55,8 @@ L'extension mContactOOo utilise l'extension OAuth2OOo pour fonctionner.
 Elle doit donc répondre aux [prérequis de l'extension OAuth2OOo][14].
 
 L'extension mContactOOo utilise l'extension jdbcDriverOOo pour fonctionner.  
-Elle doit donc répondre aux [prérequis de l'extension jdbcDriverOOo][15].
+Elle doit donc répondre aux [prérequis de l'extension jdbcDriverOOo][15].  
+De plus, mContactOOo nécessite que l'extension jdbcDriverOOo soit configurée pour fournir `com.sun.star.sdb` comme niveau d'API, qui est la configuration par défaut.
 
 ___
 
@@ -276,6 +277,7 @@ Elle vous donnera accès à un système d'information que seules les grandes ent
 - Mise à jour du paquet [Python packaging][53] vers la version 25.0.
 - Rétrogradage du paquet [Python setuptools][54] vers la version 75.3.2, afin d'assurer la prise en charge de Python 3.8.
 - Déploiement de l'enregistrement passif permettant une installation beaucoup plus rapide des extensions et de différencier les services UNO enregistrés de ceux fournis par une implémentation Java ou Python. Cet enregistrement passif est assuré par l'extension [LOEclipse][37] via les [PR#152][59] et [PR#157][60].
+- Modification de [LOEclipse][37] pour prendre en charge le nouveau format de fichier `rdb` produit par l'utilitaire de compilation `unoidl-write`. Les fichiers `idl` ont été mis à jour pour prendre en charge les deux outils de compilation disponibles: idlc et unoidl-write.
 - Il est désormais possible de créer le fichier oxt de l'extension mContactOOo uniquement avec Apache Ant et une copie du dépôt GitHub. La section [Comment créer l'extension][61] a été ajoutée à la documentation.
 - Implémentation de [PEP 570][62] dans la [journalisation][63] pour prendre en charge les arguments multiples uniques.
 - Toute erreur survenant lors du chargement du pilote sera consignée dans le journal de l'extension si la journalisation a été préalablement activé. Cela facilite l'identification des problèmes d'installation sous Windows.
