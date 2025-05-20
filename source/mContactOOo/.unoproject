@@ -1,5 +1,5 @@
 #UNO project configuration file
-#Sun May 18 23:42:58 CEST 2025
+#Tue May 20 12:19:10 CEST 2025
 project.build=build
 project.idl=/idl
 project.implementation=mContactOOo
