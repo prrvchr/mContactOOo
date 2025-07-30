@@ -29,7 +29,7 @@
 
 **The use of this software subjects you to our [Terms Of Use][4] and [Data Protection Policy][5].**
 
-# version [1.3.0][6]
+# version [1.3.1][6]
 
 ## Introduction:
 
@@ -285,7 +285,13 @@ It will give you access to an information system that only larges companies are 
 - Requires the **jdbcDriverOOo extension at least version 1.5.0**.
 - Requires the **OAuth2OOo extension at least version 1.5.0**.
 
-### What remains to be done for version 1.3.0:
+### What has been done for version 1.3.1:
+
+- Support for LibreOffice 25.2.x and 25.8.x on Windows 64-bit.
+- Requires the **jdbcDriverOOo extension at least version 1.5.4**.
+- Requires the **OAuth2OOo extension at least version 1.5.2**.
+
+### What remains to be done for version 1.3.1:
 
 - Add new languages for internationalization...
 
@@ -296,7 +302,7 @@ It will give you access to an information system that only larges companies are 
 [3]: <https://prrvchr.github.io/mContactOOo/README_fr>
 [4]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/TermsOfUse_en>
 [5]: <https://prrvchr.github.io/mContactOOo/source/mContactOOo/registration/PrivacyPolicy_en>
-[6]: <https://prrvchr.github.io/mContactOOo#what-has-been-done-for-version-130>
+[6]: <https://prrvchr.github.io/mContactOOo#what-has-been-done-for-version-131>
 [7]: <https://prrvchr.github.io/>
 [8]: <https://www.libreoffice.org/download/download/>
 [9]: <https://www.openoffice.org/download/index.html>
@@ -317,7 +323,7 @@ It will give you access to an information system that only larges companies are 
 [24]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
 [25]: <img/mContactOOo.svg#middle>
 [26]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
-[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.3.0#right>
+[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.3.1#right>
 [28]: <img/mContactOOo-1.png>
 [29]: <img/mContactOOo-2.png>
 [30]: <img/mContactOOo-3.png>
