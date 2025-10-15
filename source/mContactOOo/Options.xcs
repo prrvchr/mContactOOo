@@ -36,3 +36,4 @@
     <prop oor:name="ReplicateTimeout" oor:type="xs:short"/>
   </component>
 </oor:component-schema>
+
