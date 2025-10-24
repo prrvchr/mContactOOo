@@ -43,6 +43,7 @@ Being free software I encourage you:
 - To duplicate its [source code][12].
 - To make changes, corrections, improvements.
 - To open [issue][13] if needed.
+- To [participate in the costs][14] of [CASA certification][15].
 
 In short, to participate in the development of this extension.  
 Because it is together that we can make Free Software smarter.
@@ -52,10 +53,10 @@ ___
 ## Requirement:
 
 The mContactOOo extension uses the OAuth2OOo extension to work.  
-It must therefore meet the [requirement of the OAuth2OOo extension][14].
+It must therefore meet the [requirement of the OAuth2OOo extension][16].
 
 The mContactOOo extension uses the jdbcDriverOOo extension to work.  
-It must therefore meet the [requirement of the jdbcDriverOOo extension][15].  
+It must therefore meet the [requirement of the jdbcDriverOOo extension][17].  
 Additionally, mContactOOo requires the jdbcDriverOOo extension to be configured to provide `com.sun.star.sdb` as the API level, which is the default configuration.
 
 ___
@@ -65,15 +66,15 @@ ___
 It seems important that the file was not renamed when it was downloaded.
 If necessary, rename it before installing it.
 
-- [![OAuth2OOo logo][17]][18] Install **[OAuth2OOo.oxt][19]** extension [![Version][20]][19]
+- [![OAuth2OOo logo][18]][19] Install **[OAuth2OOo.oxt][20]** extension [![Version][21]][20]
 
     You must install this extension, if it is not already installed.
 
-- [![jdbcDriverOOo logo][21]][22] Install **[jdbcDriverOOo.oxt][23]** extension [![Version][24]][23]
+- [![jdbcDriverOOo logo][22]][23] Install **[jdbcDriverOOo.oxt][24]** extension [![Version][25]][24]
 
     You must install this extension, if it is not already installed.
 
-- ![mContactOOo logo][25] Install **[mContactOOo.oxt][26]** extension version [![Version][27]][26]
+- ![mContactOOo logo][26] Install **[mContactOOo.oxt][27]** extension version [![Version][28]][27]
 
 Restart LibreOffice after installation.  
 **Be careful, restarting LibreOffice may not be enough.**
@@ -91,7 +92,7 @@ ___
 
 In LibreOffice / OpenOffice go to: **File -> Wizards -> Address Data Source...**
 
-![mContactOOo screenshot 1][28]
+![mContactOOo screenshot 1][29]
 
 The **Address Book Datasource Wizard** open.
 
@@ -99,12 +100,12 @@ In step: **1.Address Book Type**:
 - Select: **Other external data source**.
 - Click button: **Next**.
 
-![mContactOOo screenshot 2][29]
+![mContactOOo screenshot 2][30]
 
 In step: **2.Connection Settings**:
 - Click button: **Settings**.
 
-![mContactOOo screenshot 3][30]
+![mContactOOo screenshot 3][31]
 
 A new wizard opens. **Data source properties**.
 
@@ -113,22 +114,22 @@ In Database type list:
 - Select: **Microsoft Contacts**.
 - Click button: **Next**.
 
-![mContactOOo screenshot 4][31]
+![mContactOOo screenshot 4][32]
 
 In step: **2.Connection Settings**.  
 In General: Enter the DBMS/driver-specific connection string here.
 - Put your Microsoft account (ie: your_account@outlook.com)
 - Click button: **Test connection**.
 
-![mContactOOo screenshot 5][32]
+![mContactOOo screenshot 5][33]
 
-After authorizing the [OAuth2OOo][18] application to access your Contacts, normally you should see: Connection Test: The connection was established successfully.
+After authorizing the [OAuth2OOo][19] application to access your Contacts, normally you should see: Connection Test: The connection was established successfully.
 
-![mContactOOo screenshot 6][33]
+![mContactOOo screenshot 6][34]
 
 If the connection has been established, you can complete this wizard with the **Finish** button.
 
-![mContactOOo screenshot 7][34]
+![mContactOOo screenshot 7][35]
 
 In step: **3.Table Selection**.  
 If your data source has multiple tables, you will be asked to select the primary table.  
@@ -138,7 +139,7 @@ In step: **4.Field Assignment**.
 If necessary it is possible to rename the names of the columns of the data source using the button: **Field Assignment**.  
 Please continue this wizard with the button: **Next**.
 
-![mContactOOo screenshot 8][35]
+![mContactOOo screenshot 8][36]
 
 In step: **5.Data Source Title**.
 
@@ -150,7 +151,7 @@ This odb file must also be made accessible. To do this you must:
 - **Check the box**: Make this address book available to all modules in LibreOffice
 - Named the address book in the field: **Address book name**.
 
-![mContactOOo screenshot 9][36]
+![mContactOOo screenshot 9][37]
 
 Have fun...
 
@@ -158,12 +159,12 @@ ___
 
 ## How to build the extension:
 
-Normally, the extension is created with Eclipse for Java and [LOEclipse][37]. To work around Eclipse, I modified LOEclipse to allow the extension to be created with Apache Ant.  
+Normally, the extension is created with Eclipse for Java and [LOEclipse][38]. To work around Eclipse, I modified LOEclipse to allow the extension to be created with Apache Ant.  
 To create the mContactOOo extension with the help of Apache Ant, you need to:
-- Install the [Java SDK][38] version 8 or higher.
-- Install [Apache Ant][39] version 1.10.0 or higher.
-- Install [LibreOffice and its SDK][40] version 7.x or higher.
-- Clone the [mContactOOo][41] repository on GitHub into a folder.
+- Install the [Java SDK][39] version 8 or higher.
+- Install [Apache Ant][40] version 1.10.0 or higher.
+- Install [LibreOffice and its SDK][41] version 7.x or higher.
+- Clone the [mContactOOo][42] repository on GitHub into a folder.
 - From this folder, move to the directory: `source/mContactOOo/`
 - In this directory, edit the file: `build.properties` so that the `office.install.dir` and `sdk.dir` properties point to the folders where LibreOffice and its SDK were installed, respectively.
 - Start the archive creation process using the command: `ant`
@@ -181,7 +182,7 @@ ___
 
 * LibreOffice 24.8.0.3 (x86_64) - Windows 10(x64) - Python version 3.9.19 (under Lubuntu 22.04 / VirtualBox 6.1.38)
 
-* **Does not work with OpenOffice on Windows** see [bug 128569][42]. Having no solution, I encourage you to install **LibreOffice**.
+* **Does not work with OpenOffice on Windows** see [bug 128569][43]. Having no solution, I encourage you to install **LibreOffice**.
 
 I encourage you in case of problem :confused:  
 to create an [issue][13]  
@@ -195,7 +196,7 @@ ___
 
 This extension was written in order to make usable in free software (LibreOffice or OpenOffice) your personal data stored in your Microsoft Outlook address book.
 
-With the [eMailerOOo][43] extension, it can be the data source for [mail merge][44] by email, to your correspondents contained in your Microsoft Outlook address book.
+With the [eMailerOOo][44] extension, it can be the data source for [mail merge][45] by email, to your correspondents contained in your Microsoft Outlook address book.
 
 It will give you access to an information system that only larges companies are able, today, to implement.
 
@@ -215,10 +216,10 @@ It will give you access to an information system that only larges companies are 
 
 ### What has been done for version 1.1.0:
 
-- All Python packages necessary for the extension are now recorded in a [requirements.txt][45] file following [PEP 508][46].
+- All Python packages necessary for the extension are now recorded in a [requirements.txt][46] file following [PEP 508][47].
 - Now if you are not on Windows then the Python packages necessary for the extension can be easily installed with the command:  
   `pip install requirements.txt`
-- Modification of the [Requirement][47] section.
+- Modification of the [Requirement][48] section.
 
 ### What has been done for version 1.1.1:
 
@@ -227,27 +228,27 @@ It will give you access to an information system that only larges companies are 
 
 ### What has been done for version 1.1.2:
 
-- Integration of a fix to workaround the [issue #159988][48].
+- Integration of a fix to workaround the [issue #159988][49].
 
 ### What has been done for version 1.1.3:
 
-- The creation of the database, during the first connection, uses the UNO API offered by the jdbcDriverOOo extension since version 1.3.2. This makes it possible to record all the information necessary for creating the database in 9 text tables which are in fact [9 csv files][49].
+- The creation of the database, during the first connection, uses the UNO API offered by the jdbcDriverOOo extension since version 1.3.2. This makes it possible to record all the information necessary for creating the database in 9 text tables which are in fact [9 csv files][50].
 - The extension will ask you to install the OAuth2OOo and jdbcDriverOOo extensions in versions 1.3.4 and 1.3.2 respectively minimum.
 - Many fixes.
 
 ### What has been done for version 1.1.4:
 
-- Updated the [Python python-dateutil][50] package to version 2.9.0.post0.
-- Updated the [Python decorator][51] package to version 5.1.1.
-- Updated the [Python ijson][52] package to version 3.3.0.
-- Updated the [Python packaging][53] package to version 24.1.
-- Updated the [Python setuptools][54] package to version 72.1.0 in order to respond to the [Dependabot security alert][55].
-- Updated the [Python validators][56] package to version 0.33.0.
+- Updated the [Python python-dateutil][51] package to version 2.9.0.post0.
+- Updated the [Python decorator][52] package to version 5.1.1.
+- Updated the [Python ijson][53] package to version 3.3.0.
+- Updated the [Python packaging][54] package to version 24.1.
+- Updated the [Python setuptools][55] package to version 72.1.0 in order to respond to the [Dependabot security alert][56].
+- Updated the [Python validators][57] package to version 0.33.0.
 - The extension will ask you to install the OAuth2OOo and jdbcDriverOOo extensions in versions 1.3.6 and 1.4.2 respectively minimum.
 
 ### What has been done for version 1.1.5:
 
-- Updated the [Python setuptools][54] package to version 73.0.1.
+- Updated the [Python setuptools][55] package to version 73.0.1.
 - The extension will ask you to install the OAuth2OOo and jdbcDriverOOo extensions in versions 1.3.7 and 1.4.5 respectively minimum.
 - Changes to extension options that require a restart of LibreOffice will result in a message being displayed.
 - Support for LibreOffice version 24.8.x.
@@ -260,26 +261,26 @@ It will give you access to an information system that only larges companies are 
 ### What has been done for version 1.2.0:
 
 - The extension will ask you to install the OAuth2OOo and jdbcDriverOOo extensions in versions 1.4.0 and 1.4.6 respectively minimum.
-- It is possible to build the extension archive (ie: the oxt file) with the [Apache Ant][39] utility and the [build.xml][57] script file.
+- It is possible to build the extension archive (ie: the oxt file) with the [Apache Ant][40] utility and the [build.xml][58] script file.
 - The extension will refuse to install under OpenOffice regardless of version or LibreOffice other than 7.x or higher.
 - Added binaries needed for Python libraries to work on Linux and LibreOffice 24.8 (ie: Python 3.9).
 
 ### What has been done for version 1.2.1:
 
-- Updated the [Python packaging][53] package to version 24.2.
-- Updated the [Python setuptools][54] package to version 75.8.0.
-- Updated the [Python six][58] package to version 1.17.0.
-- Updated the [Python validators][56] package to version 0.34.0.
+- Updated the [Python packaging][54] package to version 24.2.
+- Updated the [Python setuptools][55] package to version 75.8.0.
+- Updated the [Python six][59] package to version 1.17.0.
+- Updated the [Python validators][57] package to version 0.34.0.
 - Support for Python version 3.13.
 
 ### What has been done for version 1.3.0:
 
-- Updated the [Python packaging][53] package to version 25.0.
+- Updated the [Python packaging][54] package to version 25.0.
 - Downgrade the [Python setuptools][55] package to version 75.3.2. to ensure support for Python 3.8.
-- Passive registration deployment that allows for much faster installation of extensions and differentiation of registered UNO services from those provided by a Java or Python implementation. This passive registration is provided by the [LOEclipse][37] extension via [PR#152][59] and [PR#157][60].
-- Modified [LOEclipse][37] to support the new `rdb` file format produced by the `unoidl-write` compilation utility. `idl` files have been updated to support both available compilation tools: idlc and unoidl-write.
-- It is now possible to build the oxt file of the mContactOOo extension only with the help of Apache Ant and a copy of the GitHub repository. The [How to build the extension][61] section has been added to the documentation.
-- Implemented [PEP 570][62] in [logging][63] to support unique multiple arguments.
+- Passive registration deployment that allows for much faster installation of extensions and differentiation of registered UNO services from those provided by a Java or Python implementation. This passive registration is provided by the [LOEclipse][39] extension via [PR#152][60] and [PR#157][61].
+- Modified [LOEclipse][39] to support the new `rdb` file format produced by the `unoidl-write` compilation utility. `idl` files have been updated to support both available compilation tools: idlc and unoidl-write.
+- It is now possible to build the oxt file of the mContactOOo extension only with the help of Apache Ant and a copy of the GitHub repository. The [How to build the extension][62] section has been added to the documentation.
+- Implemented [PEP 570][63] in [logging][64] to support unique multiple arguments.
 - Any errors occurring while loading the driver will be logged in the extension's log if logging has been previously enabled. This makes it easier to identify installation problems on Windows.
 - To ensure the correct creation of the mContactOOo database, it will be checked that the jdbcDriverOOo extension has `com.sun.star.sdb` as API level.
 - Requires the **jdbcDriverOOo extension at least version 1.5.0**.
@@ -293,9 +294,10 @@ It will give you access to an information system that only larges companies are 
 
 ### What has been done for version 1.4.0:
 
-- Has been tested under LibreOfficeDev 26.2.
+- If the jdbcDriverOOo extension works without Java instrumentation, a warning message will be displayed in the extension options.
 - Requires the **jdbcDriverOOo extension at least version 1.6.0**.
 - Requires the **OAuth2OOo extension at least version 1.6.0**.
+- Has been tested under LibreOfficeDev 26.2.
 
 ### What remains to be done for version 1.4.0:
 
@@ -316,53 +318,54 @@ It will give you access to an information system that only larges companies are 
 [11]: <https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Service>
 [12]: <https://github.com/prrvchr/mContactOOo>
 [13]: <https://github.com/prrvchr/mContactOOo/issues/new>
-[14]: <https://prrvchr.github.io/OAuth2OOo/#requirement>
-[15]: <https://prrvchr.github.io/jdbcDriverOOo/#requirement>
-[16]: <https://prrvchr.github.io/mContactOOo/#what-has-been-done-for-version-110>
-[17]: <https://prrvchr.github.io/OAuth2OOo/img/OAuth2OOo.svg#middle>
-[18]: <https://prrvchr.github.io/OAuth2OOo/>
-[19]: <https://github.com/prrvchr/OAuth2OOo/releases/latest/download/OAuth2OOo.oxt>
-[20]: <https://img.shields.io/github/v/tag/prrvchr/OAuth2OOo?label=latest#right>
-[21]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
-[22]: <https://prrvchr.github.io/jdbcDriverOOo/>
-[23]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
-[24]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
-[25]: <img/mContactOOo.svg#middle>
-[26]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
-[27]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.4.0#right>
-[28]: <img/mContactOOo-1.png>
-[29]: <img/mContactOOo-2.png>
-[30]: <img/mContactOOo-3.png>
-[31]: <img/mContactOOo-4.png>
-[32]: <img/mContactOOo-5.png>
-[33]: <img/mContactOOo-6.png>
-[34]: <img/mContactOOo-7.png>
-[35]: <img/mContactOOo-8.png>
-[36]: <img/mContactOOo-9.png>
-[37]: <https://github.com/LibreOffice/loeclipse>
-[38]: <https://adoptium.net/temurin/releases/?version=8&package=jdk>
-[39]: <https://ant.apache.org/manual/install.html>
-[40]: <https://downloadarchive.documentfoundation.org/libreoffice/old/7.6.7.2/>
-[41]: <https://github.com/prrvchr/mContactOOo.git>
-[42]: <https://bz.apache.org/ooo/show_bug.cgi?id=128569>
-[43]: <https://prrvchr.github.io/eMailerOOo>
-[44]: <https://en.wikipedia.org/wiki/Mail_merge>
-[45]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/requirements.txt>
-[46]: <https://peps.python.org/pep-0508/>
-[47]: <https://prrvchr.github.io/mContactOOo/#requirement>
-[48]: <https://bugs.documentfoundation.org/show_bug.cgi?id=159988>
-[49]: <https://github.com/prrvchr/mContactOOo/tree/main/source/mContactOOo/hsqldb>
-[50]: <https://pypi.org/project/python-dateutil/>
-[51]: <https://pypi.org/project/decorator/>
-[52]: <https://pypi.org/project/ijson/>
-[53]: <https://pypi.org/project/packaging/>
-[54]: <https://pypi.org/project/setuptools/>
-[55]: <https://github.com/prrvchr/mContactOOo/security/dependabot/1>
-[56]: <https://pypi.org/project/validators/>
-[57]: <https://github.com/prrvchr/mContactOOo/blob/master/source/mContactOOo/build.xml>
-[58]: <https://pypi.org/project/six/>
-[59]: <https://github.com/LibreOffice/loeclipse/pull/152>
-[60]: <https://github.com/LibreOffice/loeclipse/pull/157>
-[61]: <https://prrvchr.github.io/mContactOOo/#how-to-build-the-extension>
-[62]: <https://peps.python.org/pep-0570/>
-[63]: <https://github.com/prrvchr/mContactOOo/blob/master/uno/lib/uno/logger/logwrapper.py#L109>
+[14]: <https://github.com/sponsors/prrvchr>
+[15]: <https://appdefensealliance.dev/casa>
+[16]: <https://prrvchr.github.io/OAuth2OOo/#requirement>
+[17]: <https://prrvchr.github.io/jdbcDriverOOo/#requirement>
+[18]: <https://prrvchr.github.io/OAuth2OOo/img/OAuth2OOo.svg#middle>
+[19]: <https://prrvchr.github.io/OAuth2OOo/>
+[20]: <https://github.com/prrvchr/OAuth2OOo/releases/latest/download/OAuth2OOo.oxt>
+[21]: <https://img.shields.io/github/v/tag/prrvchr/OAuth2OOo?label=latest#right>
+[22]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
+[23]: <https://prrvchr.github.io/jdbcDriverOOo/>
+[24]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
+[25]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
+[26]: <img/mContactOOo.svg#middle>
+[27]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/mContactOOo.oxt>
+[28]: <https://img.shields.io/github/downloads/prrvchr/mContactOOo/latest/total?label=v1.4.0#right>
+[29]: <img/mContactOOo-1.png>
+[30]: <img/mContactOOo-2.png>
+[31]: <img/mContactOOo-3.png>
+[32]: <img/mContactOOo-4.png>
+[33]: <img/mContactOOo-5.png>
+[34]: <img/mContactOOo-6.png>
+[35]: <img/mContactOOo-7.png>
+[36]: <img/mContactOOo-8.png>
+[37]: <img/mContactOOo-9.png>
+[38]: <https://github.com/LibreOffice/loeclipse>
+[39]: <https://adoptium.net/temurin/releases/?version=8&package=jdk>
+[40]: <https://ant.apache.org/manual/install.html>
+[41]: <https://downloadarchive.documentfoundation.org/libreoffice/old/7.6.7.2/>
+[42]: <https://github.com/prrvchr/mContactOOo.git>
+[43]: <https://bz.apache.org/ooo/show_bug.cgi?id=128569>
+[44]: <https://prrvchr.github.io/eMailerOOo>
+[45]: <https://en.wikipedia.org/wiki/Mail_merge>
+[46]: <https://github.com/prrvchr/mContactOOo/releases/latest/download/requirements.txt>
+[47]: <https://peps.python.org/pep-0508/>
+[48]: <https://prrvchr.github.io/mContactOOo/#requirement>
+[49]: <https://bugs.documentfoundation.org/show_bug.cgi?id=159988>
+[50]: <https://github.com/prrvchr/mContactOOo/tree/main/source/mContactOOo/hsqldb>
+[51]: <https://pypi.org/project/python-dateutil/>
+[52]: <https://pypi.org/project/decorator/>
+[53]: <https://pypi.org/project/ijson/>
+[54]: <https://pypi.org/project/packaging/>
+[55]: <https://pypi.org/project/setuptools/>
+[56]: <https://github.com/prrvchr/mContactOOo/security/dependabot/1>
+[57]: <https://pypi.org/project/validators/>
+[58]: <https://github.com/prrvchr/mContactOOo/blob/master/source/mContactOOo/build.xml>
+[59]: <https://pypi.org/project/six/>
+[60]: <https://github.com/LibreOffice/loeclipse/pull/152>
+[61]: <https://github.com/LibreOffice/loeclipse/pull/157>
+[62]: <https://prrvchr.github.io/mContactOOo/#how-to-build-the-extension>
+[63]: <https://peps.python.org/pep-0570/>
+[64]: <https://github.com/prrvchr/mContactOOo/blob/master/uno/lib/uno/logger/logwrapper.py#L109>
