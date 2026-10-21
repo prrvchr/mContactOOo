@@ -35,12 +35,11 @@ from com.sun.star.lang import XServiceInfo
 
 from com.sun.star.awt import XContainerWindowEventHandler
 
-from mcontact import OptionsManager
+from mcontact.options.optionsmanager import OptionsManager
 
-from mcontact import getLogger
+from mcontact.logger.helper import getLogger
 
-from mcontact import g_identifier
-from mcontact import g_defaultlog
+from mcontact.configuration import g_defaultlog
 
 import traceback
 
@@ -64,7 +63,7 @@ class OptionsHandler(unohelper.Base,
             handled = False
             if method == 'external_event':
                 if event == 'initialize':
-                    self._manager = OptionsManager(self._ctx, self._logger, window)
+                    self._manager = OptionsManager(self._ctx, window, self._logger)
                     handled = True
                 elif event == 'ok':
                     self._manager.saveSetting()
@@ -72,17 +71,13 @@ class OptionsHandler(unohelper.Base,
                 elif event == 'back':
                     self._manager.loadSetting()
                     handled = True
-            elif method == 'ViewData':
-                self._manager.viewData()
-                handled = True
             return handled
         except Exception as e:
             print("OptionsHandler.callHandlerMethod() ERROR: %s" % traceback.format_exc())
             self._logger.logprb(SEVERE, 'OptionsHandler', 'callHandlerMethod()', 201, e, traceback.format_exc())
 
     def getSupportedMethodNames(self):
-        return ('external_event',
-                'ViewData')
+        return ('external_event', )
 
     # XServiceInfo
     def supportsService(self, service):
@@ -93,6 +88,7 @@ class OptionsHandler(unohelper.Base,
 
     def getSupportedServiceNames(self):
         return g_ImplementationHelper.getSupportedServiceNames(g_ImplementationName)
+
 
 g_ImplementationHelper.addImplementation(OptionsHandler,                  # UNO object class
                                          g_ImplementationName,            # Implementation name

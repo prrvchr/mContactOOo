@@ -29,12 +29,9 @@
 
 # General configuration
 g_extension = 'mContactOOo'
-g_identifier = 'io.github.prrvchr.%s' % g_extension
+g_identifier = f'io.github.prrvchr.{g_extension}'
 g_protocol = 'sdbc:address:microsoft'
-g_implementation = '%s.Driver' % g_identifier
-
-# Resource strings files folder
-g_resource = 'resource'
+g_implementation = f'{g_identifier}.Driver'
 g_basename = 'Driver'
 
 g_defaultlog = 'mContactLog'
@@ -43,9 +40,9 @@ g_errorlog = 'mContactError'
 
 g_scheme = 'https'
 g_host = 'graph.microsoft.com'
-g_version = 'beta'
-g_url = '%s://%s/%s' % (g_scheme, g_host, g_version)
-g_scope = '%s/People' % g_host
+g_ver = 'beta'
+g_url = f'{g_scheme}://{g_host}/{g_ver}'
+g_scope = f'{g_host}/People'
 
 g_chunk = 320 * 1024
 g_page = 100
@@ -58,3 +55,4 @@ g_cardfields = 'displayName,surname,givenName,middleName,title,CompanyName,email
 
 g_groupfields = 'id,displayName'
 
+g_version = '1.5.0'

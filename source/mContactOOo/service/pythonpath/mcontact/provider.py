@@ -29,12 +29,11 @@
 
 import uno
 
-from com.sun.star.logging.LogLevel import INFO
-from com.sun.star.logging.LogLevel import SEVERE
-
-from .card import Provider as ProviderMain
+from .card.provider import Provider as ProviderMain
 
 from .dbtool import currentDateTimeInTZ
+
+from .config.configuration import State
 
 from .configuration import g_host
 from .configuration import g_url
@@ -43,13 +42,15 @@ from .configuration import g_userfields
 from .configuration import g_groupfields
 
 import json
-import ijson
-import traceback
+try:
+    import ijson
+except ImportError as e:
+    State.restart = True
 
 
 class Provider(ProviderMain):
-    def __init__(self, ctx, src, database):
-        ProviderMain.__init__(self, ctx, src)
+    def __init__(self, ctx, database, source=None):
+        ProviderMain.__init__(self, ctx, source)
         paths, lists, maps, types, tmps, fields = database.getMetaData('item')
         self._paths = paths
         self._lists = lists
@@ -61,12 +62,13 @@ class Provider(ProviderMain):
     @property
     def Host(self):
         return g_host
+
     @property
     def BaseUrl(self):
         return g_url
 
 # Method called from Provider.insertUser()
-    def getNewUserId(self, request, scheme, server, name, pwd):
+    def getNewUserId(self, request, _scheme, _server, name, _pwd):
         parameter = self._getRequestParameter(request, 'getUser')
         response = request.execute(parameter)
         if not response.Ok:
@@ -75,18 +77,18 @@ class Provider(ProviderMain):
         return userid
 
 # Method called from DataSource.getConnection()
-    def getUserUri(self, server, name):
+    def getUserUri(self, _server, name):
         return name
 
 # Method called from Provider.initAddressbooks()
-    def getAddressbooks(self, database, user):
+    def getAddressbooks(self, _database, user):
         parameter = self._getRequestParameter(user.Request, 'getBooks')
         response = user.Request.execute(parameter)
         if not response.Ok:
             self.raiseForStatus('initAddressbooks', response, user.Name)
         return self._parseAllBooks(response)
 
-    def getUserGroups(self, database, user, book):
+    def getUserGroups(self, _database, user, _book):
         parameter = self._getRequestParameter(user.Request, 'getGroups')
         response = user.Request.execute(parameter)
         if not response.Ok:
@@ -125,7 +127,7 @@ class Provider(ProviderMain):
                 elif (prefix, event) == ('value.item.parentFolderId', 'string'):
                     tag = value
                 if all((url, name, tag)):
-                    yield  url, name, tag, ''
+                    yield url, name, tag, ''
                     url = name = tag = None
             del events[:]
         parser.close()
@@ -186,7 +188,7 @@ class Provider(ProviderMain):
                         cid = value
                     elif (prefix, event) == ('value.item.@odata.etag', 'string'):
                         etag = value
-                    # FIXME: All the data parsing is done based on the tables: Resources, Properties and Types 
+                    # FIXME: All the data parsing is done based on the tables: Resources, Properties and Types
                     # FIXME: Only properties listed in these tables will be parsed
                     # FIXME: This is the part for simple property import (use of tables: Resources and Properties)
                     elif event == 'string' and prefix in self._paths:
@@ -241,7 +243,7 @@ class Provider(ProviderMain):
                     name = value
                 elif (prefix, event) == ('value.item', 'end_map'):
                     if all((uri, name)):
-                        yield  uri, name
+                        yield uri, name
             del events[:]
         parser.close()
         response.close()
@@ -279,4 +281,3 @@ class Provider(ProviderMain):
             parameter.setQuery('select', self._fields)
 
         return parameter
-
