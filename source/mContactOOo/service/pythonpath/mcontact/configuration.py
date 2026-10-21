@@ -58,3 +58,11 @@ g_cardfields = 'displayName,surname,givenName,middleName,title,CompanyName,email
 
 g_groupfields = 'id,displayName'
 
+g_sep = '/'
+
+# Setup frame and Job name
+g_setup = '%s.Setup' % g_extension
+
+class State:
+    restart = False
+

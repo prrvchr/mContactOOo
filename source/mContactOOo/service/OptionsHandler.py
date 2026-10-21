@@ -72,8 +72,8 @@ class OptionsHandler(unohelper.Base,
                 elif event == 'back':
                     self._manager.loadSetting()
                     handled = True
-            elif method == 'ViewData':
-                self._manager.viewData()
+            elif method == 'ShowSetup':
+                self._manager.showSetup()
                 handled = True
             return handled
         except Exception as e:
@@ -82,7 +82,7 @@ class OptionsHandler(unohelper.Base,
 
     def getSupportedMethodNames(self):
         return ('external_event',
-                'ViewData')
+                'ShowSetup')
 
     # XServiceInfo
     def supportsService(self, service):

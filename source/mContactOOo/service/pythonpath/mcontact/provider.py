@@ -36,6 +36,7 @@ from .card import Provider as ProviderMain
 
 from .dbtool import currentDateTimeInTZ
 
+from .configuration import State
 from .configuration import g_host
 from .configuration import g_url
 from .configuration import g_chunk
@@ -43,7 +44,10 @@ from .configuration import g_userfields
 from .configuration import g_groupfields
 
 import json
-import ijson
+try:
+    import ijson
+except ImportError as e:
+    State.restart = True
 import traceback
 
 
