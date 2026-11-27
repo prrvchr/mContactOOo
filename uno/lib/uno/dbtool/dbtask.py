@@ -51,11 +51,12 @@ from .helper import createOdbDocument
 from .helper import createRoleAndPrivileges
 from .helper import createViews
 from .helper import executeQueries
+from .helper import getConnection
 from .helper import getConnectionInfos
 from .helper import getDataBaseForeignKeys
 from .helper import getDataBaseIndexes
 from .helper import getDataBaseTables
-from .helper import getDriverConnection
+from .helper import getDriver
 from .helper import getDriverInfos
 
 from ..unotool import checkVersion
@@ -110,6 +111,9 @@ class DBTask(Task):
         if self._callback:
             self._callback(self._getSuccess(success), error)
 
+    def getStepFinalize(self):
+        return self._getStepFinalize(None)
+
     def getSetupSteps(self, ctx, user, pwd, infos):
         if not self._exists:
             yield self._getStepGetStepCount(ctx)
@@ -135,11 +139,12 @@ class DBTask(Task):
 
     def stepGetConnection(self, ctx, user, pwd, infos):
         try:
+            driver = getDriver(ctx)
             if self._exists:
                 drvinfos = infos
             else:
-                drvinfos = getDriverInfos(ctx, self._url, g_drvinfos, infos=infos)
-            self._connection = getDriverConnection(ctx, self._url, user=user, pwd=pwd, infos=drvinfos)
+                drvinfos = getDriverInfos(driver, self._url, g_drvinfos, infos=infos)
+            self._connection = getConnection(driver, self._url, user=user, pwd=pwd, infos=drvinfos)
         except Exception as e:
             trace = traceback.format_exc()
             raise RunnerException(e, trace)
@@ -252,7 +257,7 @@ class DBTask(Task):
                 self._statement.close()
                 self._statement = None
             if self._connection:
-                if self._created:
+                if ctx and self._created:
                     createOdbDocument(ctx, self._connection, self._odb)
                     self._success = True
                 self._connection.close()
